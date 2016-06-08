@@ -3,7 +3,7 @@
 * Class : Enterprise Computing
 * Semester : 4
 * Professor : Tom Tsiliopolous
-* Purpose : Assignment 1 - ASP.NET Portfolio
+* Purpose : Project 1 - Game Tracker
 * Website Name : DanMasci.azurewebsites.net
 */
 
