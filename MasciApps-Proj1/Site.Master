@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MasciApps_Proj1.Site" %>
+<%@ Register Src="~/UserControls/Header.ascx" TagName="Header" TagPrefix="dm" %>
+<%@ Register Src="~/UserControls/Footer.ascx" TagName="Footer" TagPrefix="dm" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS / Fonts -->
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />		
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="Content/custom.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>    		
+    <!-- Nav Header -->
+    <dm:Header ID="MainHeader" runat="server" />        
+
+    <!-- Content -->
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        <!-- .aspx pages are injected here -->
+    </asp:ContentPlaceHolder>
+
+    <!-- Footer -->
+    <dm:Footer ID="MainFooter" runat="server" />
+
+    <!-- JS -->
+    <script src="Scripts/jquery-2.2.3.min.js"></script>
+    <script src="Scripts/moby.js"></script>
+    <script src="Scripts/custom.js"></script>
+</body>
+</html>
