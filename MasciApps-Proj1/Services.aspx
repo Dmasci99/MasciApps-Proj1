@@ -6,7 +6,7 @@
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : DanMasci.azurewebsites.net/Services.aspx
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Services.aspx
 * 
 * The Following page is the Content for the "Services" page.
 */ 

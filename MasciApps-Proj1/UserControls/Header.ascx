@@ -6,7 +6,7 @@
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : DanMasci.azurewebsites.net
+* Website Name : MasciApps-GameTracker.azurewebsites.net
 * 
 * The Following control is used as my Header that is called into the Site.Master
 * and Interior.Master. It is used as a consistent menu across the whole site.
@@ -37,6 +37,11 @@
 		        <div class="clear-float"></div><!--clear-float-->				
 	        </ul>
         </nav><!--.header-nav-->
+
+        <!-- Logo -->
+        <div class="logo">
+			<img src="../Assets/Logos/masciapps(med).png">
+		</div><!-- logo -->
 
         <div class="clear-float"></div><!--clear-float-->
     </div>

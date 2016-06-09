@@ -6,7 +6,7 @@
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : DanMasci.azurewebsites.net
+* Website Name : MasciApps-GameTracker.azurewebsites.net
 * 
 * The Following control is used as my Inteiror-Page Header.
 * It is only called into my Interior.Master.

@@ -78,6 +78,9 @@
     <Content Include="Assets\dekoning.jpg" />
     <Content Include="Assets\dogdayscamp.jpg" />
     <Content Include="Assets\liveinluxury.jpg" />
+    <Content Include="Assets\Logos\MasciApps%28Large%29.png" />
+    <Content Include="Assets\Logos\MasciApps%28Med%29.png" />
+    <Content Include="Assets\Logos\MasciApps%28Small%29.png" />
     <Content Include="Assets\projects-header.jpg" />
     <Content Include="Assets\services-header.jpg" />
     <Content Include="Assets\slide1.jpg" />

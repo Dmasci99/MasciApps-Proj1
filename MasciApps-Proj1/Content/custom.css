@@ -4,7 +4,7 @@
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : DanMasci.azurewebsites.net
+* Website Name : MasciApps-GameTracker.azurewebsites.net
 */
 /**
 * The follwing stylesheet is the "MASTER". It is a Less file that gets auto-compiled into
@@ -396,6 +396,20 @@ header {
   width: 100%;
   height: auto;
   z-index: 10;
+}
+header .logo {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 85px;
+}
+header .logo img {
+  width: 100%;
 }
 header #header-nav .menu {
   width: 100%;
@@ -2435,7 +2449,7 @@ footer .copyright p {
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : DanMasci.azurewebsites.net
+* Website Name : MasciApps-GameTracker.azurewebsites.net
 */
 /**
 * The follwing stylesheet is imported into style.less. This is used specifically for responsive

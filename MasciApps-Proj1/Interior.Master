@@ -2,6 +2,19 @@
 <%@ Register Src="~/UserControls/Header.ascx" TagName="Header" TagPrefix="dm" %>
 <%@ Register Src="~/UserControls/InteriorHeader.ascx" TagName="IntHeader" TagPrefix="dm" %>
 <%@ Register Src="~/UserControls/Footer.ascx" TagName="Footer" TagPrefix="dm" %>
+<%-- 
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Services.aspx
+* 
+* The Following page is the interior Master Template.
+* It is used for all interior pages.
+*/ 
+--%>
 
 <!DOCTYPE html>
 
