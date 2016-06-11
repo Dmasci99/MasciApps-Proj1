@@ -33,6 +33,7 @@
 			        </ul>
 		        </li>						
 		        <li><a runat="server" id="services" href="../Services.aspx">Services</a></li>	
+                <li><a runat="server" id="games" href="../Games.aspx">Games</a></li>	
 		        <li><a runat="server" id="contact" href="../Contact.aspx">Contact</a></li>	
 		        <div class="clear-float"></div><!--clear-float-->				
 	        </ul>

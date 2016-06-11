@@ -47,11 +47,21 @@
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.2.2.3\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -91,7 +101,21 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\custom.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Games.aspx" />
+    <Content Include="Models\GameTrackerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
+      <LastGenOutput>GameTrackerModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GameTrackerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
+      <LastGenOutput>GameTrackerModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Login.aspx" />
     <Content Include="Projects.aspx" />
+    <Content Include="Register.aspx" />
+    <Content Include="Scripts\gametracker.js" />
     <Content Include="Scripts\moby.js" />
     <Content Include="Services.aspx" />
     <Content Include="UserControls\Footer.ascx" />
@@ -102,6 +126,14 @@
     <Content Include="Content\partials\moby.less" />
     <Content Include="Content\partials\responsive.less" />
     <Content Include="Interior.Master" />
+    <Content Include="Content\partials\gametracker.less" />
+    <EntityDeploy Include="Models\GameTrackerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GameTrackerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GameTrackerModel.edmx.diagram">
+      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,7 +142,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -123,6 +154,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="UserControls\Head.ascx" />
     <Content Include="UserControls\Header.ascx" />
     <Content Include="UserControls\InteriorHeader.ascx" />
     <Content Include="Web.config" />
@@ -142,12 +174,43 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cours.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enrollment.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Games.aspx.cs">
+      <DependentUpon>Games.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Games.aspx.designer.cs">
+      <DependentUpon>Games.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameTrackerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTrackerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameTrackerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameTrackerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Interior.Master.cs">
       <DependentUpon>Interior.Master</DependentUpon>
@@ -156,6 +219,16 @@
     <Compile Include="Interior.Master.designer.cs">
       <DependentUpon>Interior.Master</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Match.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Projects.aspx.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,12 +236,28 @@
     <Compile Include="Projects.aspx.designer.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Services.aspx.cs">
       <DependentUpon>Services.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Services.aspx.designer.cs">
       <DependentUpon>Services.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sport.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Team.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
@@ -184,6 +273,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Head.ascx.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Head.ascx.designer.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Header.ascx.cs">
       <DependentUpon>Header.ascx</DependentUpon>
@@ -201,6 +297,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

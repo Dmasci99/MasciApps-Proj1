@@ -10,42 +10,33 @@
 namespace MasciApps_Proj1 {
     
     
-    public partial class Site {
+    public partial class Login {
         
         /// <summary>
-        /// MainHead control.
+        /// UsernameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Head MainHead;
+        protected global::System.Web.UI.WebControls.TextBox UsernameTextBox;
         
         /// <summary>
-        /// MainHeader control.
+        /// PasswordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Header MainHeader;
+        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
         
         /// <summary>
-        /// MainContent control.
+        /// LoginSubmitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
-        /// <summary>
-        /// MainFooter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Footer MainFooter;
+        protected global::System.Web.UI.WebControls.Button LoginSubmitButton;
     }
 }

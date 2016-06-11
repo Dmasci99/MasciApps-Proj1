@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasciApps_Proj1.UserControls
-{
-
-
-    public partial class Header
-    {
-
+namespace MasciApps_Proj1.UserControls {
+    
+    
+    public partial class Header {
+        
         /// <summary>
         /// about control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace MasciApps_Proj1.UserControls
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor about;
-
+        
         /// <summary>
         /// projects control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace MasciApps_Proj1.UserControls
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor projects;
-
+        
         /// <summary>
         /// services control.
         /// </summary>
@@ -40,7 +38,16 @@ namespace MasciApps_Proj1.UserControls
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor services;
-
+        
+        /// <summary>
+        /// games control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor games;
+        
         /// <summary>
         /// contact control.
         /// </summary>
