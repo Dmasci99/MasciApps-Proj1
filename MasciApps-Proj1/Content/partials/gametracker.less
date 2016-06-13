@@ -1,2 +1,180 @@
-﻿
+﻿/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+*/
 
+/**
+* The follwing stylesheet is imported into style.less. This is used specifically for all
+* styling that has to do with the GameTracker Application.
+*/
+
+
+.interior-page.gametracker-page {
+    .container {
+
+    }
+    .games-container {
+        margin: 100px 0;
+        .game-container {
+            color: @silver;
+            position: relative;
+            border: 2px solid @lightBlue;
+            margin: 20px;
+            padding: 20px;
+            .round(4px);
+            &::after {
+                content: "";
+            }
+            .game-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                .cover;      
+                .round(4px);          
+                z-index: 0;
+                &.basketball {
+                    background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+                }
+                &.soccer {
+                    background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+                }
+                &.football {
+                    background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+                }
+                &.volleyball {
+                    background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: fade(@darkerGrey, 85%);
+                    .round(2px);
+                }
+            }
+            .game-info {
+                text-align: center;
+                width: calc(~"100% - 130px - 130px");
+                margin: 0 auto;
+                .date {
+                    position: relative;
+                    z-index: 1000;
+                    font-size: 24px;
+                    font-weight: bold;
+                    padding-bottom: 5px;
+                    border-bottom: 2px solid @lightBlue;
+                    margin-bottom: 10px;
+                }
+                .team {
+                    position: absolute;
+                    top: 50%;
+                    .translateY;
+                    text-align: center;
+                    width: 130px;
+                    padding: 10px;
+                    &.left {
+                        left: 0;
+                    }
+                    &.right {
+                        right: 0;
+                    }
+                    .logo {
+                        width: 80%;
+                        margin: 0 auto;
+                        img {
+                            max-width: 100%;
+                        }
+                        .fa {
+                            font-size: 48px;
+                        }
+                    }
+                    .team-name {
+                        font-size: 20px;
+                        font-weight: bold;
+                        padding-top: 10px;
+                    }
+                }//.team
+                .info {
+                    position: relative;
+                    width: 50%;
+                    padding: 5px 10px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        height: 100%;
+                        width: 1px;
+                        background: @lightBlue;
+                    }
+                    &.left {
+                        float: left;
+                        text-align: right;
+                        &::after {
+                            right: 0;
+                        }
+                    }
+                    &.right {
+                        float: right;
+                        text-align: left;
+                        &::after {
+                            left: 0;
+                        }
+                    }
+                }//.info                
+                .spectators {
+                    position: relative;
+                    z-index: 1000;
+                }
+            }//.game-info
+        }//.game-container
+    }//.games-container
+}//.gametracker-page
+
+ 
+@media screen and (max-width: 650px) {
+    .interior-page.gametracker-page {
+        .games-container {
+            .game-container {
+                .game-info {
+                    width: 100%;
+                    .team {
+                        position: relative;
+                        top: 0;
+                        .translateY(0);
+                        width: 50%;
+                        padding: 10px;
+                        &.left {
+                            float: left;
+                        }
+                        &.right {
+                            float: right;
+                        }
+                    }//.team
+                    .info {
+                        position: relative;
+                        width: 50%;
+                        padding: 5px 10px;
+                        &::after {
+                            display: none;
+                        }
+                        &.left,
+                        &.right {
+                            
+                            text-align: center;
+                        }
+                    }//.info                
+                }//.game-info
+            }//.game-container
+        }//.games-container
+    }//.gametracker-page
+      
+}

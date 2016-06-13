@@ -2054,6 +2054,192 @@ footer .copyright p {
   font-weight: 700;
   margin-bottom: 0;
 }
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+*/
+/**
+* The follwing stylesheet is imported into style.less. This is used specifically for all
+* styling that has to do with the GameTracker Application.
+*/
+.interior-page.gametracker-page .games-container {
+  margin: 100px 0;
+}
+.interior-page.gametracker-page .games-container .game-container {
+  color: #d4cde5;
+  position: relative;
+  border: 2px solid #5271cc;
+  margin: 20px;
+  padding: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+.interior-page.gametracker-page .games-container .game-container::after {
+  content: "";
+}
+.interior-page.gametracker-page .games-container .game-container .game-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.basketball {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.soccer {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.football {
+  background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.volleyball {
+  background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 35, 35, 0.85);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info {
+  text-align: center;
+  width: calc(100% - 130px - 130px);
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .date {
+  position: relative;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #5271cc;
+  margin-bottom: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  width: 130px;
+  padding: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team.left {
+  left: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team.right {
+  right: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team .logo {
+  width: 80%;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team .logo img {
+  max-width: 100%;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team .logo .fa {
+  font-size: 48px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .team .team-name {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info {
+  position: relative;
+  width: 50%;
+  padding: 5px 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: #5271cc;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info.left {
+  float: left;
+  text-align: right;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info.left::after {
+  right: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info.right {
+  float: right;
+  text-align: left;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .info.right::after {
+  left: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-info .spectators {
+  position: relative;
+  z-index: 1000;
+}
+@media screen and (max-width: 650px) {
+  .interior-page.gametracker-page .games-container .game-container .game-info {
+    width: 100%;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .team {
+    position: relative;
+    top: 0;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    width: 50%;
+    padding: 10px;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .team.left {
+    float: left;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .team.right {
+    float: right;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .info {
+    position: relative;
+    width: 50%;
+    padding: 5px 10px;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .info::after {
+    display: none;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-info .info.left,
+  .interior-page.gametracker-page .games-container .game-container .game-info .info.right {
+    text-align: center;
+  }
+}
 /*********************************************************************************************************************************************/
 /*																																			 */
 /*																RESPONSIVE 										

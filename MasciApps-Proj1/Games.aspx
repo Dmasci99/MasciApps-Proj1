@@ -14,10 +14,45 @@
 
 <asp:Content ID="GamesPageContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="interior-page" id="games-page">
+    <div class="interior-page gametracker-page" id="games-page">
         <div class="container">
              
-              
+            <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID">
+                <LayoutTemplate>
+                    <div class="games-container">
+                        <div runat="server" id="itemPlaceholder"></div>
+                    </div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <div class="game-container">
+                        <div class="game-background"></div>
+
+                        <div class="game-info">
+                            <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "Date")).ToString("dddd, MMM d @ hh:mmtt") %></div>
+                            <div class="team left">
+                                <div class="logo"><i class="fa fa-facebook"></i></div>
+                                <div class="team-name"><%# DataBinder.Eval(Container.DataItem, "HomeTeamID") %></div>
+                            </div>
+                            <div class="team right">
+                                <div class="logo"><i class="fa fa-twitter"></i></div>
+                                <div class="team-name"><%# DataBinder.Eval(Container.DataItem, "AwayTeamID") %></div>
+                            </div>
+                            <div class="info left">
+                                <div class="score"><%# DataBinder.Eval(Container.DataItem, "HomeTeamScore") %></div>
+                                <div class="winner"><%# DataBinder.Eval(Container.DataItem, "Winner").Equals(DataBinder.Eval(Container.DataItem, "HomeTeamID")) ? 
+                                                            "Win" : "Lose" %></div>
+                            </div>
+                            <div class="info right">                                 
+                                <div class="score"><%# DataBinder.Eval(Container.DataItem, "AwayTeamScore") %></div>
+                                <div class="winner"><%# DataBinder.Eval(Container.DataItem, "Winner").Equals(DataBinder.Eval(Container.DataItem, "AwayTeamID")) ? 
+                                                            "Win" : "Lose" %></div>
+                            </div>
+                            <div class="spectators"><%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SpecCount")).ToString("N0") %> Spectators</div>
+                        </div>
+
+                    </div>
+                </ItemTemplate>
+            </asp:ListView> 
 
         </div>
     </div>
