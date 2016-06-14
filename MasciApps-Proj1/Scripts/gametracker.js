@@ -14,6 +14,10 @@
 
 jQuery(document).ready(function ($) {
 
-    
+    $('.calendar-trigger').click(function () {
+        $('.GameCalendar').toggleClass('active');
+    });
+
+    $('.SelectedWeek').parent('tr').addClass('SelectedWeek');
 
 });

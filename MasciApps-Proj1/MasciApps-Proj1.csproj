@@ -175,15 +175,15 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cours.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Course.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>GameTrackerModel.tt</DependentUpon>

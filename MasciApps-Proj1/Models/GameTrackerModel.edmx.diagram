@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9ecdffed82c543f3abcfe1558aeb2431" Name="Diagram1">
-        <EntityTypeShape EntityType="GameTrackerModel.Cours" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameTrackerModel.Course" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GameTrackerModel.Department" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GameTrackerModel.Enrollment" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GameTrackerModel.Match" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />

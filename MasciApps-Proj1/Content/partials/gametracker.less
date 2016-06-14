@@ -14,9 +14,79 @@
 
 
 .interior-page.gametracker-page {
-    .container {
-
-    }
+    .games-heading {
+        position: relative;
+        width: 100%;
+        .pagination {
+            .prev, 
+            .next {
+                position: absolute;
+                top: 50%;
+                .translateY;
+                padding: 10px;
+                .fa {
+                    color: @lightBlue;
+                    font-size: 32px;
+                }
+            }
+            .prev {
+                left: 0;
+                padding-left: 0;
+            }
+            .next {
+                right: 0;
+                padding-right: 0;
+            }
+        }//.pagination
+        .calender {
+            position: relative;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+            max-width: 255px;
+            padding: 5px 10px;
+            .round(4px);
+            background: @white;
+            border: 2px solid @lightBlue;
+            cursor: pointer;
+            margin: 0 auto;
+            &::after {
+                content: "";
+                position: absolute;
+                top: calc(~"100% + 2px");
+                left: 50%;
+                .translateX;
+                border: 4px solid transparent;
+                border-top-color: @lightBlue;
+            }
+            .calendar-trigger {
+            }
+            > .GameCalendar {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                .translateX;
+                margin: 0 auto;
+                background: @white;
+                border: 4px solid @lightBlue;
+                z-index: 2000;
+                .trans(all,0.3s);
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                    top: calc(100% + 4px);
+                }
+                tr:first-child {
+                    background: @lightBlue!important; //Month Header on Calender
+                }
+                tr.SelectedWeek {
+                    background: @lightBlue!important; //Week of chosen Day on Calendar
+                }
+            }
+        }//.calendar
+    }//.games-heading
     .games-container {
         margin: 100px 0;
         .game-container {
@@ -60,8 +130,8 @@
                     background: fade(@darkerGrey, 85%);
                     .round(2px);
                 }
-            }
-            .game-info {
+            }//.game-background         
+            .game-content {
                 text-align: center;
                 width: calc(~"100% - 130px - 130px");
                 margin: 0 auto;
@@ -73,73 +143,103 @@
                     padding-bottom: 5px;
                     border-bottom: 2px solid @lightBlue;
                     margin-bottom: 10px;
-                }
-                .team {
-                    position: absolute;
-                    top: 50%;
-                    .translateY;
-                    text-align: center;
-                    width: 130px;
-                    padding: 10px;
-                    &.left {
-                        left: 0;
-                    }
-                    &.right {
-                        right: 0;
-                    }
-                    .logo {
-                        width: 80%;
-                        margin: 0 auto;
-                        img {
-                            max-width: 100%;
-                        }
-                        .fa {
-                            font-size: 48px;
-                        }
-                    }
-                    .team-name {
-                        font-size: 20px;
-                        font-weight: bold;
-                        padding-top: 10px;
-                    }
-                }//.team
-                .info {
-                    position: relative;
-                    width: 50%;
-                    padding: 5px 10px;
-                    &::after {
-                        content: "";
+                }//.date
+                .teams {
+                    .team {
                         position: absolute;
-                        top: 0;
-                        height: 100%;
-                        width: 1px;
-                        background: @lightBlue;
-                    }
-                    &.left {
-                        float: left;
-                        text-align: right;
-                        &::after {
-                            right: 0;
-                        }
-                    }
-                    &.right {
-                        float: right;
-                        text-align: left;
-                        &::after {
+                        top: 50%;
+                        .translateY;
+                        text-align: center;
+                        width: 130px;
+                        padding: 10px;
+                        &.left {
                             left: 0;
                         }
-                    }
-                }//.info                
-                .spectators {
-                    position: relative;
-                    z-index: 1000;
-                }
-            }//.game-info
+                        &.right {
+                            right: 0;
+                        }
+                        .logo {
+                            width: 80%;
+                            margin: 0 auto;
+                            img {
+                                max-width: 100%;
+                            }
+                            .fa {
+                                font-size: 48px;
+                            }
+                        }
+                        .team-name {
+                            font-size: 20px;
+                            font-weight: bold;
+                            padding-top: 10px;
+                        }
+                    }//.team
+                }//.teams
+                .game-info {
+                    .info {
+                        position: relative;
+                        width: 50%;
+                        padding: 5px 10px;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            width: 1px;
+                            background: @lightBlue;
+                        }
+                        &.left {
+                            float: left;
+                            text-align: right;
+                            &::after {
+                                right: 0;
+                            }
+                        }//.info.left
+                        &.right {
+                            float: right;
+                            text-align: left;
+                            &::after {
+                                left: 0;
+                            }
+                        }//.info.right
+                        .winner {                            
+                            color: @green;
+                            &::before {
+                                content: "Win";
+                            }
+                        }
+                        .loser {
+                            color: red;
+                            &::before {                                
+                                content: "Lose";
+                            }
+                        }
+                    }//.info                
+                    .spectators {
+                        position: relative;
+                        z-index: 1000;
+                    }//.spectators
+                }//.game-info                     
+            }//.game-content
         }//.game-container
     }//.games-container
 }//.gametracker-page
 
+
+/* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=text]::-ms-clear {
+    display: none;
+}
  
+/****************************************************************************************************
+*																									*
+*											RESPONSIVE										
+*																									*
+****************************************************************************************************/
 @media screen and (max-width: 650px) {
     .interior-page.gametracker-page {
         .games-container {

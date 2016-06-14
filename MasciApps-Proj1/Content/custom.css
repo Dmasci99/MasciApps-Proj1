@@ -1632,9 +1632,9 @@ header #moby-button:hover .fa {
   width: 18px;
   height: 18px;
 }
-#login-page form .input-contianer input,
-#register-page form .input-contianer input,
-#profile-page form .input-contianer input {
+#login-page form .input-container input,
+#register-page form .input-container input,
+#profile-page form .input-container input {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -1646,9 +1646,9 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page form .input-contianer textarea,
-#register-page form .input-contianer textarea,
-#profile-page form .input-contianer textarea {
+#login-page form .input-container textarea,
+#register-page form .input-container textarea,
+#profile-page form .input-container textarea {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -2066,6 +2066,96 @@ footer .copyright p {
 * The follwing stylesheet is imported into style.less. This is used specifically for all
 * styling that has to do with the GameTracker Application.
 */
+.interior-page.gametracker-page .games-heading {
+  position: relative;
+  width: 100%;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev,
+.interior-page.gametracker-page .games-heading .pagination .next {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 10px;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev .fa,
+.interior-page.gametracker-page .games-heading .pagination .next .fa {
+  color: #5271cc;
+  font-size: 32px;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev {
+  left: 0;
+  padding-left: 0;
+}
+.interior-page.gametracker-page .games-heading .pagination .next {
+  right: 0;
+  padding-right: 0;
+}
+.interior-page.gametracker-page .games-heading .calender {
+  position: relative;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  max-width: 255px;
+  padding: 5px 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 2px solid #5271cc;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-heading .calender::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #5271cc;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 0 auto;
+  background: #ffffff;
+  border: 4px solid #5271cc;
+  z-index: 2000;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar.active {
+  opacity: 1;
+  visibility: visible;
+  top: calc(104%);
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr:first-child {
+  background: #5271cc !important;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr.SelectedWeek {
+  background: #5271cc !important;
+}
 .interior-page.gametracker-page .games-container {
   margin: 100px 0;
 }
@@ -2128,12 +2218,12 @@ footer .copyright p {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info {
+.interior-page.gametracker-page .games-container .game-container .game-content {
   text-align: center;
   width: calc(100% - 130px - 130px);
   margin: 0 auto;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .date {
+.interior-page.gametracker-page .games-container .game-container .game-content .date {
   position: relative;
   z-index: 1000;
   font-size: 24px;
@@ -2142,7 +2232,7 @@ footer .copyright p {
   border-bottom: 2px solid #5271cc;
   margin-bottom: 10px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -2154,33 +2244,33 @@ footer .copyright p {
   width: 130px;
   padding: 10px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team.left {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team.left {
   left: 0;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team.right {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team.right {
   right: 0;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team .logo {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo {
   width: 80%;
   margin: 0 auto;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team .logo img {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo img {
   max-width: 100%;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team .logo .fa {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo .fa {
   font-size: 48px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .team .team-name {
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .team-name {
   font-size: 20px;
   font-weight: bold;
   padding-top: 10px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info {
   position: relative;
   width: 50%;
   padding: 5px 10px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info::after {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info::after {
   content: "";
   position: absolute;
   top: 0;
@@ -2188,24 +2278,49 @@ footer .copyright p {
   width: 1px;
   background: #5271cc;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info.left {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left {
   float: left;
   text-align: right;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info.left::after {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left::after {
   right: 0;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info.right {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right {
   float: right;
   text-align: left;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .info.right::after {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right::after {
   left: 0;
 }
-.interior-page.gametracker-page .games-container .game-container .game-info .spectators {
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .winner {
+  color: #629916;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .winner::before {
+  content: "Win";
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .loser {
+  color: red;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .loser::before {
+  content: "Lose";
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .spectators {
   position: relative;
   z-index: 1000;
 }
+/* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
+input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+input[type=text]::-ms-clear {
+  display: none;
+}
+/****************************************************************************************************
+*																									*
+*											RESPONSIVE										
+*																									*
+****************************************************************************************************/
 @media screen and (max-width: 650px) {
   .interior-page.gametracker-page .games-container .game-container .game-info {
     width: 100%;

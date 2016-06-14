@@ -182,7 +182,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GameTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cours">
+        <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
           </Key>
@@ -191,7 +191,7 @@
           <Property Name="Credits" Type="Int32" Nullable="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Courses_DepartmentID" FromRole="Courses" ToRole="Departments" />
-          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_CourseID" FromRole="Courses" ToRole="Enrollments" />
+          <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollments_CourseID" FromRole="Courses" ToRole="Enrollments" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -200,7 +200,7 @@
           <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Budget" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_DepartmentID" FromRole="Departments" ToRole="Courses" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Courses_DepartmentID" FromRole="Departments" ToRole="Courses" />
         </EntityType>
         <EntityType Name="Enrollment">
           <Key>
@@ -210,7 +210,7 @@
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="Grade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cours" Relationship="Self.FK_Enrollments_CourseID" FromRole="Enrollments" ToRole="Courses" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Enrollments_CourseID" FromRole="Enrollments" ToRole="Courses" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Enrollments_StudentID" FromRole="Enrollments" ToRole="Students" />
         </EntityType>
         <EntityType Name="Match">
@@ -245,7 +245,7 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FirstMidName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EnrollmentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_StudentID" FromRole="Students" ToRole="Enrollments" />
+          <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollments_StudentID" FromRole="Students" ToRole="Enrollments" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -263,7 +263,7 @@
         </EntityType>
         <Association Name="FK_Courses_DepartmentID">
           <End Role="Departments" Type="Self.Department" Multiplicity="1" />
-          <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+          <End Role="Courses" Type="GameTrackerModel.Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="DepartmentID" />
@@ -274,7 +274,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Enrollments_CourseID">
-          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Courses" Type="GameTrackerModel.Course" Multiplicity="1" />
           <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -334,7 +334,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Courses" EntityType="GameTrackerModel.Course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
           <EntitySet Name="Matches" EntityType="Self.Match" />
@@ -373,7 +373,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GameTrackerModelStoreContainer" CdmEntityContainer="DefaultConnection">
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="GameTrackerModel.Cours">
+            <EntityTypeMapping TypeName="GameTrackerModel.Course">
               <MappingFragment StoreEntitySet="Courses">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

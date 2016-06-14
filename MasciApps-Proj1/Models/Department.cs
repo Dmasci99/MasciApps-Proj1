@@ -17,7 +17,7 @@ namespace MasciApps_Proj1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Department()
         {
-            this.Courses = new HashSet<Cours>();
+            this.Course = new HashSet<Course>();
         }
     
         public int DepartmentID { get; set; }
@@ -25,6 +25,6 @@ namespace MasciApps_Proj1.Models
         public decimal Budget { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cours> Courses { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

@@ -13,6 +13,24 @@ namespace MasciApps_Proj1 {
     public partial class Games {
         
         /// <summary>
+        /// CalendarValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CalendarValue;
+        
+        /// <summary>
+        /// GameCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar GameCalendar;
+        
+        /// <summary>
         /// GamesListView control.
         /// </summary>
         /// <remarks>
