@@ -2348,6 +2348,13 @@ footer .copyright p {
   border-radius: 4px;
   border: 1px solid #5271cc;
 }
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input {
+  float: left;
+  width: 49%;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input:first-child {
+  margin-right: 2%;
+}
 /* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
 input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;

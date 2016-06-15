@@ -4,20 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9ecdffed82c543f3abcfe1558aeb2431" Name="Diagram1">
-        <EntityTypeShape EntityType="GameTrackerModel.Course" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Department" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Enrollment" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Match" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Sport" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Student" Width="1.5" PointX="7.875" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameTrackerModel.Team" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="GameTrackerModel.FK_Courses_DepartmentID" ManuallyRouted="false" />
-        <AssociationConnector Association="GameTrackerModel.FK_Enrollments_CourseID" ManuallyRouted="false" />
-        <AssociationConnector Association="GameTrackerModel.FK_Enrollments_StudentID" ManuallyRouted="false" />
-        <AssociationConnector Association="GameTrackerModel.FK_Matches_AwayTeam" ManuallyRouted="false" />
-        <AssociationConnector Association="GameTrackerModel.FK_Matches_HomeTeam" ManuallyRouted="false" />
-        <AssociationConnector Association="GameTrackerModel.FK_Teams_Sports" ManuallyRouted="false" />
+      <Diagram DiagramId="696f5826f8894afd9b6ae7831e895c38" Name="Diagram1">
+        <EntityTypeShape EntityType="GameTrackerModel.Match" Width="1.5" PointX="1.125" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameTrackerModel.Sport" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameTrackerModel.Team" Width="1.5" PointX="4.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="GameTrackerModel.FK__Matches__SportID__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.fk_awayTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.fk_homeTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.FK__Teams__SportID__5FB337D6" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

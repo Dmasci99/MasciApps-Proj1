@@ -17,8 +17,8 @@ namespace MasciApps_Proj1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Team()
         {
-            this.Matches = new HashSet<Match>();
-            this.Matches1 = new HashSet<Match>();
+            this.Match_Away = new HashSet<Match>();
+            this.Match_Home = new HashSet<Match>();
         }
     
         public int TeamID { get; set; }
@@ -29,9 +29,9 @@ namespace MasciApps_Proj1.Models
         public byte[] Logo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Match> Matches { get; set; }
+        public virtual ICollection<Match> Match_Away { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Match> Matches1 { get; set; }
+        public virtual ICollection<Match> Match_Home { get; set; }
         public virtual Sport Sport { get; set; }
     }
 }

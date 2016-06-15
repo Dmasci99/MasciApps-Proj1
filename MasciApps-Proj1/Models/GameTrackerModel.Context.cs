@@ -25,12 +25,8 @@ namespace MasciApps_Proj1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Enrollment> Enrollments { get; set; }
         public virtual DbSet<Match> Matches { get; set; }
         public virtual DbSet<Sport> Sports { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
     }
 }

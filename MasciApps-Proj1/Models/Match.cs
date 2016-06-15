@@ -15,16 +15,18 @@ namespace MasciApps_Proj1.Models
     public partial class Match
     {
         public int MatchID { get; set; }
-        public string Name { get; set; }
+        public int SportID { get; set; }
         public int HomeTeamID { get; set; }
         public int AwayTeamID { get; set; }
+        public Nullable<int> Winner { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> SpecCount { get; set; }
         public Nullable<int> HomeTeamScore { get; set; }
         public Nullable<int> AwayTeamScore { get; set; }
-        public Nullable<int> Winner { get; set; }
-        public System.DateTime Date { get; set; }
-        public Nullable<int> SpecCount { get; set; }
     
-        public virtual Team Team { get; set; }
-        public virtual Team Team1 { get; set; }
+        public virtual Sport Sport { get; set; }
+        public virtual Team Team_Away { get; set; }
+        public virtual Team Team_Home { get; set; }
     }
 }

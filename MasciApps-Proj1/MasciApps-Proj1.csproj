@@ -103,6 +103,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Games.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Models\GameTrackerModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GameTrackerModel.edmx</DependentUpon>
@@ -113,7 +114,6 @@
       <DependentUpon>GameTrackerModel.edmx</DependentUpon>
       <LastGenOutput>GameTrackerModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Login.aspx" />
     <Content Include="Projects.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\gametracker.js" />
@@ -182,21 +182,26 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Course.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Enrollment.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Games.aspx.designer.cs">
       <DependentUpon>Games.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interior.Master.cs">
+      <DependentUpon>Interior.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interior.Master.designer.cs">
+      <DependentUpon>Interior.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\GameTrackerModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -213,21 +218,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GameTrackerModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Interior.Master.cs">
-      <DependentUpon>Interior.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Interior.Master.designer.cs">
-      <DependentUpon>Interior.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Match.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sport.cs">
+      <DependentUpon>GameTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Team.cs">
       <DependentUpon>GameTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Projects.aspx.cs">
@@ -250,15 +247,6 @@
     </Compile>
     <Compile Include="Services.aspx.designer.cs">
       <DependentUpon>Services.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sport.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Student.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Team.cs">
-      <DependentUpon>GameTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>

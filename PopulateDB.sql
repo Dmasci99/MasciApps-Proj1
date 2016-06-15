@@ -1,5 +1,6 @@
-﻿DROP TABLE TEAMS;
+﻿
 DROP TABLE MATCHES;
+DROP TABLE TEAMS;
 DROP TABLE SPORTS;
 
 CREATE TABLE Sports (
@@ -50,7 +51,5 @@ INSERT INTO Matches
 VALUES (1, 1, 2, 1, 'Raptors vs. Bulls', GETDATE(), 1923, 129, 108),
 	   (1, 1, 3, 3, 'Raptors vs. BBall Team', GETDATE(), 2923, 119, 120),
 	   (1, 3, 2, 2, 'BBall Team vs. Bulls', GETDATE(), 1923, 89, 106);
-
-SELECT * FROM Matches;
 
 SELECT * FROM Matches;

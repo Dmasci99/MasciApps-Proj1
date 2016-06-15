@@ -65,19 +65,20 @@ namespace MasciApps_Proj1
                                    select new
                                    {
                                        allMatches.MatchID,
+                                       allMatches.SportID,
                                        allMatches.HomeTeamID,
                                        allMatches.AwayTeamID,
-                                       allMatches.HomeTeamScore,
-                                       allMatches.AwayTeamScore,
-                                       MatchName = allMatches.Name,
-                                       allMatches.Date,
                                        allMatches.Winner,
+                                       MatchName = allMatches.Name,
+                                       SportName = sport.Name,
+                                       allMatches.Date,
                                        allMatches.SpecCount,
-                                       HomeTeamLogo = homeTeam.Logo,
+                                       allMatches.HomeTeamScore,
                                        HomeTeamName = homeTeam.Name,
-                                       AwayTeamLogo = awayTeam.Logo,
+                                       HomeTeamLogo = homeTeam.Logo,
+                                       allMatches.AwayTeamScore,
                                        AwayTeamName = awayTeam.Name,
-                                       SportName = sport.Name
+                                       AwayTeamLogo = awayTeam.Logo
                                    });
 
                     //bind the result to the GamesListView
@@ -128,6 +129,7 @@ namespace MasciApps_Proj1
                                              HomeTeamName = homeTeam.Name,
                                              AwayTeamLogo = awayTeam.Logo,
                                              AwayTeamName = awayTeam.Name,
+                                             match.SportID,
                                              SportName = sport.Name
                                          }).FirstOrDefault();
                     /**
@@ -146,7 +148,7 @@ namespace MasciApps_Proj1
 
                     /* Drop Downs */
                     var allTeams = (from team in db.Teams
-
+                                    where team.SportID == matchToEdit.SportID
                                     select team);
                     ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataSource = allTeams.ToList();
                     ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataBind();

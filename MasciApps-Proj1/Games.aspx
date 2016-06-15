@@ -40,11 +40,8 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="game-container">
-                            <%--<asp:HyperLink ID="ProductLink" runat="server" Text='<%# Eval("Name") %>' 
-                                NavigateUrl='<%# "ProductDetails.aspx?productID=" & Eval("ProductID") %>' />--%>
                             <asp:LinkButton runat="server" ID="EditMatchLink" CssClass="editMatch" Text="<i class='fa fa-pencil'></i>"
                                 PostBackUrl='<%# "Games.aspx?matchID=" + Eval("MatchID") + "&itemID=" + Container.DataItemIndex %>'></asp:LinkButton>
-                            <%--<asp:Button runat="server" ID="EditMatchButton" CommandName="Edit" CssClass="editMatch" Text="Edit" />--%>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
                                 <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "Date")).ToString("dddd, MMM d @ hh:mmtt") %></div>
@@ -109,8 +106,9 @@
                                     <div class="input-container matchSpecCount">
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
                                     </div>
-                                    <div class="input-container submit">
-                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update"/>
+                                    <div class="input-container buttons">
+                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" />
+                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update" />
                                     </div>
                                 </div>
                                 <div class="away-team col-3">                                    
