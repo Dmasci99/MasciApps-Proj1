@@ -40,26 +40,26 @@
         }//.pagination
         .calender {
             position: relative;
-            font-size: 14px;
             text-align: center;
             width: 100%;
             max-width: 255px;
-            padding: 5px 10px;
-            .round(4px);
-            background: @white;
-            border: 2px solid @lightBlue;
-            cursor: pointer;
             margin: 0 auto;
             &::after {
                 content: "";
                 position: absolute;
-                top: calc(~"100% + 2px");
+                top: 100%;
                 left: 50%;
                 .translateX;
                 border: 4px solid transparent;
                 border-top-color: @lightBlue;
             }
             .calendar-trigger {
+                font-size: 14px;
+                padding: 5px 10px;
+                background: @white;
+                border: 2px solid @lightBlue;
+                .round(4px);
+                cursor: pointer;
             }
             > .GameCalendar {
                 opacity: 0;
@@ -93,8 +93,7 @@
             color: @silver;
             position: relative;
             border: 2px solid @lightBlue;
-            margin: 20px;
-            padding: 20px;
+            margin: 30px 0;
             .round(4px);
             &::after {
                 content: "";
@@ -132,14 +131,18 @@
                 }
             }//.game-background         
             .game-content {
+                position: relative;
                 text-align: center;
-                width: calc(~"100% - 130px - 130px");
+                width: 100%;
                 margin: 0 auto;
+                padding: 20px;
                 .date {
                     position: relative;
                     z-index: 1000;
                     font-size: 24px;
                     font-weight: bold;
+                    width: calc(~"100% - 260px");
+                    margin: 0 auto;
                     padding-bottom: 5px;
                     border-bottom: 2px solid @lightBlue;
                     margin-bottom: 10px;
@@ -221,6 +224,25 @@
                     }//.spectators
                 }//.game-info                     
             }//.game-content
+            .game-edit {
+                padding: 20px;
+                .col-3 {
+                    width: 33.33%;
+                    float: left;
+                    .input-container {
+                        margin: 4px 10px;
+                        input,
+                        select {
+                            color: @darkBlue;
+                            font-size: 14px;
+                            padding: 4px 8px;
+                            width: 100%;
+                            .round(4px);
+                            border: 1px solid @lightBlue;
+                        }
+                    }//.input-container
+                }//.col-3
+            }//.game-edit
         }//.game-container
     }//.games-container
 }//.gametracker-page
@@ -244,35 +266,42 @@ input[type=text]::-ms-clear {
     .interior-page.gametracker-page {
         .games-container {
             .game-container {
-                .game-info {
-                    width: 100%;
-                    .team {
-                        position: relative;
-                        top: 0;
-                        .translateY(0);
-                        width: 50%;
-                        padding: 10px;
-                        &.left {
-                            float: left;
-                        }
-                        &.right {
-                            float: right;
-                        }
-                    }//.team
-                    .info {
-                        position: relative;
-                        width: 50%;
-                        padding: 5px 10px;
-                        &::after {
-                            display: none;
-                        }
-                        &.left,
-                        &.right {
+                .game-content {
+                    .date {
+                        width: 100%;
+                    }
+                    .teams {                        
+                        .team {
+                            position: relative;
+                            top: 0;
+                            .translateY(0);
+                            width: 50%;
+                            padding: 10px;
+                            &.left {
+                                float: left;
+                            }
+                            &.right {
+                                float: right;
+                            }
+                        }//.team
+                    }//.teams
+                    .game-info {
+                        width: 100%;
+                        .info {
+                            position: relative;
+                            width: 50%;
+                            padding: 5px 10px;
+                            &::after {
+                                display: none;
+                            }
+                            &.left,
+                            &.right {
                             
-                            text-align: center;
-                        }
-                    }//.info                
-                }//.game-info
+                                text-align: center;
+                            }
+                        }//.info          
+                    }//.game-info
+                }//.game-content                
             }//.game-container
         }//.games-container
     }//.gametracker-page

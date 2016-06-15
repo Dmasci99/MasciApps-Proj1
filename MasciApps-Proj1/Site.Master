@@ -25,7 +25,7 @@
 
         <!-- Content -->
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            <!-- .aspx pages are injected here -->
+             <!-- .aspx pages are injected here -->
         </asp:ContentPlaceHolder>
 
         <!-- Footer -->

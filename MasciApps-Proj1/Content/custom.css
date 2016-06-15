@@ -2096,25 +2096,15 @@ footer .copyright p {
 }
 .interior-page.gametracker-page .games-heading .calender {
   position: relative;
-  font-size: 14px;
   text-align: center;
   width: 100%;
   max-width: 255px;
-  padding: 5px 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  background: #ffffff;
-  border: 2px solid #5271cc;
-  cursor: pointer;
   margin: 0 auto;
 }
 .interior-page.gametracker-page .games-heading .calender::after {
   content: "";
   position: absolute;
-  top: calc(100% + 2px);
+  top: 100%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -2123,6 +2113,18 @@ footer .copyright p {
   transform: translateX(-50%);
   border: 4px solid transparent;
   border-top-color: #5271cc;
+}
+.interior-page.gametracker-page .games-heading .calender .calendar-trigger {
+  font-size: 14px;
+  padding: 5px 10px;
+  background: #ffffff;
+  border: 2px solid #5271cc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .interior-page.gametracker-page .games-heading .calender > .GameCalendar {
   opacity: 0;
@@ -2163,8 +2165,7 @@ footer .copyright p {
   color: #d4cde5;
   position: relative;
   border: 2px solid #5271cc;
-  margin: 20px;
-  padding: 20px;
+  margin: 30px 0;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -2219,15 +2220,19 @@ footer .copyright p {
   border-radius: 2px;
 }
 .interior-page.gametracker-page .games-container .game-container .game-content {
+  position: relative;
   text-align: center;
-  width: calc(100% - 130px - 130px);
+  width: 100%;
   margin: 0 auto;
+  padding: 20px;
 }
 .interior-page.gametracker-page .games-container .game-container .game-content .date {
   position: relative;
   z-index: 1000;
   font-size: 24px;
   font-weight: bold;
+  width: calc(100% - 260px);
+  margin: 0 auto;
   padding-bottom: 5px;
   border-bottom: 2px solid #5271cc;
   margin-bottom: 10px;
@@ -2308,6 +2313,29 @@ footer .copyright p {
   position: relative;
   z-index: 1000;
 }
+.interior-page.gametracker-page .games-container .game-container .game-edit {
+  padding: 20px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 {
+  width: 33.33%;
+  float: left;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container {
+  margin: 4px 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container input,
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container select {
+  color: #3f507f;
+  font-size: 14px;
+  padding: 4px 8px;
+  width: 100%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #5271cc;
+}
 /* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
 input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -2322,10 +2350,10 @@ input[type=text]::-ms-clear {
 *																									*
 ****************************************************************************************************/
 @media screen and (max-width: 650px) {
-  .interior-page.gametracker-page .games-container .game-container .game-info {
+  .interior-page.gametracker-page .games-container .game-container .game-content .date {
     width: 100%;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .team {
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
     position: relative;
     top: 0;
     -webkit-transform: translateY(0);
@@ -2336,22 +2364,25 @@ input[type=text]::-ms-clear {
     width: 50%;
     padding: 10px;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .team.left {
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team.left {
     float: left;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .team.right {
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team.right {
     float: right;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .info {
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info {
+    width: 100%;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info {
     position: relative;
     width: 50%;
     padding: 5px 10px;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .info::after {
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info::after {
     display: none;
   }
-  .interior-page.gametracker-page .games-container .game-container .game-info .info.left,
-  .interior-page.gametracker-page .games-container .game-container .game-info .info.right {
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left,
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right {
     text-align: center;
   }
 }
