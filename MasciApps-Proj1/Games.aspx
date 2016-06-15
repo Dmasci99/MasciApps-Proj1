@@ -16,6 +16,7 @@
     
     <div class="interior-page gametracker-page" id="games-page">
         <div class="container">
+            <h5 runat="server" id="test"></h5>
             
             <form runat="server">
                 <div class="games-heading">
@@ -30,7 +31,8 @@
                     </div>                            
                 </div>
 
-                <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID">
+                <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID" 
+                    OnItemEditing="GamesListView_ItemEditing" OnItemUpdated="GamesListView_ItemUpdated">
                     <LayoutTemplate>
                         <div class="games-container">
                             <div runat="server" id="itemPlaceholder"></div>
@@ -38,7 +40,11 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="game-container">
-
+                            <%--<asp:HyperLink ID="ProductLink" runat="server" Text='<%# Eval("Name") %>' 
+                                NavigateUrl='<%# "ProductDetails.aspx?productID=" & Eval("ProductID") %>' />--%>
+                            <asp:LinkButton runat="server" ID="EditMatchLink" CssClass="editMatch" Text="<i class='fa fa-pencil'></i>"
+                                PostBackUrl='<%# "Games.aspx?matchID=" + Eval("MatchID") + "&itemID=" + Container.DataItemIndex %>'></asp:LinkButton>
+                            <%--<asp:Button runat="server" ID="EditMatchButton" CommandName="Edit" CssClass="editMatch" Text="Edit" />--%>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
                                 <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "Date")).ToString("dddd, MMM d @ hh:mmtt") %></div>
@@ -66,10 +72,13 @@
                                     </div>                         
                                     <div class="clear-float"></div>       
                                     <div class="spectators"><%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SpecCount")).ToString("N0") %> Spectators</div>
+                                    <div class="hidden MatchID"><%# DataBinder.Eval(Container.DataItem, "MatchID") %></div>
+                                    <div class="hidden HomeTeamID"><%# DataBinder.Eval(Container.DataItem, "HomeTeamID") %></div>
+                                    <div class="hidden AwayTeamID"><%# DataBinder.Eval(Container.DataItem, "AwayTeamID") %></div>
                                 </div>                            
                             </div>
 
-                            <div class="game-edit">
+                            <div class="game-edit" runat="server" id="editTemplate">
                                 <div class="home-team col-3">
                                     <div class="input-container teamLogo">
                                         <asp:FileUpload runat="server" ID="HomeTeamLogoUpload" />
@@ -77,8 +86,8 @@
                                             ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
                                             ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
                                     </div>
-                                    <div class="input-container teamName">
-                                        <asp:TextBox runat="server" ID="HomeTeamNameTextBox" MaxLength="60" Placeholder="Home Team Name"></asp:TextBox>
+                                    <div class="input-container team">
+                                        <asp:DropDownList runat="server" ID="HomeTeamDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container teamScore">
                                         <asp:TextBox runat="server" ID="HomeTeamScoreTextBox" TextMode="Number" Placeholder="Home Team Score"></asp:TextBox>
@@ -86,7 +95,7 @@
                                 </div>
                                 <div class="match col-3">
                                     <div class="input-container matchType">
-                                        <asp:DropDownList runat="server" ID="MatchTypeDropDownList"></asp:DropDownList>
+                                        <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container matchName">
                                         <asp:TextBox runat="server" ID="MatchNameTextBox" MaxLength="100" Placeholder="Name"></asp:TextBox>
@@ -95,10 +104,13 @@
                                         <asp:TextBox runat="server" ID="MatchDateTimeTextBox" TextMode="DateTime" Placeholder="Date"></asp:TextBox>
                                     </div>
                                     <div class="input-container matchWinner">
-                                        <asp:DropDownList runat="server" ID="MatchWinnerDropDownList"></asp:DropDownList>
+                                        <asp:DropDownList runat="server" ID="MatchWinnerDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container matchSpecCount">
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
+                                    </div>
+                                    <div class="input-container submit">
+                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update"/>
                                     </div>
                                 </div>
                                 <div class="away-team col-3">                                    
@@ -108,8 +120,8 @@
                                             ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
                                             ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
                                     </div>
-                                    <div class="input-container teamName">
-                                        <asp:TextBox runat="server" ID="AwayTeamNameTextBox" MaxLength="60" Placeholder="Away Team Name"></asp:TextBox>
+                                    <div class="input-container team">
+                                        <asp:DropDownList runat="server" ID="AwayTeamDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container teamScore">
                                         <asp:TextBox runat="server" ID="AwayTeamScoreTextBox" TextMode="Number" Placeholder="Away Team Score"></asp:TextBox>
@@ -120,7 +132,7 @@
 
                         </div>
                     </ItemTemplate>
-                </asp:ListView> 
+                </asp:ListView>
 
             </form>
         </div>

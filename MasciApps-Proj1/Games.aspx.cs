@@ -19,9 +19,18 @@ namespace MasciApps_Proj1
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
+            { //On first page render
+                test.InnerText = "!IsPostBack";
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
-                this.GetMatches(); //Refresh ListView
+                this.GetMatches(); //Refresh ListView                
+            }
+            else
+            { //On postback
+                test.InnerText = "IsPostBack";
+                if (Request.QueryString.Count > 0)
+                { //If querystring provided (true when editing)
+                    this.GetMatch();
+                }
             }
         }
 
@@ -32,7 +41,7 @@ namespace MasciApps_Proj1
          * <summary>
          * This method retrieves the matches found for the specified week.
          * </summary>
-         * @method GetGames
+         * @method GetMatches
          * @returns {void}
          */
         private void GetMatches()
@@ -81,6 +90,90 @@ namespace MasciApps_Proj1
                 //Invalid Date Selection
                 //Or Temporary Failure with Connection (no idea why it sometimes does this. Only has happened twice.)
             }        
+        }
+
+        /**
+         * <summary>
+         * This method retrieves a match for editing.
+         * </summary>
+         * @method GetMatch
+         * @returns {void}
+         */
+        protected void GetMatch()
+        {
+
+            try
+            {
+                int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    //Query db for specific Match 
+                    var matchToEdit = (from match in db.Matches
+                                         join homeTeam in db.Teams on match.HomeTeamID equals homeTeam.TeamID
+                                         join awayTeam in db.Teams on match.AwayTeamID equals awayTeam.TeamID
+                                         join sport in db.Sports on homeTeam.SportID equals sport.SportID
+                                         where match.MatchID == matchID
+                                         select new
+                                         {
+                                             match.MatchID,
+                                             match.HomeTeamID,
+                                             match.AwayTeamID,
+                                             match.HomeTeamScore,
+                                             match.AwayTeamScore,
+                                             MatchName = match.Name,
+                                             match.Date,
+                                             match.Winner,
+                                             match.SpecCount,
+                                             HomeTeamLogo = homeTeam.Logo,
+                                             HomeTeamName = homeTeam.Name,
+                                             AwayTeamLogo = awayTeam.Logo,
+                                             AwayTeamName = awayTeam.Name,
+                                             SportName = sport.Name
+                                         }).FirstOrDefault();
+                    /**
+                     * Fill Edit Forms
+                     */
+                    int itemID = Convert.ToInt32(Request.QueryString["itemID"]);
+                    /* Text Boxes */
+                    //Home Team
+                    ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.HomeTeamScore);
+                    //Away Team
+                    ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.AwayTeamScore);
+                    //Match
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox")).Text = matchToEdit.MatchName;
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTimeTextBox")).Text = Convert.ToString(matchToEdit.Date);
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox")).Text = Convert.ToString(matchToEdit.SpecCount);
+
+                    /* Drop Downs */
+                    var allTeams = (from team in db.Teams
+
+                                    select team);
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataSource = allTeams.ToList();
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataBind();
+
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).DataSource = allTeams.ToList();
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).DataBind();
+
+                    var currentTeams = (from team in db.Teams
+                                        where team.TeamID == matchToEdit.HomeTeamID | team.TeamID == matchToEdit.AwayTeamID
+                                        select team);
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataSource = currentTeams.ToList();
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataBind();
+
+                    var sports = (from sport in db.Sports                                 
+                                  select sport);
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataSource = sports.ToList();
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataBind();
+
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                test.InnerText = e.StackTrace;
+            }
+
         }
 
         #endregion
@@ -133,5 +226,50 @@ namespace MasciApps_Proj1
 
         #endregion
 
+        /**
+         * <summary>
+         * This method handles the pre-edit of a Match: show edit form and populate with data.
+         * </summary>
+         * @method GamesListView_ItemEditing
+         * @param {object} sender
+         * @param {ListViewEditEventArgs} e
+         * @returns {void}
+         */ 
+        protected void GamesListView_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            try
+            {
+                //Reverse engineer to work with data before updating database
+                List<Match> matches = (List<Match>)GamesListView.DataSource; //List of Matches
+                Match match = matches[GamesListView.EditItem.DataItemIndex];
+
+                GamesListView.EditItem.FindControl("HomeTeamNameTextBox"); //Null - need item[rowindex]
+                GamesListView.FindControl("HomeTeamNameTextBox"); //Null - need item[rowindex]
+            }
+            catch (Exception)
+            {
+                //
+            }
+            
+
+
+
+            //Populate Edit Form with values
+
+            //Query the Sports table for Match Type Drop Down List
+
+            //Populate Match Type Selection
+
+            //Update the Item
+
+            //Show the Edit Form
+
+
+        }
+
+        protected void GamesListView_ItemUpdated(object sender, ListViewUpdatedEventArgs e)
+        {
+
+        }
     }
 }

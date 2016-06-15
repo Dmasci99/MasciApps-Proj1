@@ -2066,6 +2066,18 @@ footer .copyright p {
 * The follwing stylesheet is imported into style.less. This is used specifically for all
 * styling that has to do with the GameTracker Application.
 */
+.hidden {
+  display: none;
+}
+.editMatch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  background: #5271cc;
+  z-index: 1000;
+  cursor: pointer;
+}
 .interior-page.gametracker-page .games-heading {
   position: relative;
   width: 100%;
