@@ -17,13 +17,13 @@ namespace MasciApps_Proj1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sport()
         {
-            this.Teams = new HashSet<Team>();
+            this.Team = new HashSet<Team>();
         }
     
         public int SportID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
     }
 }

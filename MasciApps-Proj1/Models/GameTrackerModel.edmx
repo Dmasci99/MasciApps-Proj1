@@ -235,7 +235,7 @@
           </Key>
           <Property Name="SportID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Teams" Relationship="Self.FK_Teams_Sports" FromRole="Sports" ToRole="Teams" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Teams_Sports" FromRole="Sports" ToRole="Teams" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
