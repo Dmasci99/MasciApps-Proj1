@@ -24,7 +24,8 @@ namespace MasciApps_Proj1.UserControls
         private void setHeaderImage()
         {
             string backgroundImage = "Assets/" + Page.Title.ToLower().Replace(" ", "") + "-header.jpg";
-            headerBackground.Attributes.Add("style", "background-image: url(" + backgroundImage + ")");
+            //headerBackground.Attributes.Add("style", "background-image: url(" + backgroundImage + ")");
+            headerBackground.Attributes.Add("style", "background-image: url(Assets/dashboard.jpg");
         }
     }
 }

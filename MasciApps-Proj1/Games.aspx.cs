@@ -21,13 +21,13 @@ namespace MasciApps_Proj1
         {
             if (!IsPostBack)
             { //On first page render
-                test.InnerText = "!IsPostBack";
+                //test.InnerText = "!IsPostBack";
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
                 this.GetMatches(); //Refresh ListView                
             }
             else
             { //On postback
-                test.InnerText = "IsPostBack";
+                //test.InnerText = "IsPostBack";
                 if (Request.QueryString.Count > 0)
                 { //If querystring provided (true when editing)
                     this.GetMatch();
@@ -183,7 +183,7 @@ namespace MasciApps_Proj1
             }
             catch (Exception e)
             {
-                test.InnerText = e.StackTrace;
+                //test.InnerText = e.StackTrace;
             }
 
         }
