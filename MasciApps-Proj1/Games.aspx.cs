@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace MasciApps_Proj1
@@ -61,7 +62,7 @@ namespace MasciApps_Proj1
                                    join homeTeam in db.Teams on allMatches.HomeTeamID equals homeTeam.TeamID
                                    join awayTeam in db.Teams on allMatches.AwayTeamID equals awayTeam.TeamID
                                    join sport in db.Sports on homeTeam.SportID equals sport.SportID
-                                   where allMatches.Date >= startDate && allMatches.Date <= endDate
+                                   where allMatches.DateTime >= startDate && allMatches.DateTime <= endDate
                                    select new
                                    {
                                        allMatches.MatchID,
@@ -71,7 +72,7 @@ namespace MasciApps_Proj1
                                        allMatches.Winner,
                                        MatchName = allMatches.Name,
                                        SportName = sport.Name,
-                                       allMatches.Date,
+                                       allMatches.DateTime,
                                        allMatches.SpecCount,
                                        allMatches.HomeTeamScore,
                                        HomeTeamName = homeTeam.Name,
@@ -122,7 +123,7 @@ namespace MasciApps_Proj1
                                              match.HomeTeamScore,
                                              match.AwayTeamScore,
                                              MatchName = match.Name,
-                                             match.Date,
+                                             match.DateTime,
                                              match.Winner,
                                              match.SpecCount,
                                              HomeTeamLogo = homeTeam.Logo,
@@ -132,21 +133,11 @@ namespace MasciApps_Proj1
                                              match.SportID,
                                              SportName = sport.Name
                                          }).FirstOrDefault();
-                    /**
-                     * Fill Edit Forms
-                     */
-                    int itemID = Convert.ToInt32(Request.QueryString["itemID"]);
-                    /* Text Boxes */
-                    //Home Team
-                    ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.HomeTeamScore);
-                    //Away Team
-                    ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.AwayTeamScore);
-                    //Match
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox")).Text = matchToEdit.MatchName;
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTimeTextBox")).Text = Convert.ToString(matchToEdit.Date);
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox")).Text = Convert.ToString(matchToEdit.SpecCount);
 
-                    /* Drop Downs */
+                    int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+                    /**
+                     * Queries for populating DropDown Selections/Options
+                     */
                     var allTeams = (from team in db.Teams
                                     where team.SportID == matchToEdit.SportID
                                     select team);
@@ -162,12 +153,31 @@ namespace MasciApps_Proj1
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataSource = currentTeams.ToList();
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataBind();
 
-                    var sports = (from sport in db.Sports                                 
+                    var sports = (from sport in db.Sports
                                   select sport);
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataSource = sports.ToList();
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataBind();
 
+                    /**
+                     * Fill Edit Forms with appropriate data
+                     */
+                    /* Text Boxes */
+                    //Home Team
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).SelectedValue = Convert.ToString(matchToEdit.HomeTeamID);
+                    ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.HomeTeamScore);
+                    //Away Team
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).SelectedValue = Convert.ToString(matchToEdit.AwayTeamID);
+                    ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.AwayTeamScore);
+                    //Match
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).SelectedValue = Convert.ToString(matchToEdit.SportID);
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox")).Text = matchToEdit.MatchName;
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox")).Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("yyyy-MM-dd");
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox")).Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("HH:mm");
+                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).SelectedValue = Convert.ToString(matchToEdit.Winner);
+                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox")).Text = Convert.ToString(matchToEdit.SpecCount);
 
+                    //Reveal the edit form for the specified Match(ListViewItem)
+                    ((HtmlControl)GamesListView.Items[itemID].FindControl("editTemplate")).Attributes.Add("class", "game-edit active");                    
 
                 }
             }
@@ -208,7 +218,7 @@ namespace MasciApps_Proj1
          */
         protected void NextButton_Click(object sender, EventArgs e)
         {
-            GameCalendar.SelectedDate = GameCalendar.SelectedDate.AddDays(7); //Set new Date 1 week ahead
+            GameCalendar.SelectedDate = GameCalendar.SelectedDate.AddDays(7); //Set new Date 1 week ahead            
             this.GetMatches(); //Refresh ListView with New Date
         }
 

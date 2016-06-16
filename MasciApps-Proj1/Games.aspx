@@ -21,8 +21,8 @@
             <form runat="server">
                 <div class="games-heading">
                     <div class="pagination">
-                        <asp:LinkButton runat="server" CSSClass="prev" OnClick="PreviousButton_Click" Text="<i class='fa fa-chevron-left'></i>"></asp:LinkButton>
-                        <asp:LinkButton runat="server" CssClass="next" OnClick="NextButton_Click" Text="<i class='fa fa-chevron-right'></i>"></asp:LinkButton>
+                        <asp:LinkButton runat="server" CSSClass="prev" OnClick="PreviousButton_Click" Text="<i class='fa fa-chevron-left'></i>" PostBackUrl="~/Games.aspx"></asp:LinkButton>
+                        <asp:LinkButton runat="server" CssClass="next" OnClick="NextButton_Click" Text="<i class='fa fa-chevron-right'></i>" PostBackUrl="~/Games.aspx"></asp:LinkButton>
                     </div>
                     <div class="calender">
                         <div class="calendar-trigger" runat="server" id="CalendarValue">Week of: mm/dd/yyyy</div>
@@ -39,12 +39,12 @@
                         </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <div class="game-container">
+                        <div class="game-container" id="<%# "match" + Eval("MatchID") %>">
                             <asp:LinkButton runat="server" ID="EditMatchLink" CssClass="editMatch" Text="<i class='fa fa-pencil'></i>"
-                                PostBackUrl='<%# "Games.aspx?matchID=" + Eval("MatchID") + "&itemID=" + Container.DataItemIndex %>'></asp:LinkButton>
+                                PostBackUrl='<%# "~/Games.aspx?matchID=" + Eval("MatchID") + "&itemID=" + Container.DataItemIndex + "#match" + Eval("MatchID") %>'></asp:LinkButton>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
-                                <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "Date")).ToString("dddd, MMM d @ hh:mmtt") %></div>
+                                <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("dddd, MMM d @ hh:mmtt") %></div>
                                 <div class="teams">
                                     <div class="team left">
                                         <div class="logo"><%# DataBinder.Eval(Container.DataItem, "HomeTeamLogo") %></div>
@@ -98,7 +98,10 @@
                                         <asp:TextBox runat="server" ID="MatchNameTextBox" MaxLength="100" Placeholder="Name"></asp:TextBox>
                                     </div>
                                     <div class="input-container matchDate">
-                                        <asp:TextBox runat="server" ID="MatchDateTimeTextBox" TextMode="DateTime" Placeholder="Date"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="MatchDateTextBox" TextMode="Date"></asp:TextBox>
+                                    </div>
+                                    <div class="input-container matchTime">                                        
+                                        <asp:TextBox runat="server" ID="MatchTimeTextBox" TextMode="Time"></asp:TextBox>
                                     </div>
                                     <div class="input-container matchWinner">
                                         <asp:DropDownList runat="server" ID="MatchWinnerDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>

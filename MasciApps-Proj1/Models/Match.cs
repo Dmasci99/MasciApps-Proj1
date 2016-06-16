@@ -20,7 +20,7 @@ namespace MasciApps_Proj1.Models
         public int AwayTeamID { get; set; }
         public Nullable<int> Winner { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
         public Nullable<int> SpecCount { get; set; }
         public Nullable<int> HomeTeamScore { get; set; }
         public Nullable<int> AwayTeamScore { get; set; }

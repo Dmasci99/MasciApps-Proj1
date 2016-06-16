@@ -238,7 +238,19 @@
                 }//.game-info                     
             }//.game-content
             .game-edit {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                visibility: hidden;
                 padding: 20px;
+                .trans(all,1s);
+                &.active {
+                    position: relative;
+                    top: 100%;
+                    opacity: 1;
+                    visibility: visible;
+                }
                 .col-3 {
                     width: 33.33%;
                     float: left;

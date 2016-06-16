@@ -2326,7 +2326,23 @@ footer .copyright p {
   z-index: 1000;
 }
 .interior-page.gametracker-page .games-container .game-container .game-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
   padding: 20px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit.active {
+  position: relative;
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
 }
 .interior-page.gametracker-page .games-container .game-container .game-edit .col-3 {
   width: 33.33%;
