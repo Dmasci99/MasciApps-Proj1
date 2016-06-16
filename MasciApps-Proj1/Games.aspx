@@ -78,7 +78,7 @@
                             <div class="game-edit" runat="server" id="editTemplate">
                                 <div class="home-team col-3">
                                     <div class="input-container teamLogo">
-                                        <asp:FileUpload runat="server" ID="HomeTeamLogoUpload" />
+                                        <asp:FileUpload runat="server" ID="HomeTeamLogoUpload" Enabled="false" />
                                         <asp:RegularExpressionValidator runat="server" ID="HomeTeamLogoValidator" ControlToValidate="HomeTeamLogoUpload"
                                             ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
                                             ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
@@ -110,13 +110,13 @@
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
                                     </div>
                                     <div class="input-container buttons">
-                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" />
-                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update" />
+                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" Enabled="false" />
+                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update" Enabled="false" />
                                     </div>
                                 </div>
                                 <div class="away-team col-3">                                    
                                     <div class="input-container teamLogo">
-                                        <asp:FileUpload runat="server" ID="AwayTeamLogoUpload" />
+                                        <asp:FileUpload runat="server" ID="AwayTeamLogoUpload" Enabled="false" />
                                         <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" ControlToValidate="HomeTeamLogoUpload"
                                             ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
                                             ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
