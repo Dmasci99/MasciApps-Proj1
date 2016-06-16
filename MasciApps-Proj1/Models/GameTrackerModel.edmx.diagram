@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="696f5826f8894afd9b6ae7831e895c38" Name="Diagram1">
+        <EntityTypeShape EntityType="GameTrackerModel.Match" Width="1.5" PointX="1.125" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameTrackerModel.Sport" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameTrackerModel.Team" Width="1.5" PointX="4.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="GameTrackerModel.FK__Matches__SportID__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.fk_awayTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.fk_homeTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="GameTrackerModel.FK__Teams__SportID__5FB337D6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -26,3 +26,9 @@
 		</div><!-- container -->				
 	</div><!--div.copyright-->
 </footer>
+
+<!-- JS -->
+<script src="Scripts/jquery-2.2.3.min.js"></script>
+<script src="Scripts/moby.js"></script>
+<script src="Scripts/custom.js"></script>
+<script src="Scripts/gametracker.js"></script>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,8 @@ namespace MasciApps_Proj1.UserControls
          */
         private void setHeaderImage()
         {
-            headerBackground.Attributes.Add("style", "background-image: url(Assets/" + Page.Title.ToLower().Replace(" ", "") + "-header.jpg)");
+            string backgroundImage = "Assets/" + Page.Title.ToLower().Replace(" ", "") + "-header.jpg";
+            headerBackground.Attributes.Add("style", "background-image: url(" + backgroundImage + ")");
         }
     }
 }

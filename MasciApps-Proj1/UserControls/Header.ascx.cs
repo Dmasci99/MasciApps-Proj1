@@ -27,6 +27,7 @@ namespace MasciApps_Proj1.UserControls
                 case "About Me": about.Attributes.Add("class", "active"); break;
                 case "Projects": projects.Attributes.Add("class", "active"); break;
                 case "Services": services.Attributes.Add("class", "active"); break;
+                case "Games": games.Attributes.Add("class", "active"); break;
                 case "Contact Me": contact.Attributes.Add("class", "active"); break;
             }
         }

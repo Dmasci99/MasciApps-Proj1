@@ -1,0 +1,341 @@
+﻿/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+*/
+
+/**
+* The follwing stylesheet is imported into style.less. This is used specifically for all
+* styling that has to do with the GameTracker Application.
+*/
+
+
+.hidden {
+    display: none;
+}
+.editMatch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px;
+    background: @lightBlue;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.interior-page.gametracker-page {
+    .games-heading {
+        position: relative;
+        width: 100%;
+        .pagination {
+            .prev, 
+            .next {
+                position: absolute;
+                top: 50%;
+                .translateY;
+                padding: 10px;
+                .fa {
+                    color: @lightBlue;
+                    font-size: 32px;
+                }
+            }
+            .prev {
+                left: 0;
+                padding-left: 0;
+            }
+            .next {
+                right: 0;
+                padding-right: 0;
+            }
+        }//.pagination
+        .calender {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            max-width: 255px;
+            margin: 0 auto;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                .translateX;
+                border: 4px solid transparent;
+                border-top-color: @lightBlue;
+            }
+            .calendar-trigger {
+                font-size: 14px;
+                padding: 5px 10px;
+                background: @white;
+                border: 2px solid @lightBlue;
+                .round(4px);
+                cursor: pointer;
+            }
+            > .GameCalendar {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                .translateX;
+                margin: 0 auto;
+                background: @white;
+                border: 4px solid @lightBlue;
+                z-index: 2000;
+                .trans(all,0.3s);
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                    top: calc(100% + 4px);
+                }
+                tr:first-child {
+                    background: @lightBlue!important; //Month Header on Calender
+                }
+                tr.SelectedWeek {
+                    background: @lightBlue!important; //Week of chosen Day on Calendar
+                }
+            }
+        }//.calendar
+    }//.games-heading
+    .games-container {
+        margin: 100px 0;
+        .game-container {
+            color: @silver;
+            position: relative;
+            border: 2px solid @lightBlue;
+            margin: 30px 0;
+            .round(4px);
+            &::after {
+                content: "";
+            }
+            .game-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                .cover;      
+                .round(4px);          
+                z-index: 0;
+                &.basketball {
+                    background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+                }
+                &.soccer {
+                    background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+                }
+                &.football {
+                    background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+                }
+                &.volleyball {
+                    background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: fade(@darkerGrey, 85%);
+                    .round(2px);
+                }
+            }//.game-background         
+            .game-content {
+                position: relative;
+                text-align: center;
+                width: 100%;
+                margin: 0 auto;
+                padding: 20px;
+                .date {
+                    position: relative;
+                    z-index: 1000;
+                    font-size: 24px;
+                    font-weight: bold;
+                    width: calc(~"100% - 260px");
+                    margin: 0 auto;
+                    padding-bottom: 5px;
+                    border-bottom: 2px solid @lightBlue;
+                    margin-bottom: 10px;
+                }//.date
+                .teams {
+                    .team {
+                        position: absolute;
+                        top: 50%;
+                        .translateY;
+                        text-align: center;
+                        width: 130px;
+                        padding: 10px;
+                        &.left {
+                            left: 0;
+                        }
+                        &.right {
+                            right: 0;
+                        }
+                        .logo {
+                            width: 80%;
+                            margin: 0 auto;
+                            img {
+                                max-width: 100%;
+                            }
+                            .fa {
+                                font-size: 48px;
+                            }
+                        }
+                        .team-name {
+                            font-size: 20px;
+                            font-weight: bold;
+                            padding-top: 10px;
+                        }
+                    }//.team
+                }//.teams
+                .game-info {
+                    .info {
+                        position: relative;
+                        width: 50%;
+                        padding: 5px 10px;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            width: 1px;
+                            background: @lightBlue;
+                        }
+                        &.left {
+                            float: left;
+                            text-align: right;
+                            &::after {
+                                right: 0;
+                            }
+                        }//.info.left
+                        &.right {
+                            float: right;
+                            text-align: left;
+                            &::after {
+                                left: 0;
+                            }
+                        }//.info.right
+                        .winner {                            
+                            color: @green;
+                            &::before {
+                                content: "Win";
+                            }
+                        }
+                        .loser {
+                            color: red;
+                            &::before {                                
+                                content: "Lose";
+                            }
+                        }
+                    }//.info                
+                    .spectators {
+                        position: relative;
+                        z-index: 1000;
+                    }//.spectators
+                }//.game-info                     
+            }//.game-content
+            .game-edit {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                visibility: hidden;
+                padding: 20px;
+                .trans(all,1s);
+                &.active {
+                    position: relative;
+                    top: 100%;
+                    opacity: 1;
+                    visibility: visible;
+                }
+                .col-3 {
+                    width: 33.33%;
+                    float: left;
+                    .input-container {
+                        margin: 4px 10px;
+                        input,
+                        select {
+                            color: @darkBlue;
+                            font-size: 14px;
+                            padding: 4px 8px;
+                            width: 100%;
+                            .round(4px);
+                            border: 1px solid @lightBlue;
+                        }
+                        &.buttons > input {
+                            float: left;
+                            width: 49%;
+                            &:first-child {
+                                margin-right: 2%;
+                            }
+                        }
+                    }//.input-container
+                }//.col-3
+            }//.game-edit
+        }//.game-container
+    }//.games-container
+}//.gametracker-page
+
+
+/* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=text]::-ms-clear {
+    display: none;
+}
+ 
+/****************************************************************************************************
+*																									*
+*											RESPONSIVE										
+*																									*
+****************************************************************************************************/
+@media screen and (max-width: 650px) {
+    .interior-page.gametracker-page {
+        .games-container {
+            .game-container {
+                .game-content {
+                    .date {
+                        width: 100%;
+                    }
+                    .teams {                        
+                        .team {
+                            position: relative;
+                            top: 0;
+                            .translateY(0);
+                            width: 50%;
+                            padding: 10px;
+                            &.left {
+                                float: left;
+                            }
+                            &.right {
+                                float: right;
+                            }
+                        }//.team
+                    }//.teams
+                    .game-info {
+                        width: 100%;
+                        .info {
+                            position: relative;
+                            width: 50%;
+                            padding: 5px 10px;
+                            &::after {
+                                display: none;
+                            }
+                            &.left,
+                            &.right {
+                            
+                                text-align: center;
+                            }
+                        }//.info          
+                    }//.game-info
+                }//.game-content                
+            }//.game-container
+        }//.games-container
+    }//.gametracker-page
+      
+}

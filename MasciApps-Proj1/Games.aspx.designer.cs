@@ -10,42 +10,42 @@
 namespace MasciApps_Proj1 {
     
     
-    public partial class Site {
+    public partial class Games {
         
         /// <summary>
-        /// MainHead control.
+        /// test control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Head MainHead;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl test;
         
         /// <summary>
-        /// MainHeader control.
+        /// CalendarValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Header MainHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CalendarValue;
         
         /// <summary>
-        /// MainContent control.
+        /// GameCalendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Calendar GameCalendar;
         
         /// <summary>
-        /// MainFooter control.
+        /// GamesListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MasciApps_Proj1.UserControls.Footer MainFooter;
+        protected global::System.Web.UI.WebControls.ListView GamesListView;
     }
 }

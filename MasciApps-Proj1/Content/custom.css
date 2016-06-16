@@ -1606,9 +1606,7 @@ header #moby-button:hover .fa {
 ***********************************/
 #login-page form,
 #register-page form,
-#add-contact form,
-#update-contact form,
-#update-todo form {
+#profile-page form {
   width: 50%;
   min-width: 450px;
   position: relative;
@@ -1628,19 +1626,15 @@ header #moby-button:hover .fa {
 }
 #login-page form .checkbox input,
 #register-page form .checkbox input,
-#add-contact form .checkbox input,
-#update-contact form .checkbox input,
-#update-todo form .checkbox input {
+#profile-page form .checkbox input {
   position: relative;
   top: 4px;
   width: 18px;
   height: 18px;
 }
-#login-page form .input input,
-#register-page form .input input,
-#add-contact form .input input,
-#update-contact form .input input,
-#update-todo form .input input {
+#login-page form .input-container input,
+#register-page form .input-container input,
+#profile-page form .input-container input {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -1652,11 +1646,9 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page form .input textarea,
-#register-page form .input textarea,
-#add-contact form .input textarea,
-#update-contact form .input textarea,
-#update-todo form .input textarea {
+#login-page form .input-container textarea,
+#register-page form .input-container textarea,
+#profile-page form .input-container textarea {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -1672,32 +1664,22 @@ header #moby-button:hover .fa {
 }
 #login-page form .submit,
 #register-page form .submit,
-#add-contact form .submit,
-#update-contact form .submit,
-#update-todo form .submit {
+#profile-page form .submit {
   text-align: center;
   margin: 15px 0;
 }
 #login-page form .submit a,
 #register-page form .submit a,
-#add-contact form .submit a,
-#update-contact form .submit a,
-#update-todo form .submit a,
+#profile-page form .submit a,
 #login-page form .submit button,
 #register-page form .submit button,
-#add-contact form .submit button,
-#update-contact form .submit button,
-#update-todo form .submit button,
+#profile-page form .submit button,
 #login-page form .submit span,
 #register-page form .submit span,
-#add-contact form .submit span,
-#update-contact form .submit span,
-#update-todo form .submit span,
+#profile-page form .submit span,
 #login-page form .submit input,
 #register-page form .submit input,
-#add-contact form .submit input,
-#update-contact form .submit input,
-#update-todo form .submit input {
+#profile-page form .submit input {
   color: #f1f1f1;
   font-size: 14px;
   background: #3f507f;
@@ -1715,112 +1697,74 @@ header #moby-button:hover .fa {
 }
 #login-page form .submit a:hover,
 #register-page form .submit a:hover,
-#add-contact form .submit a:hover,
-#update-contact form .submit a:hover,
-#update-todo form .submit a:hover,
+#profile-page form .submit a:hover,
 #login-page form .submit button:hover,
 #register-page form .submit button:hover,
-#add-contact form .submit button:hover,
-#update-contact form .submit button:hover,
-#update-todo form .submit button:hover,
+#profile-page form .submit button:hover,
 #login-page form .submit span:hover,
 #register-page form .submit span:hover,
-#add-contact form .submit span:hover,
-#update-contact form .submit span:hover,
-#update-todo form .submit span:hover,
+#profile-page form .submit span:hover,
 #login-page form .submit input:hover,
 #register-page form .submit input:hover,
-#add-contact form .submit input:hover,
-#update-contact form .submit input:hover,
-#update-todo form .submit input:hover {
+#profile-page form .submit input:hover {
   cursor: pointer;
   background: #5065a1;
 }
 #login-page form .submit.color2 a,
 #register-page form .submit.color2 a,
-#add-contact form .submit.color2 a,
-#update-contact form .submit.color2 a,
-#update-todo form .submit.color2 a,
+#profile-page form .submit.color2 a,
 #login-page form .submit.color2 button,
 #register-page form .submit.color2 button,
-#add-contact form .submit.color2 button,
-#update-contact form .submit.color2 button,
-#update-todo form .submit.color2 button,
+#profile-page form .submit.color2 button,
 #login-page form .submit.color2 span,
 #register-page form .submit.color2 span,
-#add-contact form .submit.color2 span,
-#update-contact form .submit.color2 span,
-#update-todo form .submit.color2 span {
+#profile-page form .submit.color2 span {
   color: #f1f1f1;
   background: #0f1f4d;
 }
 #login-page form .submit.color2 a:hover,
 #register-page form .submit.color2 a:hover,
-#add-contact form .submit.color2 a:hover,
-#update-contact form .submit.color2 a:hover,
-#update-todo form .submit.color2 a:hover,
+#profile-page form .submit.color2 a:hover,
 #login-page form .submit.color2 button:hover,
 #register-page form .submit.color2 button:hover,
-#add-contact form .submit.color2 button:hover,
-#update-contact form .submit.color2 button:hover,
-#update-todo form .submit.color2 button:hover,
+#profile-page form .submit.color2 button:hover,
 #login-page form .submit.color2 span:hover,
 #register-page form .submit.color2 span:hover,
-#add-contact form .submit.color2 span:hover,
-#update-contact form .submit.color2 span:hover,
-#update-todo form .submit.color2 span:hover {
+#profile-page form .submit.color2 span:hover {
   background: #173078;
 }
 #login-page form .submit.color3 a,
 #register-page form .submit.color3 a,
-#add-contact form .submit.color3 a,
-#update-contact form .submit.color3 a,
-#update-todo form .submit.color3 a,
+#profile-page form .submit.color3 a,
 #login-page form .submit.color3 button,
 #register-page form .submit.color3 button,
-#add-contact form .submit.color3 button,
-#update-contact form .submit.color3 button,
-#update-todo form .submit.color3 button,
+#profile-page form .submit.color3 button,
 #login-page form .submit.color3 span,
 #register-page form .submit.color3 span,
-#add-contact form .submit.color3 span,
-#update-contact form .submit.color3 span,
-#update-todo form .submit.color3 span {
+#profile-page form .submit.color3 span {
   color: #f1f1f1;
   background: #5271cc;
 }
 #login-page form .submit.color3 a:hover,
 #register-page form .submit.color3 a:hover,
-#add-contact form .submit.color3 a:hover,
-#update-contact form .submit.color3 a:hover,
-#update-todo form .submit.color3 a:hover,
+#profile-page form .submit.color3 a:hover,
 #login-page form .submit.color3 button:hover,
 #register-page form .submit.color3 button:hover,
-#add-contact form .submit.color3 button:hover,
-#update-contact form .submit.color3 button:hover,
-#update-todo form .submit.color3 button:hover,
+#profile-page form .submit.color3 button:hover,
 #login-page form .submit.color3 span:hover,
 #register-page form .submit.color3 span:hover,
-#add-contact form .submit.color3 span:hover,
-#update-contact form .submit.color3 span:hover,
-#update-todo form .submit.color3 span:hover {
+#profile-page form .submit.color3 span:hover {
   background: #3656b5;
 }
 #login-page form .submit.width a,
 #register-page form .submit.width a,
-#add-contact form .submit.width a,
-#update-contact form .submit.width a,
-#update-todo form .submit.width a,
+#profile-page form .submit.width a,
 #login-page form .submit.width button,
 #register-page form .submit.width button,
-#add-contact form .submit.width button,
-#update-contact form .submit.width button,
-#update-todo form .submit.width button,
+#profile-page form .submit.width button,
 #login-page form .submit.width span,
 #register-page form .submit.width span,
-#add-contact form .submit.width span,
-#update-contact form .submit.width span,
-#update-todo form .submit.width span {
+#profile-page form .submit.width span {
   display: block;
   width: 200px;
   padding: 15px;
@@ -1828,32 +1772,22 @@ header #moby-button:hover .fa {
 }
 #login-page form .buttons,
 #register-page form .buttons,
-#add-contact form .buttons,
-#update-contact form .buttons,
-#update-todo form .buttons {
+#profile-page form .buttons {
   text-align: center;
   margin: 15px 0;
 }
 #login-page form .buttons a,
 #register-page form .buttons a,
-#add-contact form .buttons a,
-#update-contact form .buttons a,
-#update-todo form .buttons a,
+#profile-page form .buttons a,
 #login-page form .buttons button,
 #register-page form .buttons button,
-#add-contact form .buttons button,
-#update-contact form .buttons button,
-#update-todo form .buttons button,
+#profile-page form .buttons button,
 #login-page form .buttons span,
 #register-page form .buttons span,
-#add-contact form .buttons span,
-#update-contact form .buttons span,
-#update-todo form .buttons span,
+#profile-page form .buttons span,
 #login-page form .buttons input,
 #register-page form .buttons input,
-#add-contact form .buttons input,
-#update-contact form .buttons input,
-#update-todo form .buttons input {
+#profile-page form .buttons input {
   color: #f1f1f1;
   font-size: 14px;
   background: #3f507f;
@@ -1871,112 +1805,74 @@ header #moby-button:hover .fa {
 }
 #login-page form .buttons a:hover,
 #register-page form .buttons a:hover,
-#add-contact form .buttons a:hover,
-#update-contact form .buttons a:hover,
-#update-todo form .buttons a:hover,
+#profile-page form .buttons a:hover,
 #login-page form .buttons button:hover,
 #register-page form .buttons button:hover,
-#add-contact form .buttons button:hover,
-#update-contact form .buttons button:hover,
-#update-todo form .buttons button:hover,
+#profile-page form .buttons button:hover,
 #login-page form .buttons span:hover,
 #register-page form .buttons span:hover,
-#add-contact form .buttons span:hover,
-#update-contact form .buttons span:hover,
-#update-todo form .buttons span:hover,
+#profile-page form .buttons span:hover,
 #login-page form .buttons input:hover,
 #register-page form .buttons input:hover,
-#add-contact form .buttons input:hover,
-#update-contact form .buttons input:hover,
-#update-todo form .buttons input:hover {
+#profile-page form .buttons input:hover {
   cursor: pointer;
   background: #5065a1;
 }
 #login-page form .buttons.color2 a,
 #register-page form .buttons.color2 a,
-#add-contact form .buttons.color2 a,
-#update-contact form .buttons.color2 a,
-#update-todo form .buttons.color2 a,
+#profile-page form .buttons.color2 a,
 #login-page form .buttons.color2 button,
 #register-page form .buttons.color2 button,
-#add-contact form .buttons.color2 button,
-#update-contact form .buttons.color2 button,
-#update-todo form .buttons.color2 button,
+#profile-page form .buttons.color2 button,
 #login-page form .buttons.color2 span,
 #register-page form .buttons.color2 span,
-#add-contact form .buttons.color2 span,
-#update-contact form .buttons.color2 span,
-#update-todo form .buttons.color2 span {
+#profile-page form .buttons.color2 span {
   color: #f1f1f1;
   background: #0f1f4d;
 }
 #login-page form .buttons.color2 a:hover,
 #register-page form .buttons.color2 a:hover,
-#add-contact form .buttons.color2 a:hover,
-#update-contact form .buttons.color2 a:hover,
-#update-todo form .buttons.color2 a:hover,
+#profile-page form .buttons.color2 a:hover,
 #login-page form .buttons.color2 button:hover,
 #register-page form .buttons.color2 button:hover,
-#add-contact form .buttons.color2 button:hover,
-#update-contact form .buttons.color2 button:hover,
-#update-todo form .buttons.color2 button:hover,
+#profile-page form .buttons.color2 button:hover,
 #login-page form .buttons.color2 span:hover,
 #register-page form .buttons.color2 span:hover,
-#add-contact form .buttons.color2 span:hover,
-#update-contact form .buttons.color2 span:hover,
-#update-todo form .buttons.color2 span:hover {
+#profile-page form .buttons.color2 span:hover {
   background: #173078;
 }
 #login-page form .buttons.color3 a,
 #register-page form .buttons.color3 a,
-#add-contact form .buttons.color3 a,
-#update-contact form .buttons.color3 a,
-#update-todo form .buttons.color3 a,
+#profile-page form .buttons.color3 a,
 #login-page form .buttons.color3 button,
 #register-page form .buttons.color3 button,
-#add-contact form .buttons.color3 button,
-#update-contact form .buttons.color3 button,
-#update-todo form .buttons.color3 button,
+#profile-page form .buttons.color3 button,
 #login-page form .buttons.color3 span,
 #register-page form .buttons.color3 span,
-#add-contact form .buttons.color3 span,
-#update-contact form .buttons.color3 span,
-#update-todo form .buttons.color3 span {
+#profile-page form .buttons.color3 span {
   color: #f1f1f1;
   background: #5271cc;
 }
 #login-page form .buttons.color3 a:hover,
 #register-page form .buttons.color3 a:hover,
-#add-contact form .buttons.color3 a:hover,
-#update-contact form .buttons.color3 a:hover,
-#update-todo form .buttons.color3 a:hover,
+#profile-page form .buttons.color3 a:hover,
 #login-page form .buttons.color3 button:hover,
 #register-page form .buttons.color3 button:hover,
-#add-contact form .buttons.color3 button:hover,
-#update-contact form .buttons.color3 button:hover,
-#update-todo form .buttons.color3 button:hover,
+#profile-page form .buttons.color3 button:hover,
 #login-page form .buttons.color3 span:hover,
 #register-page form .buttons.color3 span:hover,
-#add-contact form .buttons.color3 span:hover,
-#update-contact form .buttons.color3 span:hover,
-#update-todo form .buttons.color3 span:hover {
+#profile-page form .buttons.color3 span:hover {
   background: #3656b5;
 }
 #login-page form .buttons.width a,
 #register-page form .buttons.width a,
-#add-contact form .buttons.width a,
-#update-contact form .buttons.width a,
-#update-todo form .buttons.width a,
+#profile-page form .buttons.width a,
 #login-page form .buttons.width button,
 #register-page form .buttons.width button,
-#add-contact form .buttons.width button,
-#update-contact form .buttons.width button,
-#update-todo form .buttons.width button,
+#profile-page form .buttons.width button,
 #login-page form .buttons.width span,
 #register-page form .buttons.width span,
-#add-contact form .buttons.width span,
-#update-contact form .buttons.width span,
-#update-todo form .buttons.width span {
+#profile-page form .buttons.width span {
   display: block;
   width: 200px;
   padding: 15px;
@@ -1984,19 +1880,13 @@ header #moby-button:hover .fa {
 }
 #login-page form .buttons a,
 #register-page form .buttons a,
-#add-contact form .buttons a,
-#update-contact form .buttons a,
-#update-todo form .buttons a,
+#profile-page form .buttons a,
 #login-page form .buttons button,
 #register-page form .buttons button,
-#add-contact form .buttons button,
-#update-contact form .buttons button,
-#update-todo form .buttons button,
+#profile-page form .buttons button,
 #login-page form .buttons span,
 #register-page form .buttons span,
-#add-contact form .buttons span,
-#update-contact form .buttons span,
-#update-todo form .buttons span {
+#profile-page form .buttons span {
   display: block;
   width: 200px;
   padding: 15px;
@@ -2004,30 +1894,22 @@ header #moby-button:hover .fa {
 }
 #login-page form .buttons .update,
 #register-page form .buttons .update,
-#add-contact form .buttons .update,
-#update-contact form .buttons .update,
-#update-todo form .buttons .update,
+#profile-page form .buttons .update,
 #login-page form .buttons .delete,
 #register-page form .buttons .delete,
-#add-contact form .buttons .delete,
-#update-contact form .buttons .delete,
-#update-todo form .buttons .delete {
+#profile-page form .buttons .delete {
   width: 100px;
   display: inline-block;
   margin: 5px;
 }
 #login-page form .buttons .delete:hover,
 #register-page form .buttons .delete:hover,
-#add-contact form .buttons .delete:hover,
-#update-contact form .buttons .delete:hover,
-#update-todo form .buttons .delete:hover {
+#profile-page form .buttons .delete:hover {
   background: #5a271a;
 }
 #login-page form h2,
 #register-page form h2,
-#add-contact form h2,
-#update-contact form h2,
-#update-todo form h2 {
+#profile-page form h2 {
   text-align: center;
   font-size: 32px;
   font-variant: small-caps;
@@ -2035,26 +1917,20 @@ header #moby-button:hover .fa {
 }
 #login-page form .exit,
 #register-page form .exit,
-#add-contact form .exit,
-#update-contact form .exit,
-#update-todo form .exit {
+#profile-page form .exit {
   position: absolute;
   top: 0;
   right: 0;
 }
 #login-page form .exit a,
 #register-page form .exit a,
-#add-contact form .exit a,
-#update-contact form .exit a,
-#update-todo form .exit a {
+#profile-page form .exit a {
   display: block;
   padding: 20px;
 }
 #login-page form .exit a .fa,
 #register-page form .exit a .fa,
-#add-contact form .exit a .fa,
-#update-contact form .exit a .fa,
-#update-todo form .exit a .fa {
+#profile-page form .exit a .fa {
   color: #0f1f4d;
   font-size: 26px;
   -webkit-transition: all 0.3s;
@@ -2065,17 +1941,13 @@ header #moby-button:hover .fa {
 }
 #login-page form .exit a:hover .fa,
 #register-page form .exit a:hover .fa,
-#add-contact form .exit a:hover .fa,
-#update-contact form .exit a:hover .fa,
-#update-todo form .exit a:hover .fa {
+#profile-page form .exit a:hover .fa {
   color: #5a271a;
   font-size: 32px;
 }
 #login-page .message,
 #register-page .message,
-#add-contact .message,
-#update-contact .message,
-#update-todo .message {
+#profile-page .message {
   position: relative;
   display: block;
   padding: 5px;
@@ -2088,9 +1960,7 @@ header #moby-button:hover .fa {
 }
 #login-page .message span,
 #register-page .message span,
-#add-contact .message span,
-#update-contact .message span,
-#update-todo .message span {
+#profile-page .message span {
   position: relative;
   color: #5a271a;
   font-size: 14px;
@@ -2098,9 +1968,7 @@ header #moby-button:hover .fa {
 }
 #login-page .message::before,
 #register-page .message::before,
-#add-contact .message::before,
-#update-contact .message::before,
-#update-todo .message::before {
+#profile-page .message::before {
   content: "";
   position: absolute;
   left: -14px;
@@ -2115,9 +1983,7 @@ header #moby-button:hover .fa {
 }
 #login-page .message::after,
 #register-page .message::after,
-#add-contact .message::after,
-#update-contact .message::after,
-#update-todo .message::after {
+#profile-page .message::after {
   content: "";
   position: absolute;
   right: -14px;
@@ -2135,256 +2001,6 @@ header #moby-button:hover .fa {
 *											BACKEND PAGES 										
 *																									*
 ****************************************************************************************************/
-/***********************************									
-*			Backend Header				
-***********************************/
-/***********************************									
-*			Backend Pages				
-***********************************/
-/***********************************									
-*		Contacts Dashboard				
-***********************************/
-#contacts-dashboard .add-contact {
-  font-size: 26px;
-  position: absolute;
-  top: 0;
-  right: 20px;
-  padding: 6px 24px;
-  color: #d4cde5;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-#contacts-dashboard .add-contact:hover {
-  background: #0f1f4d;
-  color: #ffffff;
-}
-#contacts-dashboard .contact-table table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 2px solid #0f1f4d;
-}
-#contacts-dashboard .contact-table table thead {
-  background: #3f507f;
-}
-#contacts-dashboard .contact-table table thead th {
-  color: #d4cde5;
-  font-size: 18px;
-  font-weight: 700;
-  border: 1px solid #0f1f4d;
-  text-align: center;
-  padding: 10px;
-}
-#contacts-dashboard .contact-table table tbody td {
-  color: #0f1f4d;
-  border: 1px solid #0f1f4d;
-  text-align: center;
-  padding: 10px;
-}
-#contacts-dashboard .contact-table table tbody tr {
-  border: 1px solid #0f1f4d;
-}
-#contacts-dashboard .contact-table table tbody tr:nth-child(even) {
-  background: #d4cde5;
-}
-#contacts-dashboard .contact-table table .update,
-#contacts-dashboard .contact-table table .delete {
-  width: 10px;
-  border: 0;
-}
-#contacts-dashboard .contact-table table .update {
-  padding: 0;
-}
-#contacts-dashboard .contact-table table .update .fa {
-  position: relative;
-  top: 3px;
-  padding: 10px;
-  color: #629916;
-}
-#contacts-dashboard .contact-table table .update:hover {
-  background: rgba(98, 153, 22, 0.15);
-}
-#contacts-dashboard .contact-table table .update:hover .fa {
-  font-weight: 700;
-}
-#contacts-dashboard .contact-table table .delete {
-  padding: 0;
-}
-#contacts-dashboard .contact-table table .delete .fa {
-  position: relative;
-  top: 3px;
-  padding: 10px;
-  color: #5a271a;
-}
-#contacts-dashboard .contact-table table .delete:hover {
-  background: rgba(90, 39, 26, 0.15);
-}
-#contacts-dashboard .contact-table table .delete:hover .fa {
-  font-weight: 700;
-}
-/***********************************									
-*		   Todo List				
-***********************************/
-#todo-list .todo-header {
-  background: #0f1f4d;
-  padding: 20px 20px 10px 20px;
-  color: #d4cde5;
-}
-#todo-list .todo-header .todo-remaining {
-  padding-top: 10px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-}
-#todo-list .todo-header .todo-search input {
-  padding: 5px 10px;
-  font-size: 14px;
-  width: 100%;
-}
-#todo-list .todo-header .todo-search input::-webkit-input-placeholder {
-  color: #747474;
-  opacity: 1;
-}
-#todo-list .todo-header .todo-search input:-moz-placeholder {
-  color: #747474;
-  opacity: 1;
-}
-#todo-list .todo-header .todo-search input::-moz-placeholder {
-  color: #747474;
-  opacity: 1;
-}
-#todo-list .todo-header .todo-search input:-ms-input-placeholder {
-  color: #747474;
-  opacity: 1;
-}
-#todo-list .todos {
-  border: 2px solid #0f1f4d;
-  padding: 10px 0;
-}
-#todo-list .todos .todo {
-  position: relative;
-  display: block;
-  margin: 2px 0;
-}
-#todo-list .todos .todo .todo-complete {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  z-index: 100;
-  cursor: pointer;
-}
-#todo-list .todos .todo .todo-name {
-  position: relative;
-  display: block;
-}
-#todo-list .todos .todo .todo-name span {
-  display: block;
-  color: #0f1f4d;
-  padding: 10px;
-  margin: 0 40px;
-}
-#todo-list .todos .todo .todo-name span.completed {
-  text-decoration: line-through;
-}
-#todo-list .todos .todo .todo-name span:hover {
-  background: #d4cde5;
-  cursor: pointer;
-}
-#todo-list .todos .todo .todo-name textarea {
-  margin: 0 30px 0 40px;
-  width: calc(100% - 80px);
-  padding: 10px;
-  font-size: 16px;
-  padding-right: 55px;
-  resize: none;
-  height: 38px;
-}
-#todo-list .todos .todo .todo-name .icons {
-  position: absolute;
-  right: 60px;
-  top: calc(50% - 3px);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-#todo-list .todos .todo .todo-name .icons .fa {
-  padding: 0 2px;
-}
-#todo-list .todos .todo .todo-name .icons .fa:hover {
-  font-weight: 700;
-  cursor: pointer;
-}
-#todo-list .todos .todo .todo-edit {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 15px;
-  z-index: 100;
-}
-#todo-list .todos .todo .todo-edit .fa {
-  position: relative;
-  display: inline-block;
-  font-size: 18px;
-}
-#todo-list .todos .todo .todo-edit .fa:hover {
-  font-weight: 700;
-  cursor: pointer;
-}
-#todo-list .todos .todo .todo-edit a {
-  color: #000000;
-}
-#todo-list .todos .todo-add {
-  position: relative;
-}
-#todo-list .todos .todo-add .fa {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 18px;
-  cursor: pointer;
-}
-#todo-list .todos .todo-add .fa:hover {
-  font-weight: 700;
-}
-#todo-list .todos .todo-add input {
-  margin: 0 40px;
-  width: calc(100% - 80px);
-  padding: 10px;
-  font-size: 16px;
-  background: #d4cde5;
-}
-#todo-list .todos .todo-add input::-webkit-input-placeholder {
-  color: #0f1f4d;
-  opacity: 1;
-}
-#todo-list .todos .todo-add input:-moz-placeholder {
-  color: #0f1f4d;
-  opacity: 1;
-}
-#todo-list .todos .todo-add input::-moz-placeholder {
-  color: #0f1f4d;
-  opacity: 1;
-}
-#todo-list .todos .todo-add input:-ms-input-placeholder {
-  color: #0f1f4d;
-  opacity: 1;
-}
 /****************************************************************************************************
 *																									*
 *												FOOTER MAIN									
@@ -2437,6 +2053,373 @@ footer .copyright p {
   font-size: 10px;
   font-weight: 700;
   margin-bottom: 0;
+}
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+*/
+/**
+* The follwing stylesheet is imported into style.less. This is used specifically for all
+* styling that has to do with the GameTracker Application.
+*/
+.hidden {
+  display: none;
+}
+.editMatch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  background: #5271cc;
+  z-index: 1000;
+  cursor: pointer;
+}
+.interior-page.gametracker-page .games-heading {
+  position: relative;
+  width: 100%;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev,
+.interior-page.gametracker-page .games-heading .pagination .next {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 10px;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev .fa,
+.interior-page.gametracker-page .games-heading .pagination .next .fa {
+  color: #5271cc;
+  font-size: 32px;
+}
+.interior-page.gametracker-page .games-heading .pagination .prev {
+  left: 0;
+  padding-left: 0;
+}
+.interior-page.gametracker-page .games-heading .pagination .next {
+  right: 0;
+  padding-right: 0;
+}
+.interior-page.gametracker-page .games-heading .calender {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 255px;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-heading .calender::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #5271cc;
+}
+.interior-page.gametracker-page .games-heading .calender .calendar-trigger {
+  font-size: 14px;
+  padding: 5px 10px;
+  background: #ffffff;
+  border: 2px solid #5271cc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 0 auto;
+  background: #ffffff;
+  border: 4px solid #5271cc;
+  z-index: 2000;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar.active {
+  opacity: 1;
+  visibility: visible;
+  top: calc(104%);
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr:first-child {
+  background: #5271cc !important;
+}
+.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr.SelectedWeek {
+  background: #5271cc !important;
+}
+.interior-page.gametracker-page .games-container {
+  margin: 100px 0;
+}
+.interior-page.gametracker-page .games-container .game-container {
+  color: #d4cde5;
+  position: relative;
+  border: 2px solid #5271cc;
+  margin: 30px 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+.interior-page.gametracker-page .games-container .game-container::after {
+  content: "";
+}
+.interior-page.gametracker-page .games-container .game-container .game-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.basketball {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.soccer {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.football {
+  background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background.volleyball {
+  background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+}
+.interior-page.gametracker-page .games-container .game-container .game-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 35, 35, 0.85);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .date {
+  position: relative;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: bold;
+  width: calc(100% - 260px);
+  margin: 0 auto;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #5271cc;
+  margin-bottom: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  width: 130px;
+  padding: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team.left {
+  left: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team.right {
+  right: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo {
+  width: 80%;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo img {
+  max-width: 100%;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .logo .fa {
+  font-size: 48px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .teams .team .team-name {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info {
+  position: relative;
+  width: 50%;
+  padding: 5px 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: #5271cc;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left {
+  float: left;
+  text-align: right;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left::after {
+  right: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right {
+  float: right;
+  text-align: left;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right::after {
+  left: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .winner {
+  color: #629916;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .winner::before {
+  content: "Win";
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .loser {
+  color: red;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .info .loser::before {
+  content: "Lose";
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .game-info .spectators {
+  position: relative;
+  z-index: 1000;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  padding: 20px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit.active {
+  position: relative;
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 {
+  width: 33.33%;
+  float: left;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container {
+  margin: 4px 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container input,
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container select {
+  color: #3f507f;
+  font-size: 14px;
+  padding: 4px 8px;
+  width: 100%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #5271cc;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input {
+  float: left;
+  width: 49%;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input:first-child {
+  margin-right: 2%;
+}
+/* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
+input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+input[type=text]::-ms-clear {
+  display: none;
+}
+/****************************************************************************************************
+*																									*
+*											RESPONSIVE										
+*																									*
+****************************************************************************************************/
+@media screen and (max-width: 650px) {
+  .interior-page.gametracker-page .games-container .game-container .game-content .date {
+    width: 100%;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
+    position: relative;
+    top: 0;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    width: 50%;
+    padding: 10px;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team.left {
+    float: left;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .teams .team.right {
+    float: right;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info {
+    width: 100%;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info {
+    position: relative;
+    width: 50%;
+    padding: 5px 10px;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info::after {
+    display: none;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left,
+  .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right {
+    text-align: center;
+  }
 }
 /*********************************************************************************************************************************************/
 /*																																			 */
