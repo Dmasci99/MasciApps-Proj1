@@ -11,7 +11,11 @@ namespace MasciApps_Proj1.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            setActivePageLink();
+            if (!IsPostBack)
+            {
+                showLinks();
+                setActivePageLink();
+            }
         }
 
         /**
@@ -29,6 +33,30 @@ namespace MasciApps_Proj1.UserControls
                 case "Services": services.Attributes.Add("class", "active"); break;
                 case "Games": games.Attributes.Add("class", "active"); break;
                 case "Contact Me": contact.Attributes.Add("class", "active"); break;
+                case "Login": login.Attributes.Add("class", "active login"); break;
+                case "Register": register.Attributes.Add("class", "active register"); break;
+                case "Profile": profile.Attributes.Add("class", "active profile"); break;
+            }
+        }
+
+        /**
+         * <summary>
+         * This method determines what Links to show in our Header: dependant on User Authorization.
+         * </summary>
+         * @method showLinks
+         * @returns {void}
+         */
+        private void showLinks()
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                PrivatePlaceholder.Visible = true;
+                PublicPlaceholder.Visible = false;
+            }
+            else
+            {
+                PrivatePlaceholder.Visible = false;
+                PublicPlaceholder.Visible = true;
             }
         }
     }

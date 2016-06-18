@@ -13,6 +13,24 @@ namespace MasciApps_Proj1 {
     public partial class Register {
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Error;
+        
+        /// <summary>
+        /// RegisterCancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton RegisterCancelButton;
+        
+        /// <summary>
         /// UsernameTextBox control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace MasciApps_Proj1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ConfirmPasswordTextBox;
+        
+        /// <summary>
+        /// PasswordCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator PasswordCompareValidator;
         
         /// <summary>
         /// FirstNameTextBox control.

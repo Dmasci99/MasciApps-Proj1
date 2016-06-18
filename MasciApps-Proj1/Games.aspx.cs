@@ -55,7 +55,7 @@ namespace MasciApps_Proj1
 
                 CalendarValue.InnerText = "Week of: " + GameCalendar.SelectedDate.ToString("MM/dd/yyyy");
 
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     //query the Matches table using EF and Linq
                     var matches = (from allMatches in db.Matches
@@ -107,7 +107,7 @@ namespace MasciApps_Proj1
             try
             {
                 int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     //Query db for specific Match 
                     var matchToEdit = (from match in db.Matches
@@ -157,6 +157,11 @@ namespace MasciApps_Proj1
                                   select sport);
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataSource = sports.ToList();
                     ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataBind();
+
+                    //private TextBox textboxExample
+                    //{
+                    //    get { return this.NamingContainer.GetControl...; }
+                    //}
 
                     /**
                      * Fill Edit Forms with appropriate data

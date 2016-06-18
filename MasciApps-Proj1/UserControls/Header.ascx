@@ -19,6 +19,11 @@
         <span id="moby-button"><i class="fa fa-bars"></i></span>
         <div class="clear-float"></div><!-- clear-float -->
 
+        <!-- Logo -->
+        <div class="logo">
+			<img src="../Assets/Logos/masciapps(med).png">
+		</div><!-- logo -->
+
         <!-- Main Menu -->
         <nav id="header-nav">
 	        <ul class="menu">
@@ -39,11 +44,24 @@
 	        </ul>
         </nav><!--.header-nav-->
 
-        <!-- Logo -->
-        <div class="logo">
-			<img src="../Assets/Logos/masciapps(med).png">
-		</div><!-- logo -->
-
+        <!-- Account Menu -->
+        <nav id="account-nav">        
+            <asp:PlaceHolder runat="server" ID="PublicPlaceholder" Visible="true">
+	            <ul class="menu">
+		            <li><a runat="server" id="login" class="login" href="~/Login.aspx">Login</a></li>
+		            <li><a runat="server" id="register" class="register" href="~/Register.aspx">Register</a></li>
+	            </ul>
+            </asp:PlaceHolder>
+	        <asp:PlaceHolder runat="server" ID="PrivatePlaceholder" Visible="false">
+                <ul class="menu loggedin">
+		            <p>Welome, < username ></p>
+		            <li><a runat="server" id="logout" class="logout" href="~/Logout.aspx">Logout</a></li>
+		            <li><a runat="server" id="profile" class="profile" href="~/Profile.aspx">Profile</a></li>
+		            <div class="clear-float"></div><!--clear-float-->
+	            </ul>
+            </asp:PlaceHolder>
+        </nav><!-- account-nav -->
+        
         <div class="clear-float"></div><!--clear-float-->
     </div>
 </header>

@@ -18,5 +18,10 @@ namespace MasciApps_Proj1
         {
 
         }
+
+        protected void RegisterCancelButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Games.aspx");
+        }
     }
 }
