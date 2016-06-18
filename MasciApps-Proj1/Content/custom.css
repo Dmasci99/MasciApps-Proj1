@@ -1569,6 +1569,11 @@ header #moby-button:hover .fa {
   -o-box-shadow: 0 0 16px #747474;
   box-shadow: 0 0 16px #747474;
 }
+#login-page form .input-container,
+#register-page form .input-container,
+#profile-page form .input-container {
+  position: relative;
+}
 #login-page form .input-container input,
 #register-page form .input-container input,
 #profile-page form .input-container input {
@@ -1598,6 +1603,50 @@ header #moby-button:hover .fa {
   border-radius: 4px;
   resize: none;
   height: 200px;
+}
+#login-page form .input-container span,
+#register-page form .input-container span,
+#profile-page form .input-container span {
+  color: #5a271a;
+  font-size: 12px;
+  text-align: center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 120px;
+  padding: 6px;
+  left: calc(100% - 40px);
+  border: 1px solid #5a271a;
+  background: #d4cde5;
+  -webkit-box-shadow: 0 0 5px #000000;
+  -moz-box-shadow: 0 0 5px #000000;
+  -ms-box-shadow: 0 0 5px #000000;
+  -o-box-shadow: 0 0 5px #000000;
+  box-shadow: 0 0 5px #000000;
+}
+#login-page form .input-container span::before,
+#register-page form .input-container span::before,
+#profile-page form .input-container span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -13px;
+  border: 6px solid transparent;
+  border-right-color: #5a271a;
 }
 #login-page form .submit,
 #register-page form .submit,
@@ -1882,9 +1931,9 @@ header #moby-button:hover .fa {
   color: #5a271a;
   font-size: 32px;
 }
-#login-page .error-container,
-#register-page .error-container,
-#profile-page .error-container {
+#login-page form .error-container,
+#register-page form .error-container,
+#profile-page form .error-container {
   position: relative;
   display: block;
   padding: 5px;
@@ -1895,9 +1944,12 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page .error-container span,
-#register-page .error-container span,
-#profile-page .error-container span {
+#login-page form .error-container span,
+#register-page form .error-container span,
+#profile-page form .error-container span,
+#login-page form .error-container label,
+#register-page form .error-container label,
+#profile-page form .error-container label {
   position: relative;
   color: #5a271a;
   font-size: 14px;
@@ -1975,15 +2027,6 @@ footer .copyright p {
 */
 .hidden {
   display: none;
-}
-.editMatch {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 4px;
-  background: #5271cc;
-  z-index: 1000;
-  cursor: pointer;
 }
 .interior-page.gametracker-page .games-heading {
   position: relative;
@@ -2079,6 +2122,15 @@ footer .copyright p {
 }
 .interior-page.gametracker-page .games-container {
   margin: 100px 0;
+}
+.interior-page.gametracker-page .games-container .editMatch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  background: #5271cc;
+  z-index: 1000;
+  cursor: pointer;
 }
 .interior-page.gametracker-page .games-container .game-container {
   color: #d4cde5;
@@ -2730,6 +2782,15 @@ input[type=text]::-ms-clear {
   #login-page form,
   #register-page form,
   #profile-page form {
-    padding: 10px 30px;
+    border: 0;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  #login-page form .input-container span,
+  #register-page form .input-container span,
+  #profile-page form .input-container span {
+    left: calc(100% - 90px);
   }
 }

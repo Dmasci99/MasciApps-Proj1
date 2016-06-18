@@ -14,10 +14,23 @@
 
 jQuery(document).ready(function ($) {
 
+    //Show calendar when input is clicked - Games.aspx
     $('.calendar-trigger').click(function () {
         $('.GameCalendar').toggleClass('active');
     });
 
+    //Change background color of the current week of the calendar - Games.aspx
     $('.SelectedWeek').parent('tr').addClass('SelectedWeek');
+
+    //Allow user to close a Validator Error Message by clicking on it - Forms(Register/Login/Profile)
+    $('.input-container span').click(function () {
+        $(this).css('visibility', 'hidden');
+    });
+
+    //If user isn't logged in - hide edit buttons on Games.aspx
+    if ($('#games-page').length > 0)
+        if ($('.menu.loggedin').length == 0) 
+            $('.editMatch').css('display', 'none');
+    
 
 });

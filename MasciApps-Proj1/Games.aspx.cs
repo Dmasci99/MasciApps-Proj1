@@ -23,15 +23,16 @@ namespace MasciApps_Proj1
             { //On first page render
                 //test.InnerText = "!IsPostBack";
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
-                this.GetMatches(); //Refresh ListView                
+                this.GetMatches(); //Refresh ListView                            
             }
             else
             { //On postback
                 //test.InnerText = "IsPostBack";
-                if (Request.QueryString.Count > 0)
-                { //If querystring provided (true when editing)
-                    this.GetMatch();
-                }
+                if (Request.QueryString.Count > 0) //If querystring provided (true when editing)
+                    if (HttpContext.Current.User.Identity.IsAuthenticated) //If user is logged in - enter edit mode
+                        this.GetMatch();
+                    else
+                        Response.Redirect("~/Login.aspx");                
             }
         }
 

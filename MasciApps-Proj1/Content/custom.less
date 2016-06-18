@@ -1195,6 +1195,7 @@ header {
 		background: @white;
 		.box-shadow(0, 0, 16px, @grey);
 		.input-container {
+            position: relative;
 			input {
 				padding: 5px 10px;
 				margin: 5px 0;
@@ -1213,6 +1214,30 @@ header {
 				resize: none;
 				height: 200px;
 			}
+            span { //Validator Error Messages
+                color: @red;
+                font-size: 12px;
+                text-align: center;
+                .round(4px);
+                position: absolute;
+                top: 50%;
+                .translateY;
+                width: 120px;
+                padding: 6px;
+                left: calc(~"100% - 40px");
+                border: 1px solid @red;
+                background: @silver;
+                .box-shadow;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    .translateY;
+                    left: -13px;
+                    border: 6px solid transparent;
+                    border-right-color: @red;
+                }
+            }
 		}//.input-container
 		.submit {
 			.button1;
@@ -1256,20 +1281,20 @@ header {
 				}
 			}
 		}//.cancel
+	    .error-container {
+		    position: relative;
+		    display: block;
+		    padding: 5px;
+		    text-align: center;
+		    .round(4px);
+		    span, label {
+			    position: relative;
+			    color: @red;
+			    font-size: 14px;
+			    .bold;
+		    }//span		
+	    }//.error-container
 	}//form
-	.error-container {
-		position: relative;
-		display: block;
-		padding: 5px;
-		text-align: center;
-		.round(4px);
-		span {
-			position: relative;
-			color: @red;
-			font-size: 14px;
-			.bold;
-		}//span		
-	}//.error-container
 }//#login-page / #register-page / #profile-page
 
 /****************************************************************************************************

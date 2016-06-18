@@ -7,8 +7,8 @@
 
             <form runat="server">
                 <h2>Register</h2>
-                <div class="error-container">
-                    <div class="error" runat="server" id="Error"></div>
+                <div runat="server" id="ErrorContainer" class="error-container" visible="false">
+                    <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
                 </div>
                 <div class="cancel">
                     <asp:LinkButton runat="server" ID="RegisterCancelButton" OnClick="RegisterCancelButton_Click"><i class="fa fa-times"></i></asp:LinkButton>
@@ -25,16 +25,13 @@
                         ControlToValidate="ConfirmPasswordTextBox" ControlToCompare="PasswordTextBox"></asp:CompareValidator>
                 </div>                
                 <div class="input-container">
-                    <asp:TextBox runat="server" ID="FirstNameTextBox" Placeholder="First Name" TextMode="SingleLine" required="true" TabIndex="4"/>
-                </div>                
-                <div class="input-container">
-                    <asp:TextBox runat="server" ID="LastNameTextBox" Placeholder="Last Name" TextMode="SingleLine" required="true" TabIndex="5"/>
-                </div>                
-                <div class="input-container">
                     <asp:TextBox runat="server" ID="EmailTextBox" Placeholder="Email Address" TextMode="Email" required="true" TabIndex="6"/>
                 </div>                
+                <div class="input-container">
+                    <asp:TextBox runat="server" ID="PhoneTextBox" Placeholder="Phone#" TextMode="Phone" TabIndex="6"/>
+                </div>                
 				<div class="submit">
-                    <asp:Button runat="server" CssClass="" ID="RegisterSubmitButton" Text="Register" CausesValidation="true" OnClick="RegisterSubmitButton_Click" />
+                    <asp:Button runat="server" ID="RegisterSubmitButton" Text="Register" CausesValidation="true" OnClick="RegisterSubmitButton_Click" />
 				</div>
             </form>
 

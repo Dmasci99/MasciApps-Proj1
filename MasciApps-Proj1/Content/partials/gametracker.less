@@ -16,16 +16,6 @@
 .hidden {
     display: none;
 }
-.editMatch {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 4px;
-    background: @lightBlue;
-    z-index: 1000;
-    cursor: pointer;
-}
-
 .interior-page.gametracker-page {
     .games-heading {
         position: relative;
@@ -102,6 +92,15 @@
     }//.games-heading
     .games-container {
         margin: 100px 0;
+        .editMatch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px;
+            background: @lightBlue;
+            z-index: 1000;
+            cursor: pointer;
+        }
         .game-container {
             color: @silver;
             position: relative;
