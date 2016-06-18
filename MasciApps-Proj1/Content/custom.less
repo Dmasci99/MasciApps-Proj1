@@ -597,11 +597,10 @@ header {
 		right: 20px;
 		.translateY;
 		.menu {
-			width: 100px;
+			width: 85px;
 			background: transparent;
 			text-align: center;
 			&.loggedin {
-				width: 200px;
 				p {
 					font-size: 14px;
 					.bold;
@@ -643,7 +642,7 @@ header {
 						border-bottom-left-radius: 0;
 						border-left: 0;
 					}
-					&.dashboard {
+					&.profile {
 						width: 50%;
 						float: left;
 						color: @darkerBlue;
@@ -660,67 +659,20 @@ header {
 						}
 					}					
 				}//.menu li a
-				.sub-menu {
-					opacity: 0;
-					visibility: hidden;
-					position: absolute;
-					top: calc(~"100% - 1px");
-					left: 0;
-					padding: 10px 0;
-					width: 51%;
-					background: fade(@silver, 80%);
-					border: 2px solid @darkBlue;
-					border-top: none;
-					border-bottom-left-radius: 4px;
-					border-bottom-right-radius: 4px;
-					&::before {
-						opacity: 0;
-						content: "";
-						position: absolute;
-						top: 0px;
-						left: 50%;
-						.translateX;
-						width: 0;
-						border-top: 5px solid @darkBlue;
-						border-left: 5px solid transparent;
-						border-right: 5px solid transparent;
-					}
-					li {
-						a {
-							color: @black;
-							display: block;
-							padding: 10px;
-							font-size: 13px;
-							font-variant: small-caps;
-							.normal;
-							&:hover {
-								.bold;
-								background: fade(@silver, 80%);
-							}
-						}
-					}
-				}//.sub-menu
 				&:hover {
-					a.dashboard {
+					a.profile {
 						border-bottom-left-radius: 0;	
 						background: darken(@silver, 5%);
 					}
-					.sub-menu {
-						opacity: 1;
-						visibility: visible;
-						&::before {
-							opacity: 1;
-						}
-					}
-				}
+				}//.menu li:hover
 			}//.menu li
 		}//.menu
 	}//#account-nav
 	#moby-button {	
 		display: none;
-		float: right;
 		padding: 20px;
 		cursor: pointer;
+        text-align:center;
 		.fa {
 			color: @darkBlue;
 			font-size: 42px;
@@ -860,12 +812,6 @@ header {
 			}//.slides
 		}//.rotator
 	}//.top-banner
-	/***********************************									
-	*			Top Section 				
-	***********************************/
-	.top-section {
-
-	}//.top-section
 }//#home-page
 
 /****************************************************************************************************
@@ -1072,8 +1018,7 @@ header {
 *			Projects 				
 ***********************************/
 #projects-page {
-
-
+    //.interior-page .gallery
 }//#projects-page
 
 /***********************************									
@@ -1132,9 +1077,6 @@ header {
 *			Contact Me 				
 ***********************************/
 #contact-page {
-	.container {
-		
-	}//.container
 	.content {
 		padding: 40px 20px;
 		.left {
@@ -1238,7 +1180,7 @@ header {
 }//#contact-page
 
 /***********************************									
-*         Login / Register 				
+*    Login / Register / Profile			
 ***********************************/
 #login-page,
 #register-page,
@@ -1252,14 +1194,6 @@ header {
 		padding: 10px 60px;
 		background: @white;
 		.box-shadow(0, 0, 16px, @grey);
-		.checkbox {
-			input {
-				position: relative;
-				top: 4px;
-				width: 18px;
-				height: 18px;
-			}
-		}//.checkbox
 		.input-container {
 			input {
 				padding: 5px 10px;
@@ -1302,7 +1236,7 @@ header {
 			font-variant: small-caps;
 			padding: 10px 0 20px 0;
 		}
-		.exit {
+		.cancel {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -1321,9 +1255,9 @@ header {
 					}
 				}
 			}
-		}//.exit
+		}//.cancel
 	}//form
-	.message {
+	.error-container {
 		position: relative;
 		display: block;
 		padding: 5px;
@@ -1334,26 +1268,8 @@ header {
 			color: @red;
 			font-size: 14px;
 			.bold;
-		}//span
-		&::before {
-			content: "";
-			position: absolute;
-			left: -14px;
-			top: 50%;
-			.translateY;
-			border: 7px solid transparent;
-			border-left-color: @red;
-		}
-		&::after {
-			content: "";
-			position: absolute;
-			right: -14px;
-			top: 50%;
-			.translateY;
-			border: 7px solid transparent;
-			border-right-color: @red;
-		}
-	}//.message
+		}//span		
+	}//.error-container
 }//#login-page / #register-page / #profile-page
 
 /****************************************************************************************************

@@ -579,12 +579,9 @@ header #account-nav {
   transform: translateY(-50%);
 }
 header #account-nav .menu {
-  width: 100px;
+  width: 85px;
   background: transparent;
   text-align: center;
-}
-header #account-nav .menu.loggedin {
-  width: 200px;
 }
 header #account-nav .menu.loggedin p {
   font-size: 14px;
@@ -634,7 +631,7 @@ header #account-nav .menu > li > a.logout {
   border-bottom-left-radius: 0;
   border-left: 0;
 }
-header #account-nav .menu > li > a.dashboard {
+header #account-nav .menu > li > a.profile {
   width: 50%;
   float: left;
   color: #0f1f4d;
@@ -652,64 +649,15 @@ header #account-nav .menu > li > a:hover.logout,
 header #account-nav .menu > li > a.active.logout {
   background: #0f1f4d;
 }
-header #account-nav .menu > li .sub-menu {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  top: calc(100% - 1px);
-  left: 0;
-  padding: 10px 0;
-  width: 51%;
-  background: rgba(212, 205, 229, 0.8);
-  border: 2px solid #3f507f;
-  border-top: none;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-header #account-nav .menu > li .sub-menu::before {
-  opacity: 0;
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  width: 0;
-  border-top: 5px solid #3f507f;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-}
-header #account-nav .menu > li .sub-menu li a {
-  color: #000000;
-  display: block;
-  padding: 10px;
-  font-size: 13px;
-  font-variant: small-caps;
-  font-weight: 400;
-}
-header #account-nav .menu > li .sub-menu li a:hover {
-  font-weight: 700;
-  background: rgba(212, 205, 229, 0.8);
-}
-header #account-nav .menu > li:hover a.dashboard {
+header #account-nav .menu > li:hover a.profile {
   border-bottom-left-radius: 0;
   background: #c6bcdc;
 }
-header #account-nav .menu > li:hover .sub-menu {
-  opacity: 1;
-  visibility: visible;
-}
-header #account-nav .menu > li:hover .sub-menu::before {
-  opacity: 1;
-}
 header #moby-button {
   display: none;
-  float: right;
   padding: 20px;
   cursor: pointer;
+  text-align: center;
 }
 header #moby-button .fa {
   color: #3f507f;
@@ -733,9 +681,6 @@ header #moby-button:hover .fa {
   min-height: 400px;
   /***********************************									
 	*			Top Banner 				
-	***********************************/
-  /***********************************									
-	*			Top Section 				
 	***********************************/
 }
 #home-page .top-banner {
@@ -1602,7 +1547,7 @@ header #moby-button:hover .fa {
   font-size: 35px;
 }
 /***********************************									
-*         Login / Register 				
+*    Login / Register / Profile			
 ***********************************/
 #login-page form,
 #register-page form,
@@ -1623,14 +1568,6 @@ header #moby-button:hover .fa {
   -ms-box-shadow: 0 0 16px #747474;
   -o-box-shadow: 0 0 16px #747474;
   box-shadow: 0 0 16px #747474;
-}
-#login-page form .checkbox input,
-#register-page form .checkbox input,
-#profile-page form .checkbox input {
-  position: relative;
-  top: 4px;
-  width: 18px;
-  height: 18px;
 }
 #login-page form .input-container input,
 #register-page form .input-container input,
@@ -1915,22 +1852,22 @@ header #moby-button:hover .fa {
   font-variant: small-caps;
   padding: 10px 0 20px 0;
 }
-#login-page form .exit,
-#register-page form .exit,
-#profile-page form .exit {
+#login-page form .cancel,
+#register-page form .cancel,
+#profile-page form .cancel {
   position: absolute;
   top: 0;
   right: 0;
 }
-#login-page form .exit a,
-#register-page form .exit a,
-#profile-page form .exit a {
+#login-page form .cancel a,
+#register-page form .cancel a,
+#profile-page form .cancel a {
   display: block;
   padding: 20px;
 }
-#login-page form .exit a .fa,
-#register-page form .exit a .fa,
-#profile-page form .exit a .fa {
+#login-page form .cancel a .fa,
+#register-page form .cancel a .fa,
+#profile-page form .cancel a .fa {
   color: #0f1f4d;
   font-size: 26px;
   -webkit-transition: all 0.3s;
@@ -1939,15 +1876,15 @@ header #moby-button:hover .fa {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-#login-page form .exit a:hover .fa,
-#register-page form .exit a:hover .fa,
-#profile-page form .exit a:hover .fa {
+#login-page form .cancel a:hover .fa,
+#register-page form .cancel a:hover .fa,
+#profile-page form .cancel a:hover .fa {
   color: #5a271a;
   font-size: 32px;
 }
-#login-page .message,
-#register-page .message,
-#profile-page .message {
+#login-page .error-container,
+#register-page .error-container,
+#profile-page .error-container {
   position: relative;
   display: block;
   padding: 5px;
@@ -1958,43 +1895,13 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page .message span,
-#register-page .message span,
-#profile-page .message span {
+#login-page .error-container span,
+#register-page .error-container span,
+#profile-page .error-container span {
   position: relative;
   color: #5a271a;
   font-size: 14px;
   font-weight: 700;
-}
-#login-page .message::before,
-#register-page .message::before,
-#profile-page .message::before {
-  content: "";
-  position: absolute;
-  left: -14px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  border: 7px solid transparent;
-  border-left-color: #5a271a;
-}
-#login-page .message::after,
-#register-page .message::after,
-#profile-page .message::after {
-  content: "";
-  position: absolute;
-  right: -14px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  border: 7px solid transparent;
-  border-right-color: #5a271a;
 }
 /****************************************************************************************************
 *																									*
@@ -2523,10 +2430,6 @@ input[type=text]::-ms-clear {
   header #header-nav .menu > li#home {
     display: block;
   }
-  header #account-nav {
-    left: 40px;
-    right: auto;
-  }
   header #moby-button {
     display: block;
   }
@@ -2726,9 +2629,7 @@ input[type=text]::-ms-clear {
 	***********************************/
   #login-page form,
   #register-page form,
-  #add-contact form,
-  #update-contact form,
-  #update-todo form {
+  #profile-page form {
     width: 90%;
     min-width: 90%;
   }
@@ -2795,17 +2696,6 @@ input[type=text]::-ms-clear {
 @media screen and (max-width: 450px) {
   /****************************************************************************************************
 	*																									*
-	*												HEADER MAIN									
-	*																									*
-	****************************************************************************************************/
-  header #account-nav {
-    left: 20px;
-  }
-  header #moby-button {
-    padding-right: 0;
-  }
-  /****************************************************************************************************
-	*																									*
 	*											INTERIOR PAGES 										
 	*																									*
 	****************************************************************************************************/
@@ -2839,9 +2729,7 @@ input[type=text]::-ms-clear {
 	***********************************/
   #login-page form,
   #register-page form,
-  #add-contact form,
-  #update-contact form,
-  #update-todo form {
+  #profile-page form {
     padding: 10px 30px;
   }
 }

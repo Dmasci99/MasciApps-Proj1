@@ -13,10 +13,10 @@ namespace MasciApps_Proj1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DefaultConnection : DbContext
+    public partial class DefaultConnectionEF : DbContext
     {
-        public DefaultConnection()
-            : base("name=DefaultConnection")
+        public DefaultConnectionEF()
+            : base("name=DefaultConnectionEF")
         {
         }
     
