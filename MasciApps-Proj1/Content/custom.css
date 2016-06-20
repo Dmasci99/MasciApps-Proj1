@@ -1547,11 +1547,9 @@ header #moby-button:hover .fa {
   font-size: 35px;
 }
 /***********************************									
-*    Login / Register / Profile			
+*           Forms Pages			
 ***********************************/
-#login-page form,
-#register-page form,
-#profile-page form {
+.forms-page form {
   width: 50%;
   min-width: 450px;
   position: relative;
@@ -1569,14 +1567,13 @@ header #moby-button:hover .fa {
   -o-box-shadow: 0 0 16px #747474;
   box-shadow: 0 0 16px #747474;
 }
-#login-page form .input-container,
-#register-page form .input-container,
-#profile-page form .input-container {
+.forms-page form.wide {
+  width: 65%;
+}
+.forms-page form .input-container {
   position: relative;
 }
-#login-page form .input-container input,
-#register-page form .input-container input,
-#profile-page form .input-container input {
+.forms-page form .input-container input {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -1588,9 +1585,7 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page form .input-container textarea,
-#register-page form .input-container textarea,
-#profile-page form .input-container textarea {
+.forms-page form .input-container textarea {
   padding: 5px 10px;
   margin: 5px 0;
   background: #ffffff;
@@ -1604,9 +1599,7 @@ header #moby-button:hover .fa {
   resize: none;
   height: 200px;
 }
-#login-page form .input-container span,
-#register-page form .input-container span,
-#profile-page form .input-container span {
+.forms-page form .input-container span {
   color: #5a271a;
   font-size: 12px;
   text-align: center;
@@ -1633,9 +1626,7 @@ header #moby-button:hover .fa {
   -o-box-shadow: 0 0 5px #000000;
   box-shadow: 0 0 5px #000000;
 }
-#login-page form .input-container span::before,
-#register-page form .input-container span::before,
-#profile-page form .input-container span::before {
+.forms-page form .input-container span::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -1648,24 +1639,14 @@ header #moby-button:hover .fa {
   border: 6px solid transparent;
   border-right-color: #5a271a;
 }
-#login-page form .submit,
-#register-page form .submit,
-#profile-page form .submit {
+.forms-page form .submit {
   text-align: center;
   margin: 15px 0;
 }
-#login-page form .submit a,
-#register-page form .submit a,
-#profile-page form .submit a,
-#login-page form .submit button,
-#register-page form .submit button,
-#profile-page form .submit button,
-#login-page form .submit span,
-#register-page form .submit span,
-#profile-page form .submit span,
-#login-page form .submit input,
-#register-page form .submit input,
-#profile-page form .submit input {
+.forms-page form .submit a,
+.forms-page form .submit button,
+.forms-page form .submit span,
+.forms-page form .submit input {
   color: #f1f1f1;
   font-size: 14px;
   background: #3f507f;
@@ -1681,99 +1662,51 @@ header #moby-button:hover .fa {
   -o-transition: all 0.4s;
   transition: all 0.4s;
 }
-#login-page form .submit a:hover,
-#register-page form .submit a:hover,
-#profile-page form .submit a:hover,
-#login-page form .submit button:hover,
-#register-page form .submit button:hover,
-#profile-page form .submit button:hover,
-#login-page form .submit span:hover,
-#register-page form .submit span:hover,
-#profile-page form .submit span:hover,
-#login-page form .submit input:hover,
-#register-page form .submit input:hover,
-#profile-page form .submit input:hover {
+.forms-page form .submit a:hover,
+.forms-page form .submit button:hover,
+.forms-page form .submit span:hover,
+.forms-page form .submit input:hover {
   cursor: pointer;
   background: #5065a1;
 }
-#login-page form .submit.color2 a,
-#register-page form .submit.color2 a,
-#profile-page form .submit.color2 a,
-#login-page form .submit.color2 button,
-#register-page form .submit.color2 button,
-#profile-page form .submit.color2 button,
-#login-page form .submit.color2 span,
-#register-page form .submit.color2 span,
-#profile-page form .submit.color2 span {
+.forms-page form .submit.color2 a,
+.forms-page form .submit.color2 button,
+.forms-page form .submit.color2 span {
   color: #f1f1f1;
   background: #0f1f4d;
 }
-#login-page form .submit.color2 a:hover,
-#register-page form .submit.color2 a:hover,
-#profile-page form .submit.color2 a:hover,
-#login-page form .submit.color2 button:hover,
-#register-page form .submit.color2 button:hover,
-#profile-page form .submit.color2 button:hover,
-#login-page form .submit.color2 span:hover,
-#register-page form .submit.color2 span:hover,
-#profile-page form .submit.color2 span:hover {
+.forms-page form .submit.color2 a:hover,
+.forms-page form .submit.color2 button:hover,
+.forms-page form .submit.color2 span:hover {
   background: #173078;
 }
-#login-page form .submit.color3 a,
-#register-page form .submit.color3 a,
-#profile-page form .submit.color3 a,
-#login-page form .submit.color3 button,
-#register-page form .submit.color3 button,
-#profile-page form .submit.color3 button,
-#login-page form .submit.color3 span,
-#register-page form .submit.color3 span,
-#profile-page form .submit.color3 span {
+.forms-page form .submit.color3 a,
+.forms-page form .submit.color3 button,
+.forms-page form .submit.color3 span {
   color: #f1f1f1;
   background: #5271cc;
 }
-#login-page form .submit.color3 a:hover,
-#register-page form .submit.color3 a:hover,
-#profile-page form .submit.color3 a:hover,
-#login-page form .submit.color3 button:hover,
-#register-page form .submit.color3 button:hover,
-#profile-page form .submit.color3 button:hover,
-#login-page form .submit.color3 span:hover,
-#register-page form .submit.color3 span:hover,
-#profile-page form .submit.color3 span:hover {
+.forms-page form .submit.color3 a:hover,
+.forms-page form .submit.color3 button:hover,
+.forms-page form .submit.color3 span:hover {
   background: #3656b5;
 }
-#login-page form .submit.width a,
-#register-page form .submit.width a,
-#profile-page form .submit.width a,
-#login-page form .submit.width button,
-#register-page form .submit.width button,
-#profile-page form .submit.width button,
-#login-page form .submit.width span,
-#register-page form .submit.width span,
-#profile-page form .submit.width span {
+.forms-page form .submit.width a,
+.forms-page form .submit.width button,
+.forms-page form .submit.width span {
   display: block;
   width: 200px;
   padding: 15px;
   margin: 0 auto;
 }
-#login-page form .buttons,
-#register-page form .buttons,
-#profile-page form .buttons {
+.forms-page form .buttons {
   text-align: center;
   margin: 15px 0;
 }
-#login-page form .buttons a,
-#register-page form .buttons a,
-#profile-page form .buttons a,
-#login-page form .buttons button,
-#register-page form .buttons button,
-#profile-page form .buttons button,
-#login-page form .buttons span,
-#register-page form .buttons span,
-#profile-page form .buttons span,
-#login-page form .buttons input,
-#register-page form .buttons input,
-#profile-page form .buttons input {
+.forms-page form .buttons a,
+.forms-page form .buttons button,
+.forms-page form .buttons span,
+.forms-page form .buttons input {
   color: #f1f1f1;
   font-size: 14px;
   background: #3f507f;
@@ -1789,134 +1722,76 @@ header #moby-button:hover .fa {
   -o-transition: all 0.4s;
   transition: all 0.4s;
 }
-#login-page form .buttons a:hover,
-#register-page form .buttons a:hover,
-#profile-page form .buttons a:hover,
-#login-page form .buttons button:hover,
-#register-page form .buttons button:hover,
-#profile-page form .buttons button:hover,
-#login-page form .buttons span:hover,
-#register-page form .buttons span:hover,
-#profile-page form .buttons span:hover,
-#login-page form .buttons input:hover,
-#register-page form .buttons input:hover,
-#profile-page form .buttons input:hover {
+.forms-page form .buttons a:hover,
+.forms-page form .buttons button:hover,
+.forms-page form .buttons span:hover,
+.forms-page form .buttons input:hover {
   cursor: pointer;
   background: #5065a1;
 }
-#login-page form .buttons.color2 a,
-#register-page form .buttons.color2 a,
-#profile-page form .buttons.color2 a,
-#login-page form .buttons.color2 button,
-#register-page form .buttons.color2 button,
-#profile-page form .buttons.color2 button,
-#login-page form .buttons.color2 span,
-#register-page form .buttons.color2 span,
-#profile-page form .buttons.color2 span {
+.forms-page form .buttons.color2 a,
+.forms-page form .buttons.color2 button,
+.forms-page form .buttons.color2 span {
   color: #f1f1f1;
   background: #0f1f4d;
 }
-#login-page form .buttons.color2 a:hover,
-#register-page form .buttons.color2 a:hover,
-#profile-page form .buttons.color2 a:hover,
-#login-page form .buttons.color2 button:hover,
-#register-page form .buttons.color2 button:hover,
-#profile-page form .buttons.color2 button:hover,
-#login-page form .buttons.color2 span:hover,
-#register-page form .buttons.color2 span:hover,
-#profile-page form .buttons.color2 span:hover {
+.forms-page form .buttons.color2 a:hover,
+.forms-page form .buttons.color2 button:hover,
+.forms-page form .buttons.color2 span:hover {
   background: #173078;
 }
-#login-page form .buttons.color3 a,
-#register-page form .buttons.color3 a,
-#profile-page form .buttons.color3 a,
-#login-page form .buttons.color3 button,
-#register-page form .buttons.color3 button,
-#profile-page form .buttons.color3 button,
-#login-page form .buttons.color3 span,
-#register-page form .buttons.color3 span,
-#profile-page form .buttons.color3 span {
+.forms-page form .buttons.color3 a,
+.forms-page form .buttons.color3 button,
+.forms-page form .buttons.color3 span {
   color: #f1f1f1;
   background: #5271cc;
 }
-#login-page form .buttons.color3 a:hover,
-#register-page form .buttons.color3 a:hover,
-#profile-page form .buttons.color3 a:hover,
-#login-page form .buttons.color3 button:hover,
-#register-page form .buttons.color3 button:hover,
-#profile-page form .buttons.color3 button:hover,
-#login-page form .buttons.color3 span:hover,
-#register-page form .buttons.color3 span:hover,
-#profile-page form .buttons.color3 span:hover {
+.forms-page form .buttons.color3 a:hover,
+.forms-page form .buttons.color3 button:hover,
+.forms-page form .buttons.color3 span:hover {
   background: #3656b5;
 }
-#login-page form .buttons.width a,
-#register-page form .buttons.width a,
-#profile-page form .buttons.width a,
-#login-page form .buttons.width button,
-#register-page form .buttons.width button,
-#profile-page form .buttons.width button,
-#login-page form .buttons.width span,
-#register-page form .buttons.width span,
-#profile-page form .buttons.width span {
+.forms-page form .buttons.width a,
+.forms-page form .buttons.width button,
+.forms-page form .buttons.width span {
   display: block;
   width: 200px;
   padding: 15px;
   margin: 0 auto;
 }
-#login-page form .buttons a,
-#register-page form .buttons a,
-#profile-page form .buttons a,
-#login-page form .buttons button,
-#register-page form .buttons button,
-#profile-page form .buttons button,
-#login-page form .buttons span,
-#register-page form .buttons span,
-#profile-page form .buttons span {
+.forms-page form .buttons a,
+.forms-page form .buttons button,
+.forms-page form .buttons span {
   display: block;
   width: 200px;
   padding: 15px;
   margin: 0 auto;
 }
-#login-page form .buttons .update,
-#register-page form .buttons .update,
-#profile-page form .buttons .update,
-#login-page form .buttons .delete,
-#register-page form .buttons .delete,
-#profile-page form .buttons .delete {
+.forms-page form .buttons .update,
+.forms-page form .buttons .delete {
   width: 100px;
   display: inline-block;
   margin: 5px;
 }
-#login-page form .buttons .delete:hover,
-#register-page form .buttons .delete:hover,
-#profile-page form .buttons .delete:hover {
+.forms-page form .buttons .delete:hover {
   background: #5a271a;
 }
-#login-page form h2,
-#register-page form h2,
-#profile-page form h2 {
+.forms-page form h2 {
   text-align: center;
   font-size: 32px;
   font-variant: small-caps;
   padding: 10px 0 20px 0;
 }
-#login-page form .cancel,
-#register-page form .cancel,
-#profile-page form .cancel {
+.forms-page form .cancel {
   position: absolute;
   top: 0;
   right: 0;
 }
-#login-page form .cancel a,
-#register-page form .cancel a,
-#profile-page form .cancel a {
+.forms-page form .cancel a {
   display: block;
   padding: 20px;
 }
-#login-page form .cancel a .fa,
-#register-page form .cancel a .fa,
-#profile-page form .cancel a .fa {
+.forms-page form .cancel a .fa {
   color: #0f1f4d;
   font-size: 26px;
   -webkit-transition: all 0.3s;
@@ -1925,15 +1800,11 @@ header #moby-button:hover .fa {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-#login-page form .cancel a:hover .fa,
-#register-page form .cancel a:hover .fa,
-#profile-page form .cancel a:hover .fa {
+.forms-page form .cancel a:hover .fa {
   color: #5a271a;
   font-size: 32px;
 }
-#login-page form .error-container,
-#register-page form .error-container,
-#profile-page form .error-container {
+.forms-page form .error-container {
   position: relative;
   display: block;
   padding: 5px;
@@ -1944,12 +1815,8 @@ header #moby-button:hover .fa {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-#login-page form .error-container span,
-#register-page form .error-container span,
-#profile-page form .error-container span,
-#login-page form .error-container label,
-#register-page form .error-container label,
-#profile-page form .error-container label {
+.forms-page form .error-container span,
+.forms-page form .error-container label {
   position: relative;
   color: #5a271a;
   font-size: 14px;
@@ -2077,6 +1944,7 @@ footer .copyright p {
   border-top-color: #5271cc;
 }
 .interior-page.gametracker-page .games-heading .calender .calendar-trigger {
+  width: 260px;
   font-size: 14px;
   padding: 5px 10px;
   background: #ffffff;
@@ -2089,11 +1957,12 @@ footer .copyright p {
   cursor: pointer;
 }
 .interior-page.gametracker-page .games-heading .calender > .GameCalendar {
+  width: 260px;
   opacity: 0;
   visibility: hidden;
   position: absolute;
   top: 60%;
-  left: 50%;
+  left: calc(50% + 2px);
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -2112,7 +1981,7 @@ footer .copyright p {
 .interior-page.gametracker-page .games-heading .calender > .GameCalendar.active {
   opacity: 1;
   visibility: visible;
-  top: calc(104%);
+  top: calc(100% - 2px);
 }
 .interior-page.gametracker-page .games-heading .calender > .GameCalendar tr:first-child {
   background: #5271cc !important;
@@ -2314,7 +2183,7 @@ footer .copyright p {
 .interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container select {
   color: #3f507f;
   font-size: 14px;
-  padding: 4px 8px;
+  padding: 4px 30px 4px 8px;
   width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2326,9 +2195,50 @@ footer .copyright p {
 .interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input {
   float: left;
   width: 49%;
+  background: #5271cc;
 }
 .interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input:first-child {
   margin-right: 2%;
+}
+/*************************************
+*           Form Inputs
+*************************************/
+.gametracker-page form {
+  padding: 30px 60px;
+}
+.gametracker-page form h3 {
+  font-size: 22px;
+  text-align: center;
+  font-variant: small-caps;
+  padding: 30px 0 10px;
+}
+.gametracker-page form .input-container {
+  margin: 4px 10px;
+}
+.gametracker-page form .input-container input,
+.gametracker-page form .input-container select {
+  color: #3f507f;
+  font-size: 14px;
+  padding: 4px 8px;
+  width: 100%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #3f507f;
+}
+.gametracker-page form .input-container.buttons > input {
+  color: #f1f1f1;
+  float: left;
+  width: 49%;
+  background: #5271cc;
+}
+.gametracker-page form .input-container.buttons > input:first-child {
+  margin-right: 2%;
+}
+.gametracker-page form .input-container.buttons > input:hover {
+  background: darkern(#5271cc, 80%);
 }
 /* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
 input[type=date]::-webkit-inner-spin-button {
@@ -2677,11 +2587,9 @@ input[type=text]::-ms-clear {
     padding: 10px 0;
   }
   /***********************************									
-	*			Login / Register 				
+	*           Forms Pages
 	***********************************/
-  #login-page form,
-  #register-page form,
-  #profile-page form {
+  .forms-page form {
     width: 90%;
     min-width: 90%;
   }
@@ -2777,20 +2685,16 @@ input[type=text]::-ms-clear {
     display: block;
   }
   /***********************************									
-	*			Login / Register 				
+	*			Forms Pages			
 	***********************************/
-  #login-page form,
-  #register-page form,
-  #profile-page form {
+  .forms-page form {
     border: 0;
     margin: 0 auto;
     padding: 0;
     background: transparent;
     box-shadow: none;
   }
-  #login-page form .input-container span,
-  #register-page form .input-container span,
-  #profile-page form .input-container span {
+  .forms-page form .input-container span {
     left: calc(100% - 90px);
   }
 }

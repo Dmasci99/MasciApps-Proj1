@@ -1180,11 +1180,9 @@ header {
 }//#contact-page
 
 /***********************************									
-*    Login / Register / Profile			
+*           Forms Pages			
 ***********************************/
-#login-page,
-#register-page,
-#profile-page {
+.forms-page {
 	form {
 		width: 50%;
 		min-width: 450px;
@@ -1194,6 +1192,9 @@ header {
 		padding: 10px 60px;
 		background: @white;
 		.box-shadow(0, 0, 16px, @grey);
+        &.wide {
+            width: 65%;
+        }
 		.input-container {
             position: relative;
 			input {
@@ -1295,7 +1296,7 @@ header {
 		    }//span		
 	    }//.error-container
 	}//form
-}//#login-page / #register-page / #profile-page
+}//.forms-page
 
 /****************************************************************************************************
 *																									*

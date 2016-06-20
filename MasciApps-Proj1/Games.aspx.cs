@@ -11,17 +11,15 @@ namespace MasciApps_Proj1
 {
     public partial class Games : System.Web.UI.Page
     {
-        #region Global Variables
-
-
-        #endregion
-
         #region PageLoad
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             { //On first page render
                 //test.InnerText = "!IsPostBack";
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    PrivatePlaceHolder.Visible = true;
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
                 this.GetMatches(); //Refresh ListView                            
             }
@@ -104,10 +102,24 @@ namespace MasciApps_Proj1
          */
         protected void GetMatch()
         {
-
             try
             {
-                int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
+                int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
+                int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+                
+                //Control References
+                DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
+                DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
+                DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
+                DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
+                TextBox MatchNameTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox"));
+                TextBox MatchDateTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox"));
+                TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
+                TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
+                TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
+                TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));
+                HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
+
                 using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     //Query db for specific Match 
@@ -135,56 +147,49 @@ namespace MasciApps_Proj1
                                              SportName = sport.Name
                                          }).FirstOrDefault();
 
-                    int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
                     /**
                      * Queries for populating DropDown Selections/Options
                      */
+                    //MatchSelect
+                    var sports = (from sport in db.Sports
+                                  select sport);
+                    MatchTypeDropDownList.DataSource = sports.ToList();
+                    MatchTypeDropDownList.DataBind();
+                    //TeamSelect
                     var allTeams = (from team in db.Teams
                                     where team.SportID == matchToEdit.SportID
                                     select team);
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataSource = allTeams.ToList();
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).DataBind();
-
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).DataSource = allTeams.ToList();
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).DataBind();
-
+                    HomeTeamDropDownList.DataSource = allTeams.ToList();
+                    HomeTeamDropDownList.DataBind();
+                    AwayTeamDropDownList.DataSource = allTeams.ToList();
+                    AwayTeamDropDownList.DataBind();
+                    //WinnerSelect
                     var currentTeams = (from team in db.Teams
                                         where team.TeamID == matchToEdit.HomeTeamID | team.TeamID == matchToEdit.AwayTeamID
                                         select team);
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataSource = currentTeams.ToList();
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).DataBind();
-
-                    var sports = (from sport in db.Sports
-                                  select sport);
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataSource = sports.ToList();
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).DataBind();
-
-                    //private TextBox textboxExample
-                    //{
-                    //    get { return this.NamingContainer.GetControl...; }
-                    //}
+                    MatchWinnerDropDownList.DataSource = currentTeams.ToList();
+                    MatchWinnerDropDownList.DataBind();
 
                     /**
                      * Fill Edit Forms with appropriate data
                      */
                     /* Text Boxes */
                     //Home Team
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList")).SelectedValue = Convert.ToString(matchToEdit.HomeTeamID);
-                    ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.HomeTeamScore);
+                    HomeTeamDropDownList.SelectedValue = Convert.ToString(matchToEdit.HomeTeamID);
+                    HomeTeamScoreTextBox.Text = Convert.ToString(matchToEdit.HomeTeamScore);
                     //Away Team
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList")).SelectedValue = Convert.ToString(matchToEdit.AwayTeamID);
-                    ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox")).Text = Convert.ToString(matchToEdit.AwayTeamScore);
+                    AwayTeamDropDownList.SelectedValue = Convert.ToString(matchToEdit.AwayTeamID);
+                    AwayTeamScoreTextBox.Text = Convert.ToString(matchToEdit.AwayTeamScore);
                     //Match
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")).SelectedValue = Convert.ToString(matchToEdit.SportID);
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox")).Text = matchToEdit.MatchName;
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox")).Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("yyyy-MM-dd");
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox")).Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("HH:mm");
-                    ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList")).SelectedValue = Convert.ToString(matchToEdit.Winner);
-                    ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox")).Text = Convert.ToString(matchToEdit.SpecCount);
+                    MatchTypeDropDownList.SelectedValue = Convert.ToString(matchToEdit.SportID);
+                    MatchNameTextBox.Text = matchToEdit.MatchName;
+                    MatchDateTextBox.Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("yyyy-MM-dd");
+                    MatchTimeTextBox.Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("HH:mm");
+                    MatchWinnerDropDownList.SelectedValue = Convert.ToString(matchToEdit.Winner);
+                    MatchSpecCountTextBox.Text = Convert.ToString(matchToEdit.SpecCount);
 
                     //Reveal the edit form for the specified Match(ListViewItem)
-                    ((HtmlControl)GamesListView.Items[itemID].FindControl("editTemplate")).Attributes.Add("class", "game-edit active");                    
-
+                    EditTemplate.Attributes.Add("class", "game-edit active");
                 }
             }
             catch (Exception e)
@@ -239,55 +244,74 @@ namespace MasciApps_Proj1
          */
         protected void GameCalendar_SelectionChanged(object sender, EventArgs e)
         {
-            this.GetMatches();
+            this.GetMatches(); //Refresh ListVIew
+        }
+                
+
+        protected void AddMatchButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/GamesAdd.aspx");
         }
 
-        #endregion
+        protected void EditMatchCancel_Click(object sender, EventArgs e)
+        {
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+            HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
+            //Hide edit form - remove class "active"
+            EditTemplate.Attributes.Add("class", "game-edit");
+        }
 
         /**
          * <summary>
-         * This method handles the pre-edit of a Match: show edit form and populate with data.
+         * This method takes the user input and updates an existing Match record.
          * </summary>
-         * @method GamesListView_ItemEditing
+         * @method EditMatchUpdate_Click
          * @param {object} sender
-         * @param {ListViewEditEventArgs} e
+         * @param {EventArgs} e
          * @returns {void}
          */ 
-        protected void GamesListView_ItemEditing(object sender, ListViewEditEventArgs e)
+        protected void EditMatchUpdate_Click(object sender, EventArgs e)
         {
-            try
+            int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+
+            //Control References
+            DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
+            DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
+            DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
+            DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
+            TextBox MatchNameTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox"));
+            TextBox MatchDateTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox"));
+            TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
+            TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
+            TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
+            TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));
+            HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
+
+            using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
-                //Reverse engineer to work with data before updating database
-                List<Match> matches = (List<Match>)GamesListView.DataSource; //List of Matches
-                Match match = matches[GamesListView.EditItem.DataItemIndex];
+                //Query db for specific Match and Teams
+                Match matchToEdit = (from match in db.Matches
+                                     where match.MatchID == matchID
+                                     select match).FirstOrDefault();
+                
+                //Make appropriate changes to Match record
+                matchToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue);
+                matchToEdit.HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
+                matchToEdit.AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
+                matchToEdit.Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue);
+                matchToEdit.Name = MatchNameTextBox.Text;
+                matchToEdit.DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text);
+                matchToEdit.SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text);
+                matchToEdit.HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text);
+                matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
 
-                GamesListView.EditItem.FindControl("HomeTeamNameTextBox"); //Null - need item[rowindex]
-                GamesListView.FindControl("HomeTeamNameTextBox"); //Null - need item[rowindex]
+                db.SaveChanges();// save db - update match
+                //Hide edit form - remove class "active"
+                EditTemplate.Attributes.Add("class", "game-edit");
             }
-            catch (Exception)
-            {
-                //
-            }
-            
-
-
-
-            //Populate Edit Form with values
-
-            //Query the Sports table for Match Type Drop Down List
-
-            //Populate Match Type Selection
-
-            //Update the Item
-
-            //Show the Edit Form
-
-
         }
 
-        protected void GamesListView_ItemUpdated(object sender, ListViewUpdatedEventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

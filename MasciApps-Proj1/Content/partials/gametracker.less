@@ -57,6 +57,7 @@
                 border-top-color: @lightBlue;
             }
             .calendar-trigger {
+                width: 260px;
                 font-size: 14px;
                 padding: 5px 10px;
                 background: @white;
@@ -65,11 +66,12 @@
                 cursor: pointer;
             }
             > .GameCalendar {
+                width: 260px;
                 opacity: 0;
                 visibility: hidden;
                 position: absolute;
                 top: 60%;
-                left: 50%;
+                left: calc(~"50% + 2px");
                 .translateX;
                 margin: 0 auto;
                 background: @white;
@@ -79,7 +81,7 @@
                 &.active {
                     opacity: 1;
                     visibility: visible;
-                    top: calc(100% + 4px);
+                    top: calc(~"100% - 2px");
                 }
                 tr:first-child {
                     background: @lightBlue!important; //Month Header on Calender
@@ -259,7 +261,7 @@
                         select {
                             color: @darkBlue;
                             font-size: 14px;
-                            padding: 4px 8px;
+                            padding: 4px 30px 4px 8px;
                             width: 100%;
                             .round(4px);
                             border: 1px solid @lightBlue;
@@ -267,6 +269,7 @@
                         &.buttons > input {
                             float: left;
                             width: 49%;
+                            background: @lightBlue;
                             &:first-child {
                                 margin-right: 2%;
                             }
@@ -276,6 +279,44 @@
             }//.game-edit
         }//.game-container
     }//.games-container
+}//.gametracker-page
+/*************************************
+*           Form Inputs
+*************************************/
+.gametracker-page {
+    form {
+        padding: 30px 60px;
+        h3 {
+            font-size: 22px;
+            text-align: center;
+            font-variant: small-caps;
+            padding: 30px 0 10px;
+        }
+        .input-container {            
+            margin: 4px 10px;
+            input,
+            select {
+                color: @darkBlue;
+                font-size: 14px;
+                padding: 4px 8px;
+                width: 100%;
+                .round(4px);
+                border: 1px solid @darkBlue;
+            }
+            &.buttons > input {
+                color: @offWhite;
+                float: left;
+                width: 49%;
+                background: @lightBlue;
+                &:first-child {
+                    margin-right: 2%;
+                }
+                &:hover {
+                    background: darkern(@lightBlue, 80%);
+                }
+            }
+        }//.input-container
+    }//form
 }//.gametracker-page
 
 
@@ -335,6 +376,5 @@ input[type=text]::-ms-clear {
                 }//.game-content                
             }//.game-container
         }//.games-container
-    }//.gametracker-page
-      
+    }//.gametracker-page      
 }

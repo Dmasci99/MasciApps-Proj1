@@ -2,7 +2,7 @@
 
 <asp:Content ID="RegisterPageContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="interior-page" id="register-page">
+    <div class="interior-page forms-page" id="register-page">
         <div class="container">
 
             <form runat="server">

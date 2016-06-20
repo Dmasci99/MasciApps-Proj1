@@ -9,6 +9,9 @@
 * Website Name : MasciApps-GameTracker.azurewebsites.net/Games.aspx
 * 
 * The Following page is the Content for the "Games" page.
+* Allows the user (depending on authentication) to add new games, 
+* edit existing games and filter by Calendar Week.
+* 
 */ 
 --%>
 
@@ -20,9 +23,16 @@
             
             <form runat="server">
                 <div class="games-heading">
+                    <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
+                        <div class="new-game">
+                            <asp:HyperLink runat="server" ID="AddMatchButton" Text="<i class='fa fa-plus-circle'></i> New" NavigateUrl="~/Admin/GamesAdd.aspx"></asp:HyperLink>
+                        </div>
+                    </asp:PlaceHolder>                        
                     <div class="pagination">
-                        <asp:LinkButton runat="server" CSSClass="prev" OnClick="PreviousButton_Click" Text="<i class='fa fa-chevron-left'></i>" PostBackUrl="~/Games.aspx"></asp:LinkButton>
-                        <asp:LinkButton runat="server" CssClass="next" OnClick="NextButton_Click" Text="<i class='fa fa-chevron-right'></i>" PostBackUrl="~/Games.aspx"></asp:LinkButton>
+                        <asp:LinkButton runat="server" CSSClass="prev" OnClick="PreviousButton_Click" Text="<i class='fa fa-chevron-left'></i>" 
+                            PostBackUrl="~/Games.aspx"></asp:LinkButton>
+                        <asp:LinkButton runat="server" CssClass="next" OnClick="NextButton_Click" Text="<i class='fa fa-chevron-right'></i>" 
+                            PostBackUrl="~/Games.aspx"></asp:LinkButton>
                     </div>
                     <div class="calender">
                         <div class="calendar-trigger" runat="server" id="CalendarValue">Week of: mm/dd/yyyy</div>
@@ -75,7 +85,7 @@
                                 </div>                            
                             </div>
 
-                            <div class="game-edit" runat="server" id="editTemplate">
+                            <div class="game-edit" runat="server" id="EditTemplate">
                                 <div class="home-team col-3">
                                     <div class="input-container teamLogo">
                                         <asp:FileUpload runat="server" ID="HomeTeamLogoUpload" Enabled="false" />
@@ -110,8 +120,10 @@
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
                                     </div>
                                     <div class="input-container buttons">
-                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" Enabled="false" />
-                                        <asp:Button runat="server" ID="EditMatchSubmit" CausesValidation="true" CommandName="Update" Text="Update" Enabled="false" />
+                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" 
+                                            OnClick="EditMatchCancel_Click" PostBackUrl="~/Games.aspx"/>
+                                        <asp:Button runat="server" ID="EditMatchUpdate" CausesValidation="true" CommandName="Update" Text="Update" 
+                                            OnClick="EditMatchUpdate_Click" PostBackUrl="~/Games.aspx"/>
                                     </div>
                                 </div>
                                 <div class="away-team col-3">                                    

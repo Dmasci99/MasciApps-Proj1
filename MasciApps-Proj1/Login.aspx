@@ -15,7 +15,7 @@
 
 <asp:Content ID="LoginPageContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="interior-page" id="login-page">
+    <div class="interior-page forms-page" id="login-page">
         <div class="container">
 
             <form runat="server">

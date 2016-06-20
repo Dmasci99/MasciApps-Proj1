@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS / Fonts -->
 
-<link href="Content/font-awesome.min.css" rel="stylesheet" />
+<link href="/Content/font-awesome.min.css" rel="stylesheet" />
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<link href="Content/custom.css" rel="stylesheet" />
+<link href="/Content/custom.css" rel="stylesheet" />
 

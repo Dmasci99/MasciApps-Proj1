@@ -121,6 +121,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\GamesAdd.aspx" />
+    <Content Include="Admin\TeamsAdd.aspx" />
     <Content Include="Assets\aboutme-header.jpg" />
     <Content Include="Assets\contact.jpg" />
     <Content Include="Assets\contactme-header.jpg" />
@@ -179,6 +181,7 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\moby.js" />
     <Content Include="Services.aspx" />
+    <Content Include="Teams.aspx" />
     <Content Include="UserControls\Footer.ascx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\custom.js" />
@@ -223,6 +226,20 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GamesAdd.aspx.cs">
+      <DependentUpon>GamesAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GamesAdd.aspx.designer.cs">
+      <DependentUpon>GamesAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TeamsAdd.aspx.cs">
+      <DependentUpon>TeamsAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TeamsAdd.aspx.designer.cs">
+      <DependentUpon>TeamsAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -312,6 +329,13 @@
       <DependentUpon>Services.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Teams.aspx.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teams.aspx.designer.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -349,9 +373,7 @@
       <DependentUpon>InteriorHeader.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
