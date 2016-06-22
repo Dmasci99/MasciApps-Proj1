@@ -41,8 +41,7 @@
                     </div>                            
                 </div>
 
-                <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID" 
-                    OnItemEditing="GamesListView_ItemEditing" OnItemUpdated="GamesListView_ItemUpdated">
+                <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID">
                     <LayoutTemplate>
                         <div class="games-container">
                             <div runat="server" id="itemPlaceholder"></div>
@@ -50,8 +49,10 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="game-container" id="<%# "match" + Eval("MatchID") %>">
-                            <asp:LinkButton runat="server" ID="EditMatchLink" CssClass="editMatch" Text="<i class='fa fa-pencil'></i>"
+                            <asp:LinkButton runat="server" ID="EditMatchLink" CssClass="linkButton Edit" Text="<i class='fa fa-pencil'></i>"
                                 PostBackUrl='<%# "~/Games.aspx?matchID=" + Eval("MatchID") + "&itemID=" + Container.DataItemIndex + "#match" + Eval("MatchID") %>'></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="DeleteMatchLink" CssClass="linkButton Delete" Visible="false" OnClick="DeleteMatchLink_Click" 
+                                Text="<i class='fa fa-trash-o'></i>" PostBackUrl='<%# "~/Games.aspx?matchID=" + Eval("MatchID") %>'/>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
                                 <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("dddd, MMM d @ hh:mmtt") %></div>
@@ -120,10 +121,10 @@
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
                                     </div>
                                     <div class="input-container buttons">
-                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" CommandName="Cancel" Text="Cancel" 
-                                            OnClick="EditMatchCancel_Click" PostBackUrl="~/Games.aspx"/>
-                                        <asp:Button runat="server" ID="EditMatchUpdate" CausesValidation="true" CommandName="Update" Text="Update" 
-                                            OnClick="EditMatchUpdate_Click" PostBackUrl="~/Games.aspx"/>
+                                        <asp:Button runat="server" ID="EditMatchCancel" CausesValidation="false" Text="Cancel" OnClick="EditMatchCancel_Click" 
+                                            PostBackUrl='<%# "~/Games.aspx?itemID=" + Container.DataItemIndex %>'/>
+                                        <asp:Button runat="server" ID="EditMatchUpdate" CausesValidation="true" Text="Update" OnClick="EditMatchUpdate_Click" 
+                                            PostBackUrl='<%# "~/Games.aspx?itemID=" + Container.DataItemIndex %>' />
                                     </div>
                                 </div>
                                 <div class="away-team col-3">                                    

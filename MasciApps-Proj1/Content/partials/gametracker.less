@@ -94,15 +94,31 @@
     }//.games-heading
     .games-container {
         margin: 100px 0;
-        .editMatch {
+        .linkButton {
+            color: @silver;
             position: absolute;
             top: 0;
             right: 0;
             padding: 4px;
             background: @lightBlue;
+            border-left: 2px solid @lightBlue;
+            border-bottom: 2px solid @lightBlue;
             z-index: 1000;
             cursor: pointer;
-        }
+            .trans(all,0.3s);
+            &.Edit:hover {
+                background: @darkBlue;
+                &:hover {
+                    color: @lightBlue;
+                }
+            }
+            &.Delete {
+                background: @red;
+                &:hover {
+                    color: red;
+                }
+            }
+        }//.linkButton
         .game-container {
             color: @silver;
             position: relative;
@@ -255,26 +271,6 @@
                 .col-3 {
                     width: 33.33%;
                     float: left;
-                    .input-container {
-                        margin: 4px 10px;
-                        input,
-                        select {
-                            color: @darkBlue;
-                            font-size: 14px;
-                            padding: 4px 30px 4px 8px;
-                            width: 100%;
-                            .round(4px);
-                            border: 1px solid @lightBlue;
-                        }
-                        &.buttons > input {
-                            float: left;
-                            width: 49%;
-                            background: @lightBlue;
-                            &:first-child {
-                                margin-right: 2%;
-                            }
-                        }
-                    }//.input-container
                 }//.col-3
             }//.game-edit
         }//.game-container
@@ -292,29 +288,46 @@
             font-variant: small-caps;
             padding: 30px 0 10px;
         }
-        .input-container {            
+        .input-container {   
+            position: relative;         
             margin: 4px 10px;
             input,
             select {
                 color: @darkBlue;
                 font-size: 14px;
-                padding: 4px 8px;
+                padding: 4px 30px 4px 8px;
                 width: 100%;
                 .round(4px);
                 border: 1px solid @darkBlue;
             }
+            .Delete {
+                position: absolute;
+                top: 45%;
+                .translateY;
+                right: 20px;
+                color: @red;
+                padding: 5px;
+                .trans(all,0.3s);
+                &:hover {
+                    color: red;
+                }
+            }//.Delete
             &.buttons > input {
                 color: @offWhite;
                 float: left;
                 width: 49%;
+                padding: 4px 8px;
                 background: @lightBlue;
+                .trans(all,0.3s);
+                cursor: pointer;
                 &:first-child {
                     margin-right: 2%;
                 }
                 &:hover {
-                    background: darkern(@lightBlue, 80%);
+                    color: @white;
+                    background: darken(@lightBlue, 10%);
                 }
-            }
+            }//.input-container.buttons
         }//.input-container
     }//form
 }//.gametracker-page

@@ -117,8 +117,7 @@ namespace MasciApps_Proj1
                 TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
                 TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
                 TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
-                TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));
-                HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
+                TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));                
 
                 using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
@@ -188,8 +187,7 @@ namespace MasciApps_Proj1
                     MatchWinnerDropDownList.SelectedValue = Convert.ToString(matchToEdit.Winner);
                     MatchSpecCountTextBox.Text = Convert.ToString(matchToEdit.SpecCount);
 
-                    //Reveal the edit form for the specified Match(ListViewItem)
-                    EditTemplate.Attributes.Add("class", "game-edit active");
+                    this.ToggleEditMode("Edit", itemID);
                 }
             }
             catch (Exception e)
@@ -199,6 +197,34 @@ namespace MasciApps_Proj1
 
         }
 
+        /**
+         * <summary>
+         * This is a Helper Method for GetMatch() by toggling the Edit Mode On or Off.
+         * </summary>
+         * @method ToggleEditMode
+         * @param {string} mode
+         * @param {int} itemID
+         * @returns {void}
+         */
+        protected void ToggleEditMode(string mode, int itemID)
+        {            
+            if (mode == "Edit")
+            {
+                //Reveal the edit form for the specified Match(ListViewItem)
+                ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate")).Attributes.Add("class", "game-edit active");
+                //Hide edit button and show delete button
+                ((LinkButton)GamesListView.Items[itemID].FindControl("EditMatchLink")).Visible = false;
+                ((LinkButton)GamesListView.Items[itemID].FindControl("DeleteMatchLink")).Visible = true;
+            }
+            else
+            {
+                //Hide the edit form
+                ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate")).Attributes.Add("class", "game-edit");
+                //Hide delete button and show edit button
+                ((LinkButton)GamesListView.Items[itemID].FindControl("DeleteMatchLink")).Visible = false;
+                ((LinkButton)GamesListView.Items[itemID].FindControl("EditMatchLink")).Visible = true;
+            }
+        }
         #endregion
 
         #region Event Handlers
@@ -244,21 +270,61 @@ namespace MasciApps_Proj1
          */
         protected void GameCalendar_SelectionChanged(object sender, EventArgs e)
         {
-            this.GetMatches(); //Refresh ListVIew
+            this.GetMatches(); //Refresh ListView
         }
-                
 
+        /**
+         * <summary>
+         * This method redirects the user to Add a New Match.
+         * </summary>
+         * @method AddMatchButton_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
         protected void AddMatchButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Admin/GamesAdd.aspx");
         }
 
+        /**
+         * <summary>
+         * This method deletes the chosen Match.
+         * </summary>
+         * @method DeleteMatchLink_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
+        protected void DeleteMatchLink_Click(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
+                    Match matchToDelete = (from match in db.Matches
+                                           where match.MatchID == matchID
+                                           select match).FirstOrDefault();
+                    db.Matches.Remove(matchToDelete); //remove Match
+                    db.SaveChanges(); //save db
+                    this.GetMatches(); //Refresh ListView
+                }
+            }         
+        }
+
+        /**
+         * <summary>
+         * This method cancels the process of Editing an Existing Match.
+         * </summary>
+         * @method EditMatchCancel_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
         protected void EditMatchCancel_Click(object sender, EventArgs e)
         {
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
-            HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
-            //Hide edit form - remove class "active"
-            EditTemplate.Attributes.Add("class", "game-edit");
+            this.ToggleEditMode("View", Convert.ToInt32(Request.QueryString["itemID"]));
         }
 
         /**
@@ -269,7 +335,7 @@ namespace MasciApps_Proj1
          * @param {object} sender
          * @param {EventArgs} e
          * @returns {void}
-         */ 
+         */
         protected void EditMatchUpdate_Click(object sender, EventArgs e)
         {
             int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
@@ -313,5 +379,6 @@ namespace MasciApps_Proj1
         }
 
         #endregion
+
     }
 }

@@ -32,5 +32,9 @@ jQuery(document).ready(function ($) {
         if ($('.menu.loggedin').length == 0) 
             $('.editMatch').css('display', 'none');
     
+    //Give user prompt when trying to delete a Team/Game
+    $('.gametracker-page .Delete').click(function () {
+        return confirm("Are you sure you want to delete this record?");
+    });
 
 });

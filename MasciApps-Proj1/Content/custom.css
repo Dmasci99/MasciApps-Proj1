@@ -1992,14 +1992,34 @@ footer .copyright p {
 .interior-page.gametracker-page .games-container {
   margin: 100px 0;
 }
-.interior-page.gametracker-page .games-container .editMatch {
+.interior-page.gametracker-page .games-container .linkButton {
+  color: #d4cde5;
   position: absolute;
   top: 0;
   right: 0;
   padding: 4px;
   background: #5271cc;
+  border-left: 2px solid #5271cc;
+  border-bottom: 2px solid #5271cc;
   z-index: 1000;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.interior-page.gametracker-page .games-container .linkButton.Edit:hover {
+  background: #3f507f;
+}
+.interior-page.gametracker-page .games-container .linkButton.Edit:hover:hover {
+  color: #5271cc;
+}
+.interior-page.gametracker-page .games-container .linkButton.Delete {
+  background: #5a271a;
+}
+.interior-page.gametracker-page .games-container .linkButton.Delete:hover {
+  color: red;
 }
 .interior-page.gametracker-page .games-container .game-container {
   color: #d4cde5;
@@ -2176,30 +2196,6 @@ footer .copyright p {
   width: 33.33%;
   float: left;
 }
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container {
-  margin: 4px 10px;
-}
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container input,
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container select {
-  color: #3f507f;
-  font-size: 14px;
-  padding: 4px 30px 4px 8px;
-  width: 100%;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid #5271cc;
-}
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input {
-  float: left;
-  width: 49%;
-  background: #5271cc;
-}
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 .input-container.buttons > input:first-child {
-  margin-right: 2%;
-}
 /*************************************
 *           Form Inputs
 *************************************/
@@ -2213,13 +2209,14 @@ footer .copyright p {
   padding: 30px 0 10px;
 }
 .gametracker-page form .input-container {
+  position: relative;
   margin: 4px 10px;
 }
 .gametracker-page form .input-container input,
 .gametracker-page form .input-container select {
   color: #3f507f;
   font-size: 14px;
-  padding: 4px 8px;
+  padding: 4px 30px 4px 8px;
   width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2228,17 +2225,45 @@ footer .copyright p {
   border-radius: 4px;
   border: 1px solid #3f507f;
 }
+.gametracker-page form .input-container .Delete {
+  position: absolute;
+  top: 45%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 20px;
+  color: #5a271a;
+  padding: 5px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.gametracker-page form .input-container .Delete:hover {
+  color: red;
+}
 .gametracker-page form .input-container.buttons > input {
   color: #f1f1f1;
   float: left;
   width: 49%;
+  padding: 4px 8px;
   background: #5271cc;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 .gametracker-page form .input-container.buttons > input:first-child {
   margin-right: 2%;
 }
 .gametracker-page form .input-container.buttons > input:hover {
-  background: darkern(#5271cc, 80%);
+  color: #ffffff;
+  background: #3656b5;
 }
 /* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
 input[type=date]::-webkit-inner-spin-button {
