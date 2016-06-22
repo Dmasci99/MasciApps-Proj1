@@ -1895,12 +1895,12 @@ footer .copyright p {
 .hidden {
   display: none;
 }
-.interior-page.gametracker-page .games-heading {
+.interior-page.gametracker-page .heading {
   position: relative;
   width: 100%;
 }
-.interior-page.gametracker-page .games-heading .pagination .prev,
-.interior-page.gametracker-page .games-heading .pagination .next {
+.interior-page.gametracker-page .heading .pagination .prev,
+.interior-page.gametracker-page .heading .pagination .next {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1910,27 +1910,27 @@ footer .copyright p {
   transform: translateY(-50%);
   padding: 10px;
 }
-.interior-page.gametracker-page .games-heading .pagination .prev .fa,
-.interior-page.gametracker-page .games-heading .pagination .next .fa {
+.interior-page.gametracker-page .heading .pagination .prev .fa,
+.interior-page.gametracker-page .heading .pagination .next .fa {
   color: #5271cc;
   font-size: 32px;
 }
-.interior-page.gametracker-page .games-heading .pagination .prev {
+.interior-page.gametracker-page .heading .pagination .prev {
   left: 0;
   padding-left: 0;
 }
-.interior-page.gametracker-page .games-heading .pagination .next {
+.interior-page.gametracker-page .heading .pagination .next {
   right: 0;
   padding-right: 0;
 }
-.interior-page.gametracker-page .games-heading .calender {
+.interior-page.gametracker-page .heading .calender {
   position: relative;
   text-align: center;
   width: 100%;
   max-width: 255px;
   margin: 0 auto;
 }
-.interior-page.gametracker-page .games-heading .calender::after {
+.interior-page.gametracker-page .heading .calender::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -1943,7 +1943,7 @@ footer .copyright p {
   border: 4px solid transparent;
   border-top-color: #5271cc;
 }
-.interior-page.gametracker-page .games-heading .calender .calendar-trigger {
+.interior-page.gametracker-page .heading .calender .calendar-trigger {
   width: 260px;
   font-size: 14px;
   padding: 5px 10px;
@@ -1956,7 +1956,7 @@ footer .copyright p {
   border-radius: 4px;
   cursor: pointer;
 }
-.interior-page.gametracker-page .games-heading .calender > .GameCalendar {
+.interior-page.gametracker-page .heading .calender > .GameCalendar {
   width: 260px;
   opacity: 0;
   visibility: hidden;
@@ -1978,48 +1978,19 @@ footer .copyright p {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-.interior-page.gametracker-page .games-heading .calender > .GameCalendar.active {
+.interior-page.gametracker-page .heading .calender > .GameCalendar.active {
   opacity: 1;
   visibility: visible;
   top: calc(100% - 2px);
 }
-.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr:first-child {
+.interior-page.gametracker-page .heading .calender > .GameCalendar tr:first-child {
   background: #5271cc !important;
 }
-.interior-page.gametracker-page .games-heading .calender > .GameCalendar tr.SelectedWeek {
+.interior-page.gametracker-page .heading .calender > .GameCalendar tr.SelectedWeek {
   background: #5271cc !important;
 }
 .interior-page.gametracker-page .games-container {
   margin: 100px 0;
-}
-.interior-page.gametracker-page .games-container .linkButton {
-  color: #d4cde5;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 4px;
-  background: #5271cc;
-  border-left: 2px solid #5271cc;
-  border-bottom: 2px solid #5271cc;
-  z-index: 1000;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.interior-page.gametracker-page .games-container .linkButton.Edit:hover {
-  background: #3f507f;
-}
-.interior-page.gametracker-page .games-container .linkButton.Edit:hover:hover {
-  color: #5271cc;
-}
-.interior-page.gametracker-page .games-container .linkButton.Delete {
-  background: #5a271a;
-}
-.interior-page.gametracker-page .games-container .linkButton.Delete:hover {
-  color: red;
 }
 .interior-page.gametracker-page .games-container .game-container {
   color: #d4cde5;
@@ -2035,50 +2006,6 @@ footer .copyright p {
 .interior-page.gametracker-page .games-container .game-container::after {
   content: "";
 }
-.interior-page.gametracker-page .games-container .game-container .game-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  z-index: 0;
-}
-.interior-page.gametracker-page .games-container .game-container .game-background.basketball {
-  background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
-}
-.interior-page.gametracker-page .games-container .game-container .game-background.soccer {
-  background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
-}
-.interior-page.gametracker-page .games-container .game-container .game-background.football {
-  background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
-}
-.interior-page.gametracker-page .games-container .game-container .game-background.volleyball {
-  background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
-}
-.interior-page.gametracker-page .games-container .game-container .game-background::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(35, 35, 35, 0.85);
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-}
 .interior-page.gametracker-page .games-container .game-container .game-content {
   position: relative;
   text-align: center;
@@ -2086,16 +2013,26 @@ footer .copyright p {
   margin: 0 auto;
   padding: 20px;
 }
-.interior-page.gametracker-page .games-container .game-container .game-content .date {
+.interior-page.gametracker-page .games-container .game-container .game-content .title {
   position: relative;
   z-index: 1000;
-  font-size: 24px;
-  font-weight: bold;
   width: calc(100% - 260px);
   margin: 0 auto;
   padding-bottom: 5px;
   border-bottom: 2px solid #5271cc;
   margin-bottom: 10px;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .title .name {
+  z-index: 1000;
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+}
+.interior-page.gametracker-page .games-container .game-container .game-content .title .date {
+  z-index: 1000;
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
 }
 .interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
   position: absolute;
@@ -2195,6 +2132,121 @@ footer .copyright p {
 .interior-page.gametracker-page .games-container .game-container .game-edit .col-3 {
   width: 33.33%;
   float: left;
+}
+.interior-page.gametracker-page .teams-container .team-container {
+  position: relative;
+  float: left;
+  width: 48%;
+  margin: 1%;
+  text-align: center;
+  border: 2px solid #5271cc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  padding: 20px;
+}
+.interior-page.gametracker-page .teams-container .team-container .team-content {
+  color: #d4cde5;
+  position: relative;
+  z-index: 1000;
+}
+.games-container .linkButton,
+.teams-container .linkButton {
+  color: #d4cde5;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  background: #5271cc;
+  border-left: 2px solid #5271cc;
+  border-bottom: 2px solid #5271cc;
+  z-index: 1000;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.games-container .linkButton.Edit:hover,
+.teams-container .linkButton.Edit:hover {
+  background: #3f507f;
+}
+.games-container .linkButton.Edit:hover:hover,
+.teams-container .linkButton.Edit:hover:hover {
+  color: #5271cc;
+}
+.games-container .linkButton.Delete,
+.teams-container .linkButton.Delete {
+  background: #5a271a;
+}
+.games-container .linkButton.Delete:hover,
+.teams-container .linkButton.Delete:hover {
+  color: red;
+}
+.games-container .game-background,
+.teams-container .game-background,
+.games-container .team-background,
+.teams-container .team-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 0;
+}
+.games-container .game-background.basketball,
+.teams-container .game-background.basketball,
+.games-container .team-background.basketball,
+.teams-container .team-background.basketball {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+}
+.games-container .game-background.soccer,
+.teams-container .game-background.soccer,
+.games-container .team-background.soccer,
+.teams-container .team-background.soccer {
+  background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+}
+.games-container .game-background.football,
+.teams-container .game-background.football,
+.games-container .team-background.football,
+.teams-container .team-background.football {
+  background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+}
+.games-container .game-background.volleyball,
+.teams-container .game-background.volleyball,
+.games-container .team-background.volleyball,
+.teams-container .team-background.volleyball {
+  background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+}
+.games-container .game-background::after,
+.teams-container .game-background::after,
+.games-container .team-background::after,
+.teams-container .team-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 35, 35, 0.85);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
 /*************************************
 *           Form Inputs

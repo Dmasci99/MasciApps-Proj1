@@ -22,7 +22,7 @@
             <h5 runat="server" id="test"></h5>
             
             <form runat="server">
-                <div class="games-heading">
+                <div class="heading">
                     <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
                         <div class="new-game">
                             <asp:HyperLink runat="server" ID="AddMatchButton" Text="<i class='fa fa-plus-circle'></i> New" NavigateUrl="~/Admin/GamesAdd.aspx"></asp:HyperLink>
@@ -55,7 +55,10 @@
                                 Text="<i class='fa fa-trash-o'></i>" PostBackUrl='<%# "~/Games.aspx?matchID=" + Eval("MatchID") %>'/>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
-                                <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("dddd, MMM d @ hh:mmtt") %></div>
+                                <div class="title">
+                                    <div class="name"><%# DataBinder.Eval(Container.DataItem, "MatchName") %></div>
+                                    <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("dddd, MMM d @ hh:mmtt") %></div>
+                                </div>                                
                                 <div class="teams">
                                     <div class="team left">
                                         <div class="logo"><%# DataBinder.Eval(Container.DataItem, "HomeTeamLogo") %></div>
@@ -80,9 +83,6 @@
                                     </div>                         
                                     <div class="clear-float"></div>       
                                     <div class="spectators"><%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SpecCount")).ToString("N0") %> Spectators</div>
-                                    <div class="hidden MatchID"><%# DataBinder.Eval(Container.DataItem, "MatchID") %></div>
-                                    <div class="hidden HomeTeamID"><%# DataBinder.Eval(Container.DataItem, "HomeTeamID") %></div>
-                                    <div class="hidden AwayTeamID"><%# DataBinder.Eval(Container.DataItem, "AwayTeamID") %></div>
                                 </div>                            
                             </div>
 

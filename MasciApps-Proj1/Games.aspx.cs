@@ -225,6 +225,7 @@ namespace MasciApps_Proj1
                 ((LinkButton)GamesListView.Items[itemID].FindControl("EditMatchLink")).Visible = true;
             }
         }
+
         #endregion
 
         #region Event Handlers
@@ -373,8 +374,8 @@ namespace MasciApps_Proj1
                 matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
 
                 db.SaveChanges();// save db - update match
-                //Hide edit form - remove class "active"
-                EditTemplate.Attributes.Add("class", "game-edit");
+
+                this.ToggleEditMode("Edit", itemID);
             }
         }
 

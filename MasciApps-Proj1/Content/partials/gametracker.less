@@ -17,7 +17,7 @@
     display: none;
 }
 .interior-page.gametracker-page {
-    .games-heading {
+    .heading {
         position: relative;
         width: 100%;
         .pagination {
@@ -91,34 +91,9 @@
                 }
             }
         }//.calendar
-    }//.games-heading
+    }//.heading
     .games-container {
         margin: 100px 0;
-        .linkButton {
-            color: @silver;
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 4px;
-            background: @lightBlue;
-            border-left: 2px solid @lightBlue;
-            border-bottom: 2px solid @lightBlue;
-            z-index: 1000;
-            cursor: pointer;
-            .trans(all,0.3s);
-            &.Edit:hover {
-                background: @darkBlue;
-                &:hover {
-                    color: @lightBlue;
-                }
-            }
-            &.Delete {
-                background: @red;
-                &:hover {
-                    color: red;
-                }
-            }
-        }//.linkButton
         .game-container {
             color: @silver;
             position: relative;
@@ -128,54 +103,32 @@
             &::after {
                 content: "";
             }
-            .game-background {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                .cover;      
-                .round(4px);          
-                z-index: 0;
-                &.basketball {
-                    background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
-                }
-                &.soccer {
-                    background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
-                }
-                &.football {
-                    background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
-                }
-                &.volleyball {
-                    background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
-                }
-                &::after {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: fade(@darkerGrey, 85%);
-                    .round(2px);
-                }
-            }//.game-background         
             .game-content {
                 position: relative;
                 text-align: center;
                 width: 100%;
                 margin: 0 auto;
                 padding: 20px;
-                .date {
+                .title {
                     position: relative;
                     z-index: 1000;
-                    font-size: 24px;
-                    font-weight: bold;
                     width: calc(~"100% - 260px");
                     margin: 0 auto;
                     padding-bottom: 5px;
                     border-bottom: 2px solid @lightBlue;
                     margin-bottom: 10px;
+                    .name {
+                        z-index: 1000;
+                        position: relative;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                    .date {
+                        z-index: 1000;
+                        position: relative;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
                 }//.date
                 .teams {
                     .team {
@@ -275,7 +228,97 @@
             }//.game-edit
         }//.game-container
     }//.games-container
+    .teams-container {
+        .team-container {
+            position: relative;
+            float: left;
+            width: 48%;
+            margin: 1%;
+            text-align: center;
+            border: 2px solid @lightBlue;
+            .round(4px);
+            padding: 20px;
+            .team-content {
+                color: @silver;
+                position: relative;
+                z-index: 1000;
+                .name {
+
+                }
+                .logo {
+
+                }
+                .country {
+
+                }
+                .city {
+
+                }
+            }//.team-content              
+        }//.team-container
+    }//.teams-container
 }//.gametracker-page
+.games-container,
+.teams-container {     
+    .linkButton {
+        color: @silver;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 4px;
+        background: @lightBlue;
+        border-left: 2px solid @lightBlue;
+        border-bottom: 2px solid @lightBlue;
+        z-index: 1000;
+        cursor: pointer;
+        .trans(all,0.3s);
+        &.Edit:hover {
+            background: @darkBlue;
+            &:hover {
+                color: @lightBlue;
+            }
+        }
+        &.Delete {
+            background: @red;
+            &:hover {
+                color: red;
+            }
+        }
+    }//.linkButton
+    .game-background,
+    .team-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .cover;      
+        .round(4px);          
+        z-index: 0;
+        &.basketball {
+            background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+        }
+        &.soccer {
+            background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+        }
+        &.football {
+            background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+        }
+        &.volleyball {
+            background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: fade(@darkerGrey, 85%);
+            .round(2px);
+        }
+    }//.team-background       
+ }
 /*************************************
 *           Form Inputs
 *************************************/
