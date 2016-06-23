@@ -11,20 +11,12 @@ namespace MasciApps_Proj1
     public partial class Teams : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (!IsPostBack)
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                     PrivatePlaceHolder.Visible = true;
                 this.GetTeams();
-            }
-            else
-            {
-                if (Request.QueryString.Count > 0 && Convert.ToBoolean(Request.QueryString["edit"]))
-                    if (HttpContext.Current.User.Identity.IsAuthenticated)
-                        this.GetTeam();
-                    else
-                        Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -60,79 +52,35 @@ namespace MasciApps_Proj1
                 }                
             }
         }
-
-        /**
-         * <summary>
-         * This method retrieves a team for editing.
-         * </summary>
-         * @method GetTeam
-         * @returns {void}
-         */
-        protected void GetTeam()
-        {
-            int teamID = Convert.ToInt32(Request.QueryString["teamID"]); //ID of the Team as stored in database
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Team(ListViewItem) we are editing
-
-            //Control References
-            DropDownList TeamTypeDropDownList = ((DropDownList)TeamsListView.Items[itemID].FindControl("TeamTypeDropDownList"));
-            TextBox TeamNameTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("TeamNameTextBox"));
-            TextBox CountryTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CountryTextBox"));
-            TextBox CityTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CityTextBox"));
-
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                //Query db for specific Team 
-                var teamToEdit = (from team in db.Teams
-                                    join sport in db.Sports on team.SportID equals sport.SportID
-                                    where team.TeamID == teamID
-                                    select new
-                                    {
-                                        team.TeamID,
-                                        team.SportID,
-                                        TeamName = team.Name,
-                                        SportName = sport.Name,
-                                        team.Logo,
-                                        team.Country,
-                                        team.City
-                                    }).FirstOrDefault();
-                /**
-                * Populate TeamTypeDropDownList
-                */
-                PopulateTeamType(TeamTypeDropDownList);
-                /**
-                * Fill Edit Forms with appropriate data
-                */
-                if (teamToEdit != null)
-                {
-                    TeamTypeDropDownList.SelectedValue = Convert.ToString(teamToEdit.SportID);
-                    TeamNameTextBox.Text = teamToEdit.TeamName;
-                    CountryTextBox.Text = teamToEdit.Country;
-                    CityTextBox.Text = teamToEdit.City;
-                }
-                this.ToggleEditMode("Edit", itemID); //Enter Edit Mode
-            }
-        }
-
+        
         /**
          * <summary>
          * This method populates the TeamTypeDropDownList.
          * </summary>
          * @method PopulateTeamType
+         * @param {DropDownList} TeamType
          * @returns {void}
          */
-        protected void PopulateTeamType(DropDownList TeamType)
+        protected void PopulateTeamType(DropDownList TeamType, int teamID)
         {
             using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
+                //Populate Dropdown with available values
                 var sports = (from sport in db.Sports
                               select sport);
                 if (sports != null)
                 {
                     TeamType.DataSource = sports.ToList();
-                    TeamType.DataBind();
-                    //Start with no selection
-                    TeamType.ClearSelection();
-                }                
+                    TeamType.DataBind();                    
+                }
+                //Select the correct sport of current ListViewItem
+                var currentTeam = (from team in db.Teams
+                                     where team.TeamID == teamID
+                                     select team).FirstOrDefault();
+                if (currentTeam != null)
+                {
+                    TeamType.SelectedValue = Convert.ToString(currentTeam.SportID);
+                }
             }
         }
 
@@ -180,7 +128,10 @@ namespace MasciApps_Proj1
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                this.ToggleEditMode("Edit", Convert.ToInt32(Request.QueryString["itemID"])); //Enter Edit Mode
+                int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Team(ListViewItem) we are editing
+                this.ToggleEditMode("Edit", itemID); //Enter Edit Mode
+                this.PopulateTeamType(((DropDownList)TeamsListView.Items[itemID].FindControl("TeamTypeDropDownList")),
+                                        Convert.ToInt32(Request.QueryString["teamID"]));
             }
         }
         /**
@@ -239,32 +190,30 @@ namespace MasciApps_Proj1
         {            
             int teamID = Convert.ToInt32(Request.QueryString["teamID"]); //ID of the Team as stored in database
             int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Team(ListViewItem) we are editing
-
             //Control References
             DropDownList TeamTypeDropDownList = ((DropDownList)TeamsListView.Items[itemID].FindControl("TeamTypeDropDownList"));
             TextBox TeamNameTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("TeamNameTextBox"));
             TextBox CountryTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CountryTextBox"));
             TextBox CityTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CityTextBox"));
+
             using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
-                Team teamToEdit = new Team();
                 //Query db for specific Team
-                teamToEdit = (from team in db.Teams
+                Team teamToEdit = (from team in db.Teams
                                     where team.TeamID == teamID
                                     select team).FirstOrDefault();
                 //Make appropriate changes to Team record
-                teamToEdit.SportID = Convert.ToInt32(TeamTypeDropDownList.SelectedItem.Value); //Needs troubleshooting
-                teamToEdit.Name = TeamNameTextBox.Text;
-                teamToEdit.Country = CountryTextBox.Text;
-                teamToEdit.City = CityTextBox.Text;
-                db.SaveChanges();
-                //Exit Edit Mode
-                this.ToggleEditMode("View", itemID);
-                //Refresh ListView
-                this.GetTeams();
-
+                if (teamToEdit != null)
+                {
+                    teamToEdit.SportID = Convert.ToInt32(TeamTypeDropDownList.SelectedItem.Value); //Needs troubleshooting
+                    teamToEdit.Name = TeamNameTextBox.Text;
+                    teamToEdit.Country = CountryTextBox.Text;
+                    teamToEdit.City = CityTextBox.Text;
+                    db.SaveChanges();
+                }                                
+                this.ToggleEditMode("View", itemID);//Exit Edit Mode                
+                this.GetTeams();//Refresh ListView
             }
-            Response.Redirect("~/Teams.aspx?teamID=" + teamID + "&itemID=" + itemID);
         }
     }
 }

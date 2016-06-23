@@ -43,7 +43,7 @@
                     <ItemTemplate>
                         <div class="team-container" id="<%# "team" + Eval("TeamID") %>">                               
                             <asp:LinkButton runat="server" ID="EditTeamLink" CssClass="linkButton Edit" Text="<i class='fa fa-pencil'></i>" OnClick="EditTeamLink_Click"
-                                PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") + "&itemID=" + Container.DataItemIndex + "#team" + Eval("TeamID") + "&edit=true" %>'></asp:LinkButton>                         
+                                PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") + "&itemID=" + Container.DataItemIndex + "#team" + Eval("TeamID") %>'></asp:LinkButton>                         
                             <asp:LinkButton runat="server" ID="DeleteTeamLink" CssClass="linkButton Delete" Visible="false" OnClick="DeleteTeamLink_Click"
                                 Text="<i class='fa fa-trash-o'></i>" PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") %>'></asp:LinkButton>
                             <div class="team-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
@@ -60,13 +60,16 @@
                                         <asp:DropDownList runat="server" ID="TeamTypeDropDownList" DataValueField="SportID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container">
-                                        <asp:TextBox runat="server" ID="TeamNameTextBox" PlaceHolder="Team Name" Required="true"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="TeamNameTextBox" PlaceHolder="Team Name" Required="true"
+                                            Text='<%# DataBinder.Eval(Container.DataItem, "TeamName") %>'></asp:TextBox>
                                     </div>
                                     <div class="input-container">
-                                        <asp:TextBox runat="server" ID="CountryTextBox" PlaceHolder="Country" Required="true"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="CountryTextBox" PlaceHolder="Country" Required="true"
+                                            Text='<%# DataBinder.Eval(Container.DataItem, "Country") %>'></asp:TextBox>
                                     </div>
                                     <div class="input-container">
-                                        <asp:TextBox runat="server" ID="CityTextBox" PlaceHolder="City" Required="true"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="CityTextBox" PlaceHolder="City" Required="true"
+                                            Text='<%# DataBinder.Eval(Container.DataItem, "City") %>'></asp:TextBox>
                                     </div>
                                     <div class="input-container buttons">                                        
                                         <asp:Button runat="server" ID="EditTeamCancel" CausesValidation="false" UseSubmitBehavior="false" Text="Cancel" 
