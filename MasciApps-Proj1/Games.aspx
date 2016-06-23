@@ -22,25 +22,29 @@
             <h5 runat="server" id="test"></h5>
             
             <form runat="server">
+                <div class="navigation">
+                    <a href="/Games.aspx" class="option active">Games</a>
+                    <a href="/Teams.aspx" class="option">Teams</a>
+                    <div class="clear-float"></div>
+                </div>
                 <div class="heading">
-                    <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
-                        <div class="new-game">
-                            <asp:HyperLink runat="server" ID="AddMatchButton" Text="<i class='fa fa-plus-circle'></i> New" NavigateUrl="~/Admin/GamesAdd.aspx"></asp:HyperLink>
-                        </div>
-                    </asp:PlaceHolder>                        
+                    <div class="calender">
+                        <div class="calendar-trigger" runat="server" id="CalendarValue">Week of: mm/dd/yyyy</div>
+                        <asp:Calendar runat="server" ID="GameCalendar" CssClass="GameCalendar" OnSelectionChanged="GameCalendar_SelectionChanged" 
+                            SelectionMode="Day" SelectedDayStyle-CssClass="SelectedWeek"></asp:Calendar>                        
+                    </div>                            
                     <div class="pagination">
                         <asp:LinkButton runat="server" CSSClass="prev" OnClick="PreviousButton_Click" Text="<i class='fa fa-chevron-left'></i>" 
                             PostBackUrl="~/Games.aspx"></asp:LinkButton>
                         <asp:LinkButton runat="server" CssClass="next" OnClick="NextButton_Click" Text="<i class='fa fa-chevron-right'></i>" 
                             PostBackUrl="~/Games.aspx"></asp:LinkButton>
                     </div>
-                    <div class="calender">
-                        <div class="calendar-trigger" runat="server" id="CalendarValue">Week of: mm/dd/yyyy</div>
-                        <asp:Calendar runat="server" ID="GameCalendar" CssClass="GameCalendar" OnSelectionChanged="GameCalendar_SelectionChanged" 
-                            SelectionMode="Day" SelectedDayStyle-CssClass="SelectedWeek"></asp:Calendar>                        
-                    </div>                            
-                </div>
-
+                </div>                
+                <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
+                    <div class="new-game">
+                        <asp:HyperLink runat="server" ID="AddMatchButton" Text="<i class='fa fa-plus-circle'></i> New Game" NavigateUrl="~/Admin/GamesAdd.aspx"></asp:HyperLink>
+                    </div>
+                </asp:PlaceHolder>                        
                 <asp:ListView runat="server" ID="GamesListView" DataKeyNames="MatchID">
                     <LayoutTemplate>
                         <div class="games-container">
@@ -87,35 +91,40 @@
                             </div>
 
                             <div class="game-edit" runat="server" id="EditTemplate">
-                                <div class="home-team col-3">
-                                    <div class="input-container teamLogo">
-                                        <asp:FileUpload runat="server" ID="HomeTeamLogoUpload" Enabled="false" />
-                                        <asp:RegularExpressionValidator runat="server" ID="HomeTeamLogoValidator" ControlToValidate="HomeTeamLogoUpload"
-                                            ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
-                                            ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <div class="input-container team">
-                                        <asp:DropDownList runat="server" ID="HomeTeamDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
-                                    </div>
-                                    <div class="input-container teamScore">
-                                        <asp:TextBox runat="server" ID="HomeTeamScoreTextBox" TextMode="Number" Placeholder="Home Team Score"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="match col-3">
+                                <div class="match">
                                     <div class="input-container matchType">
-                                        <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name"></asp:DropDownList>
+                                        <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name"
+                                            OnSelectedIndexChanged="PopulateTeams" AutoPostBack="true"></asp:DropDownList>
+                                    </div>
+                                    <div class="home-team">
+                                        <div class="input-container team">
+                                            <asp:DropDownList runat="server" ID="HomeTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
+                                                OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true"></asp:DropDownList>
+                                        </div>
+                                        <div class="input-container teamScore">
+                                            <asp:TextBox runat="server" ID="HomeTeamScoreTextBox" TextMode="Number" Placeholder="Home Team Score"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="away-team">                                    
+                                        <div class="input-container team">
+                                            <asp:DropDownList runat="server" ID="AwayTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
+                                                OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true"></asp:DropDownList>
+                                        </div>
+                                        <div class="input-container teamScore">
+                                            <asp:TextBox runat="server" ID="AwayTeamScoreTextBox" TextMode="Number" Placeholder="Away Team Score"></asp:TextBox>
+                                        </div>
                                     </div>
                                     <div class="input-container matchName">
-                                        <asp:TextBox runat="server" ID="MatchNameTextBox" MaxLength="100" Placeholder="Name"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="MatchNameTextBox" MaxLength="100" Placeholder="Name" Enabled="false"></asp:TextBox>
+                                    </div>
+                                    <div class="input-container matchWinner">
+                                        <asp:DropDownList runat="server" ID="MatchWinnerDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container matchDate">
                                         <asp:TextBox runat="server" ID="MatchDateTextBox" TextMode="Date"></asp:TextBox>
                                     </div>
                                     <div class="input-container matchTime">                                        
                                         <asp:TextBox runat="server" ID="MatchTimeTextBox" TextMode="Time"></asp:TextBox>
-                                    </div>
-                                    <div class="input-container matchWinner">
-                                        <asp:DropDownList runat="server" ID="MatchWinnerDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                     </div>
                                     <div class="input-container matchSpecCount">
                                         <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"></asp:TextBox>
@@ -125,20 +134,6 @@
                                             PostBackUrl='<%# "~/Games.aspx?itemID=" + Container.DataItemIndex %>'/>
                                         <asp:Button runat="server" ID="EditMatchUpdate" CausesValidation="true" Text="Update" OnClick="EditMatchUpdate_Click" 
                                             PostBackUrl='<%# "~/Games.aspx?itemID=" + Container.DataItemIndex %>' />
-                                    </div>
-                                </div>
-                                <div class="away-team col-3">                                    
-                                    <div class="input-container teamLogo">
-                                        <asp:FileUpload runat="server" ID="AwayTeamLogoUpload" Enabled="false" />
-                                        <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" ControlToValidate="HomeTeamLogoUpload"
-                                            ErrorMessage="Only .jpg, .jpeg & .png formats are allowed" 
-                                            ValidationExpression="(.+\.([Jj][Pp][Gg])|.+\.([Pp][Nn][Gg])|.+\.([Jj][Pp][Ee][Gg])|.+\.([Jj][Pp][Ee][Gg]))"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <div class="input-container team">
-                                        <asp:DropDownList runat="server" ID="AwayTeamDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
-                                    </div>
-                                    <div class="input-container teamScore">
-                                        <asp:TextBox runat="server" ID="AwayTeamScoreTextBox" TextMode="Number" Placeholder="Away Team Score"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="clear-float"></div>

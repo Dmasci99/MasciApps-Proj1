@@ -14,7 +14,11 @@ namespace MasciApps_Proj1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    Response.Redirect("~/Admin/Profile");
+            }
         }
 
         protected void RegisterSubmitButton_Click(object sender, EventArgs e)

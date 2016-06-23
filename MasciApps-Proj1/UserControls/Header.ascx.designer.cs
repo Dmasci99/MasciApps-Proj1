@@ -94,15 +94,6 @@ namespace MasciApps_Proj1.UserControls {
         protected global::System.Web.UI.WebControls.PlaceHolder PrivatePlaceholder;
         
         /// <summary>
-        /// logout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor logout;
-        
-        /// <summary>
         /// profile control.
         /// </summary>
         /// <remarks>
@@ -110,5 +101,14 @@ namespace MasciApps_Proj1.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor profile;
+        
+        /// <summary>
+        /// logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logout;
     }
 }

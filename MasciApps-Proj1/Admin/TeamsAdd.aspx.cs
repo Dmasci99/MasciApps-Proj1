@@ -34,10 +34,13 @@ namespace MasciApps_Proj1.Admin
             {
                 var sports = (from sport in db.Sports
                               select sport);
-                MatchTypeDropDownList.DataSource = sports.ToList();
-                MatchTypeDropDownList.DataBind();
-                //Start with no selection
-                MatchTypeDropDownList.ClearSelection();
+                if (sports != null)
+                {
+                    MatchTypeDropDownList.DataSource = sports.ToList();
+                    MatchTypeDropDownList.DataBind();
+                    //Start with no selection
+                    MatchTypeDropDownList.ClearSelection();
+                }                
             }
         }
 

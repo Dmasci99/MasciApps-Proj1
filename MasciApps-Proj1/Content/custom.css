@@ -583,14 +583,6 @@ header #account-nav .menu {
   background: transparent;
   text-align: center;
 }
-header #account-nav .menu.loggedin p {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f1f4d;
-  text-align: center;
-  padding: 5px;
-  margin: 0;
-}
 header #account-nav .menu > li > a {
   border: 2px solid #3f507f;
   font-size: 13px;
@@ -623,6 +615,7 @@ header #account-nav .menu > li > a.login {
   border-bottom-left-radius: 0;
 }
 header #account-nav .menu > li > a.logout {
+  font-size: 16px;
   width: 50%;
   float: left;
   color: #d4cde5;
@@ -632,6 +625,7 @@ header #account-nav .menu > li > a.logout {
   border-left: 0;
 }
 header #account-nav .menu > li > a.profile {
+  font-size: 16px;
   width: 50%;
   float: left;
   color: #0f1f4d;
@@ -650,7 +644,6 @@ header #account-nav .menu > li > a.active.logout {
   background: #0f1f4d;
 }
 header #account-nav .menu > li:hover a.profile {
-  border-bottom-left-radius: 0;
   background: #c6bcdc;
 }
 header #moby-button {
@@ -1895,9 +1888,85 @@ footer .copyright p {
 .hidden {
   display: none;
 }
+/****************************************************************************************************
+*																									*
+*										GAME TRACKER PAGES										
+*																									*
+****************************************************************************************************/
+.interior-page.gametracker-page {
+  /********************************************
+    *               Navigation
+    ********************************************/
+  /********************************************
+    *              Calendar (Games.aspx)
+    ********************************************/
+  /********************************************
+    *            New Game/Team Buttons
+    ********************************************/
+  /********************************************
+    *               Games Specific
+    ********************************************/
+  /********************************************
+    *              Teams Specific
+    ********************************************/
+}
+.interior-page.gametracker-page .navigation {
+  position: relative;
+  font-size: 14px;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  border: 2px solid #5271cc;
+  background: #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+.interior-page.gametracker-page .navigation .option {
+  position: relative;
+  float: left;
+  width: 50%;
+  padding: 6px;
+  cursor: pointer;
+}
+.interior-page.gametracker-page .navigation .option.active::after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  left: -5px;
+  top: -5px;
+  display: block;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  background: rgba(82, 113, 204, 0.7);
+}
+.interior-page.gametracker-page .navigation::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: #5271cc;
+}
 .interior-page.gametracker-page .heading {
   position: relative;
   width: 100%;
+  margin: 20px 0;
 }
 .interior-page.gametracker-page .heading .pagination .prev,
 .interior-page.gametracker-page .heading .pagination .next {
@@ -1927,25 +1996,13 @@ footer .copyright p {
   position: relative;
   text-align: center;
   width: 100%;
-  max-width: 255px;
-  margin: 0 auto;
-}
-.interior-page.gametracker-page .heading .calender::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  border: 4px solid transparent;
-  border-top-color: #5271cc;
 }
 .interior-page.gametracker-page .heading .calender .calendar-trigger {
-  width: 260px;
+  position: relative;
   font-size: 14px;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
   padding: 5px 10px;
   background: #ffffff;
   border: 2px solid #5271cc;
@@ -1956,13 +2013,26 @@ footer .copyright p {
   border-radius: 4px;
   cursor: pointer;
 }
+.interior-page.gametracker-page .heading .calender .calendar-trigger::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #5271cc;
+}
 .interior-page.gametracker-page .heading .calender > .GameCalendar {
   width: 260px;
   opacity: 0;
   visibility: hidden;
   position: absolute;
   top: 60%;
-  left: calc(50% + 2px);
+  left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -1989,8 +2059,123 @@ footer .copyright p {
 .interior-page.gametracker-page .heading .calender > .GameCalendar tr.SelectedWeek {
   background: #5271cc !important;
 }
-.interior-page.gametracker-page .games-container {
-  margin: 100px 0;
+.interior-page.gametracker-page .new-game,
+.interior-page.gametracker-page .new-team {
+  text-align: center;
+  margin: 15px 0;
+}
+.interior-page.gametracker-page .new-game a,
+.interior-page.gametracker-page .new-team a,
+.interior-page.gametracker-page .new-game button,
+.interior-page.gametracker-page .new-team button,
+.interior-page.gametracker-page .new-game span,
+.interior-page.gametracker-page .new-team span,
+.interior-page.gametracker-page .new-game input,
+.interior-page.gametracker-page .new-team input {
+  color: #f1f1f1;
+  font-size: 14px;
+  background: #3f507f;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  padding: 15px 40px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.interior-page.gametracker-page .new-game a:hover,
+.interior-page.gametracker-page .new-team a:hover,
+.interior-page.gametracker-page .new-game button:hover,
+.interior-page.gametracker-page .new-team button:hover,
+.interior-page.gametracker-page .new-game span:hover,
+.interior-page.gametracker-page .new-team span:hover,
+.interior-page.gametracker-page .new-game input:hover,
+.interior-page.gametracker-page .new-team input:hover {
+  cursor: pointer;
+  background: #5065a1;
+}
+.interior-page.gametracker-page .new-game.color2 a,
+.interior-page.gametracker-page .new-team.color2 a,
+.interior-page.gametracker-page .new-game.color2 button,
+.interior-page.gametracker-page .new-team.color2 button,
+.interior-page.gametracker-page .new-game.color2 span,
+.interior-page.gametracker-page .new-team.color2 span {
+  color: #f1f1f1;
+  background: #0f1f4d;
+}
+.interior-page.gametracker-page .new-game.color2 a:hover,
+.interior-page.gametracker-page .new-team.color2 a:hover,
+.interior-page.gametracker-page .new-game.color2 button:hover,
+.interior-page.gametracker-page .new-team.color2 button:hover,
+.interior-page.gametracker-page .new-game.color2 span:hover,
+.interior-page.gametracker-page .new-team.color2 span:hover {
+  background: #173078;
+}
+.interior-page.gametracker-page .new-game.color3 a,
+.interior-page.gametracker-page .new-team.color3 a,
+.interior-page.gametracker-page .new-game.color3 button,
+.interior-page.gametracker-page .new-team.color3 button,
+.interior-page.gametracker-page .new-game.color3 span,
+.interior-page.gametracker-page .new-team.color3 span {
+  color: #f1f1f1;
+  background: #5271cc;
+}
+.interior-page.gametracker-page .new-game.color3 a:hover,
+.interior-page.gametracker-page .new-team.color3 a:hover,
+.interior-page.gametracker-page .new-game.color3 button:hover,
+.interior-page.gametracker-page .new-team.color3 button:hover,
+.interior-page.gametracker-page .new-game.color3 span:hover,
+.interior-page.gametracker-page .new-team.color3 span:hover {
+  background: #3656b5;
+}
+.interior-page.gametracker-page .new-game.width a,
+.interior-page.gametracker-page .new-team.width a,
+.interior-page.gametracker-page .new-game.width button,
+.interior-page.gametracker-page .new-team.width button,
+.interior-page.gametracker-page .new-game.width span,
+.interior-page.gametracker-page .new-team.width span {
+  display: block;
+  width: 200px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .new-game a,
+.interior-page.gametracker-page .new-team a,
+.interior-page.gametracker-page .new-game button,
+.interior-page.gametracker-page .new-team button,
+.interior-page.gametracker-page .new-game span,
+.interior-page.gametracker-page .new-team span {
+  display: block;
+  width: 200px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .new-game a,
+.interior-page.gametracker-page .new-team a,
+.interior-page.gametracker-page .new-game button,
+.interior-page.gametracker-page .new-team button,
+.interior-page.gametracker-page .new-game span,
+.interior-page.gametracker-page .new-team span {
+  color: #f1f1f1;
+  background: #5271cc;
+}
+.interior-page.gametracker-page .new-game a:hover,
+.interior-page.gametracker-page .new-team a:hover,
+.interior-page.gametracker-page .new-game button:hover,
+.interior-page.gametracker-page .new-team button:hover,
+.interior-page.gametracker-page .new-game span:hover,
+.interior-page.gametracker-page .new-team span:hover {
+  background: #3656b5;
+}
+.interior-page.gametracker-page .new-game a,
+.interior-page.gametracker-page .new-team a {
+  width: 100%;
+  max-width: 260px;
+  padding: 6px;
 }
 .interior-page.gametracker-page .games-container .game-container {
   color: #d4cde5;
@@ -2129,9 +2314,23 @@ footer .copyright p {
   opacity: 1;
   visibility: visible;
 }
-.interior-page.gametracker-page .games-container .game-container .game-edit .col-3 {
+.interior-page.gametracker-page .games-container .game-container .game-edit .match {
+  position: relative;
   width: 33.33%;
-  float: left;
+  margin: 0 auto;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .match .home-team {
+  position: absolute;
+  left: -100%;
+  top: 0;
+}
+.interior-page.gametracker-page .games-container .game-container .game-edit .match .away-team {
+  position: absolute;
+  right: -100%;
+  top: 0;
+}
+.interior-page.gametracker-page .teams-container {
+  margin-top: 40px;
 }
 .interior-page.gametracker-page .teams-container .team-container {
   position: relative;
@@ -2330,8 +2529,36 @@ input[type=text]::-ms-clear {
 *											RESPONSIVE										
 *																									*
 ****************************************************************************************************/
+@media screen and (max-width: 800px) {
+  .interior-page.gametracker-page .games-container .game-container .game-edit .match {
+    width: 100%;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-edit .match .home-team {
+    position: relative;
+    left: 0;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-edit .match .away-team {
+    position: relative;
+    right: 0;
+  }
+  .interior-page.gametracker-page .teams-container .team-container {
+    float: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 15px auto;
+  }
+}
 @media screen and (max-width: 650px) {
-  .interior-page.gametracker-page .games-container .game-container .game-content .date {
+  .interior-page.gametracker-page .heading {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .interior-page.gametracker-page .heading .pagination .prev .fa,
+  .interior-page.gametracker-page .heading .pagination .next .fa {
+    font-size: 24px;
+    padding: 2px;
+  }
+  .interior-page.gametracker-page .games-container .game-container .game-content .title {
     width: 100%;
   }
   .interior-page.gametracker-page .games-container .game-container .game-content .teams .team {
@@ -2365,6 +2592,10 @@ input[type=text]::-ms-clear {
   .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.left,
   .interior-page.gametracker-page .games-container .game-container .game-content .game-info .info.right {
     text-align: center;
+  }
+  .gametracker-page#games-page form,
+  .gametracker-page#teams-page form {
+    padding: 0;
   }
 }
 /*********************************************************************************************************************************************/
@@ -2764,6 +2995,9 @@ input[type=text]::-ms-clear {
   /***********************************									
 	*			Forms Pages			
 	***********************************/
+  .forms-page {
+    padding: 10px 0 40px;
+  }
   .forms-page form {
     border: 0;
     margin: 0 auto;

@@ -18,9 +18,8 @@ namespace MasciApps_Proj1.Admin
             if (!IsPostBack)
             {
                 this.PopulateTeams();
-                this.PopulateMatchType();
+                this.PopulateTeamType();
             }
-            Page.MaintainScrollPositionOnPostBack = true;//Maintain Page position
         }
 
         /**
@@ -48,21 +47,21 @@ namespace MasciApps_Proj1.Admin
 
         /**
          * <summary>
-         * This method populates the MatchType DropDown for Step 2.
+         * This method populates the TeamType DropDown for Step 2.
          * </summary>
-         * @method PopulateMatchType
+         * @method PopulateTeamType
          * @returns {void}
          */
-        protected void PopulateMatchType()
+        protected void PopulateTeamType()
         {
             using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
                 var sports = (from sport in db.Sports
                               select sport);
-                MatchTypeDropDownList.DataSource = sports.ToList();
-                MatchTypeDropDownList.DataBind();
+                TeamTypeDropDownList.DataSource = sports.ToList();
+                TeamTypeDropDownList.DataBind();
                 //Start with no selection
-                MatchTypeDropDownList.ClearSelection();
+                TeamTypeDropDownList.ClearSelection();
             }
         }
 
@@ -83,7 +82,7 @@ namespace MasciApps_Proj1.Admin
                 var teamToEdit = (from team in db.Teams
                                   where team.TeamID == teamID
                                   select team).FirstOrDefault();
-                MatchTypeDropDownList.SelectedValue = Convert.ToString(teamToEdit.SportID);
+                TeamTypeDropDownList.SelectedValue = Convert.ToString(teamToEdit.SportID);
                 TeamNameTextBox.Text = teamToEdit.Name;
                 CountryTextBox.Text = teamToEdit.Country;
                 CityTextBox.Text = teamToEdit.City;
@@ -138,11 +137,14 @@ namespace MasciApps_Proj1.Admin
                 Team teamToEdit = (from team in db.Teams
                                   where team.TeamID == teamID
                                   select team).FirstOrDefault();
-                teamToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue);
-                teamToEdit.Name = TeamNameTextBox.Text;
-                teamToEdit.Country = CountryTextBox.Text;
-                teamToEdit.City = CityTextBox.Text;
-                db.SaveChanges(); // save db - update Team
+                if (teamToEdit != null)
+                {
+                    teamToEdit.SportID = Convert.ToInt32(TeamTypeDropDownList.SelectedValue);
+                    teamToEdit.Name = TeamNameTextBox.Text;
+                    teamToEdit.Country = CountryTextBox.Text;
+                    teamToEdit.City = CityTextBox.Text;
+                    db.SaveChanges(); // save db - update Team
+                }                
                 this.PopulateTeams(); //Refresh TeamDropDownList
             }
         }

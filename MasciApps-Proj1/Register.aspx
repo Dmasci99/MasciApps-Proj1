@@ -1,4 +1,19 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MasciApps_Proj1.Register" %>
+<%-- 
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Register.aspx
+* 
+* The Following page is the Content for the "Register" page.
+* Allows an anonymous user to Register. 
+* Logged-in users are redirected to their Profile.
+*
+*/ 
+--%>
 
 <asp:Content ID="RegisterPageContent" ContentPlaceHolderID="MainContent" runat="server">
 

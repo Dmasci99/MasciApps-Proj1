@@ -27,9 +27,9 @@
         <!-- Main Menu -->
         <nav id="header-nav">
 	        <ul class="menu">
-                <li id="home"><a href="../Default.aspx">Home</a></li>
-		        <li><a runat="server" id="about" href="../About.aspx">About</a></li>
-		        <li><a runat="server" id="projects" href="../Projects.aspx">Projects</a>
+                <li id="home"><a href="~/Default.aspx">Home</a></li>
+		        <li><a runat="server" id="about" href="~/About.aspx">About</a></li>
+		        <li><a runat="server" id="projects" href="~/Projects.aspx">Projects</a>
 			        <ul class="sub-menu">
 				        <li><a href="http://dekoningemc.ca/">Dekoning Mechanical</a></li>
 				        <li><a href="http://www.turnkeybioscience.com/">Turnkey Bioscience</a></li>
@@ -37,9 +37,9 @@
 				        <li><a href="http://dogdayscamp.com/">DogDaysCamp</a></li>
 			        </ul>
 		        </li>						
-		        <li><a runat="server" id="services" href="../Services.aspx">Services</a></li>	
-                <li><a runat="server" id="games" href="../Games.aspx">Games</a></li>	
-		        <li><a runat="server" id="contact" href="../Contact.aspx">Contact</a></li>	
+		        <li><a runat="server" id="services" href="~/Services.aspx">Services</a></li>	
+                <li><a runat="server" id="games" href="~/Games.aspx">Games</a></li>	
+		        <li><a runat="server" id="contact" href="~/Contact.aspx">Contact</a></li>	
 		        <div class="clear-float"></div><!--clear-float-->				
 	        </ul>
         </nav><!--.header-nav-->
@@ -54,9 +54,8 @@
             </asp:PlaceHolder>
 	        <asp:PlaceHolder runat="server" ID="PrivatePlaceholder" Visible="false">
                 <ul class="menu loggedin">
-		            <p>Welome, < username ></p>
-		            <li><a runat="server" id="logout" class="logout" href="~/Logout.aspx">Logout</a></li>
-		            <li><a runat="server" id="profile" class="profile" href="~/Profile.aspx">Profile</a></li>
+		            <li><a runat="server" id="profile" class="profile" title="Profile" href="~/Admin/Profile.aspx"><i class="fa fa-user"></i></a></li>
+		            <li><a runat="server" id="logout" class="logout" title="Sign out" href="~/Logout.aspx"><i class="fa fa-sign-out"></i></a></li>
 		            <div class="clear-float"></div><!--clear-float-->
 	            </ul>
             </asp:PlaceHolder>

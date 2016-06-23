@@ -600,17 +600,7 @@ header {
 			width: 85px;
 			background: transparent;
 			text-align: center;
-			&.loggedin {
-				p {
-					font-size: 14px;
-					.bold;
-					color: @darkerBlue;
-					text-align: center;
-					padding: 5px;
-					margin: 0;
-				}
-			}
-			> li {
+			> li { 
 				> a {
 					border: 2px solid @darkBlue;
 					font-size: 13px;
@@ -634,6 +624,7 @@ header {
 						border-bottom-left-radius: 0;
 					}
 					&.logout {
+                        font-size: 16px;
 						width: 50%;
 						float: left;
 						color: @silver;
@@ -643,6 +634,7 @@ header {
 						border-left: 0;
 					}
 					&.profile {
+                        font-size: 16px;
 						width: 50%;
 						float: left;
 						color: @darkerBlue;
@@ -661,7 +653,6 @@ header {
 				}//.menu li a
 				&:hover {
 					a.profile {
-						border-bottom-left-radius: 0;	
 						background: darken(@silver, 5%);
 					}
 				}//.menu li:hover

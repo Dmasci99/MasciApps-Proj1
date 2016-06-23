@@ -6,10 +6,12 @@
 * Semester : 4
 * Professor : Tom Tsiliopolous
 * Purpose : Project 1 - Game Tracker
-* Website Name : MasciApps-GameTracker.azurewebsites.net/About.aspx
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Login.aspx
 * 
 * The Following page is the Login Page. 
 * Users login to access Game Tracker Administrative rights.
+* Logged-in users are redirected to their Profile.
+* 
 */ 
 --%>
 

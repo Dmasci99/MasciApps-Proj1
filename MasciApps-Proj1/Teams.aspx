@@ -21,13 +21,17 @@
             <h5 runat="server" id="test"></h5>
             
             <form runat="server">
-                <div class="heading">
-                    <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
-                        <div class="new-team">
-                            <asp:HyperLink runat="server" ID="AddTeamButton" Text="<i class='fa fa-plus-circle'></i> New" NavigateUrl="~/Admin/TeamsAdd.aspx"></asp:HyperLink>
-                        </div>
-                    </asp:PlaceHolder>                        
+                <div class="navigation">
+                    <a href="/Games.aspx" class="option">Games</a>
+                    <a href="/Teams.aspx" class="option active">Teams</a>
+                    <div class="clear-float"></div>
                 </div>
+                <asp:PlaceHolder runat="server" ID="PrivatePlaceHolder" Visible="false">
+                    <div class="new-team">
+                        <asp:HyperLink runat="server" ID="AddTeamButton" Text="<i class='fa fa-plus-circle'></i> New Team" 
+                            NavigateUrl="~/Admin/TeamsAdd.aspx"></asp:HyperLink>
+                    </div>
+                </asp:PlaceHolder>                        
 
                 <asp:ListView runat="server" ID="TeamsListView" DataKeyNames="TeamID">
                     <LayoutTemplate>
@@ -37,17 +41,15 @@
                         </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <div class="team-container" id="<%# "team" + Eval("TeamID") %>">   
-                            
+                        <div class="team-container" id="<%# "team" + Eval("TeamID") %>">                               
                             <asp:LinkButton runat="server" ID="EditTeamLink" CssClass="linkButton Edit" Text="<i class='fa fa-pencil'></i>" OnClick="EditTeamLink_Click"
-                                PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") + "&itemID=" + Container.DataItemIndex + "#team" + Eval("TeamID") %>'></asp:LinkButton>                         
+                                PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") + "&itemID=" + Container.DataItemIndex + "#team" + Eval("TeamID") + "&edit=true" %>'></asp:LinkButton>                         
                             <asp:LinkButton runat="server" ID="DeleteTeamLink" CssClass="linkButton Delete" Visible="false" OnClick="DeleteTeamLink_Click"
                                 Text="<i class='fa fa-trash-o'></i>" PostBackUrl='<%# "~/Teams.aspx?teamID=" + Eval("TeamID") %>'></asp:LinkButton>
                             <div class="team-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
                             <asp:PlaceHolder runat="server" ID="ViewTemplate">
                                 <div class="team-content">                                    
                                     <div class="name"><%# DataBinder.Eval(Container.DataItem, "TeamName") %></div>
-                                    <div class="logo"></div>
                                     <div class="country"><%# DataBinder.Eval(Container.DataItem, "Country") %></div>
                                     <div class="city"><%# DataBinder.Eval(Container.DataItem, "City") %></div>
                                 </div>                    
@@ -67,10 +69,10 @@
                                         <asp:TextBox runat="server" ID="CityTextBox" PlaceHolder="City" Required="true"></asp:TextBox>
                                     </div>
                                     <div class="input-container buttons">                                        
-                                        <asp:Button runat="server" ID="EditTeamCancel" CausesValidation="false" Text="Cancel" OnClick="EditTeamCancel_Click" 
-                                            PostBackUrl='<%# "~/Teams.aspx?itemID=" + Container.DataItemIndex %>'/>
-                                        <asp:Button runat="server" ID="EditTeamUpdate" CausesValidation="true" Text="Update" OnClick="EditTeamUpdate_Click" 
-                                            PostBackUrl='<%# "~/Teams.aspx?itemID=" + Container.DataItemIndex %>' />
+                                        <asp:Button runat="server" ID="EditTeamCancel" CausesValidation="false" UseSubmitBehavior="false" Text="Cancel" 
+                                            OnClick="EditTeamCancel_Click" />
+                                        <asp:Button runat="server" ID="EditTeamSave" CausesValidation="true" UseSubmitBehavior="false" Text="Save" 
+                                            OnClick="EditTeamSave_Click" />
                                     </div>
                                 </div>
                             </asp:PlaceHolder>

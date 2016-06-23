@@ -16,6 +16,7 @@ namespace MasciApps_Proj1.UserControls
                 showLinks();
                 setActivePageLink();
             }
+            Page.MaintainScrollPositionOnPostBack = true;
         }
 
         /**

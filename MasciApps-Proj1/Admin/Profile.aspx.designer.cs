@@ -10,87 +10,69 @@
 namespace MasciApps_Proj1.Admin {
     
     
-    public partial class TeamsEdit {
+    public partial class Profile {
         
         /// <summary>
-        /// FunctionDropDownList control.
+        /// ErrorContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FunctionDropDownList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErrorContainer;
         
         /// <summary>
-        /// TeamDropDownList control.
+        /// ErrorLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TeamDropDownList;
+        protected global::System.Web.UI.WebControls.Label ErrorLabel;
         
         /// <summary>
-        /// EditTeamDelete control.
+        /// ProfileCancelButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton EditTeamDelete;
+        protected global::System.Web.UI.WebControls.LinkButton ProfileCancelButton;
         
         /// <summary>
-        /// TeamTypeDropDownList control.
+        /// UsernameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TeamTypeDropDownList;
+        protected global::System.Web.UI.WebControls.TextBox UsernameTextBox;
         
         /// <summary>
-        /// TeamNameTextBox control.
+        /// EmailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TeamNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
         
         /// <summary>
-        /// CountryTextBox control.
+        /// PhoneTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CountryTextBox;
+        protected global::System.Web.UI.WebControls.TextBox PhoneTextBox;
         
         /// <summary>
-        /// CityTextBox control.
+        /// ProfileSubmitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CityTextBox;
-        
-        /// <summary>
-        /// EditTeamCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditTeamCancel;
-        
-        /// <summary>
-        /// EditTeamSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditTeamSave;
+        protected global::System.Web.UI.WebControls.Button ProfileSubmitButton;
     }
 }

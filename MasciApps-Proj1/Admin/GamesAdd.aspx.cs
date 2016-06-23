@@ -63,7 +63,7 @@ namespace MasciApps_Proj1.Admin
                 AwayTeamDropDownList.DataSource = allTeams.ToList();
                 AwayTeamDropDownList.DataBind();
                 //Start with no selection
-                MatchTypeDropDownList.ClearSelection();
+                //MatchTypeDropDownList.ClearSelection();
             }
         }
 
@@ -86,11 +86,14 @@ namespace MasciApps_Proj1.Admin
                 var currentTeams = (from team in db.Teams
                                     where team.TeamID == sportID | team.TeamID == sportID
                                     select team);
-                //Assign Current Teams to MatchWinner DropDown
-                MatchWinnerDropDownList.DataSource = currentTeams.ToList();
-                MatchWinnerDropDownList.DataBind();
-                //Start with no selection
-                MatchWinnerDropDownList.ClearSelection();
+                if (currentTeams != null)
+                {
+                    //Assign Current Teams to MatchWinner DropDown
+                    MatchWinnerDropDownList.DataSource = currentTeams.ToList();
+                    MatchWinnerDropDownList.DataBind();
+                    //Start with no selection
+                    MatchWinnerDropDownList.ClearSelection();
+                }                
             }
             PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
         }

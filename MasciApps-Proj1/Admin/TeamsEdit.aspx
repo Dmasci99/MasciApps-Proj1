@@ -23,8 +23,8 @@
                 </div>
                 
                 <h3 class="step" id="step3">Step 3 - Details</h3>
-                <div class="input-container matchType">
-                    <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name" TabIndex="2"></asp:DropDownList>
+                <div class="input-container teamType">
+                    <asp:DropDownList runat="server" ID="TeamTypeDropDownList" DataValueField="SportID" DataTextField="Name" TabIndex="2"></asp:DropDownList>
                 </div>
                 <div class="input-container teamName">
                     <asp:TextBox runat="server" ID="TeamNameTextBox" Placeholder="Team Name" TabIndex="3" Required="true"></asp:TextBox>

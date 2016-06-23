@@ -22,24 +22,6 @@ namespace MasciApps_Proj1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl test;
         
         /// <summary>
-        /// PrivatePlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PrivatePlaceHolder;
-        
-        /// <summary>
-        /// AddMatchButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink AddMatchButton;
-        
-        /// <summary>
         /// CalendarValue control.
         /// </summary>
         /// <remarks>
@@ -56,6 +38,24 @@ namespace MasciApps_Proj1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar GameCalendar;
+        
+        /// <summary>
+        /// PrivatePlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PrivatePlaceHolder;
+        
+        /// <summary>
+        /// AddMatchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink AddMatchButton;
         
         /// <summary>
         /// GamesListView control.
