@@ -193,6 +193,13 @@
     <Content Include="Models\UserModel.edmx.diagram">
       <DependentUpon>UserModel.edmx</DependentUpon>
     </Content>
+    <EntityDeploy Include="Models\GameTrackerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GameTrackerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GameTrackerModel.edmx.diagram">
+      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -210,13 +217,6 @@
     <Content Include="Content\partials\responsive.less" />
     <Content Include="Interior.Master" />
     <Content Include="Content\partials\gametracker.less" />
-    <EntityDeploy Include="Models\GameTrackerModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GameTrackerModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GameTrackerModel.edmx.diagram">
-      <DependentUpon>GameTrackerModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <None Include="Web.Debug.config">

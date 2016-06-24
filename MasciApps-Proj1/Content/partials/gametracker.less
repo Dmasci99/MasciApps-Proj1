@@ -278,19 +278,9 @@
                 }//.game-info                     
             }//.game-content
             .game-edit {
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-                visibility: hidden;
+                position: relative;
+                top: 100%;
                 padding: 20px;
-                .trans(all,1s);
-                &.active {
-                    position: relative;
-                    top: 100%;
-                    opacity: 1;
-                    visibility: visible;
-                }
                 .match {
                     position: relative;
                     width: 33.33%;
@@ -377,8 +367,8 @@
         &.football {
             background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
         }
-        &.volleyball {
-            background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+        &.hockey {
+            background: url("http://badlandsaahockey.ca/wp-content/uploads/2012/11/Home-Page-Banner1.jpg") center top;
         }
         &::after {
             content: "";

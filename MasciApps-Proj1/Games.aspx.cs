@@ -23,15 +23,6 @@ namespace MasciApps_Proj1
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
                 this.GetMatches(); //Refresh ListView                            
             }
-            else
-            { //On postback
-                //test.InnerText = "IsPostBack";
-                if (Request.QueryString.Count > 0) //If querystring provided (true when editing)
-                    if (HttpContext.Current.User.Identity.IsAuthenticated) //If user is logged in - enter edit mode
-                        this.GetMatch();
-                    else
-                        Response.Redirect("~/Login.aspx");                
-            }
         }
 
         #endregion
@@ -75,10 +66,8 @@ namespace MasciApps_Proj1
                                        allMatches.SpecCount,
                                        allMatches.HomeTeamScore,
                                        HomeTeamName = homeTeam.Name,
-                                       HomeTeamLogo = homeTeam.Logo,
                                        allMatches.AwayTeamScore,
-                                       AwayTeamName = awayTeam.Name,
-                                       AwayTeamLogo = awayTeam.Logo
+                                       AwayTeamName = awayTeam.Name
                                    });
                     if (matches != null)
                     {
@@ -97,120 +86,6 @@ namespace MasciApps_Proj1
 
         /**
          * <summary>
-         * This method retrieves a match for editing.
-         * </summary>
-         * @method GetMatch
-         * @returns {void}
-         */
-        protected void GetMatch()
-        {
-            try
-            {
-                int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
-                int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
-                
-                //Control References
-                DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
-                DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
-                DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
-                DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
-                TextBox MatchNameTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox"));
-                TextBox MatchDateTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox"));
-                TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
-                TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
-                TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
-                TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));                
-
-                using (DefaultConnectionEF db = new DefaultConnectionEF())
-                {
-                    //Query db for specific Match 
-                    var matchToEdit = (from match in db.Matches
-                                         join homeTeam in db.Teams on match.HomeTeamID equals homeTeam.TeamID
-                                         join awayTeam in db.Teams on match.AwayTeamID equals awayTeam.TeamID
-                                         join sport in db.Sports on homeTeam.SportID equals sport.SportID
-                                         where match.MatchID == matchID
-                                         select new
-                                         {
-                                             match.MatchID,
-                                             match.HomeTeamID,
-                                             match.AwayTeamID,
-                                             match.HomeTeamScore,
-                                             match.AwayTeamScore,
-                                             MatchName = match.Name,
-                                             match.DateTime,
-                                             match.Winner,
-                                             match.SpecCount,
-                                             HomeTeamLogo = homeTeam.Logo,
-                                             HomeTeamName = homeTeam.Name,
-                                             AwayTeamLogo = awayTeam.Logo,
-                                             AwayTeamName = awayTeam.Name,
-                                             match.SportID,
-                                             SportName = sport.Name
-                                         }).FirstOrDefault();
-
-                    /**
-                     * Queries for populating DropDown Selections/Options
-                     */
-                    //MatchSelect
-                    var sports = (from sport in db.Sports
-                                  select sport);
-                    if (sports != null)
-                    {
-                        MatchTypeDropDownList.DataSource = sports.ToList();
-                        MatchTypeDropDownList.DataBind();
-                    }                    
-                    //TeamSelect
-                    var allTeams = (from team in db.Teams
-                                    where team.SportID == matchToEdit.SportID
-                                    select team);
-                    if (allTeams != null)
-                    {
-                        HomeTeamDropDownList.DataSource = allTeams.ToList();
-                        HomeTeamDropDownList.DataBind();
-                        AwayTeamDropDownList.DataSource = allTeams.ToList();
-                        AwayTeamDropDownList.DataBind();
-                    }                    
-                    //WinnerSelect
-                    var currentTeams = (from team in db.Teams
-                                        where team.TeamID == matchToEdit.HomeTeamID | team.TeamID == matchToEdit.AwayTeamID
-                                        select team);
-                    if (currentTeams != null)
-                    {
-                        MatchWinnerDropDownList.DataSource = currentTeams.ToList();
-                        MatchWinnerDropDownList.DataBind();
-                    }                    
-
-                    /**
-                     * Fill Edit Forms with appropriate data
-                     */
-                    if (matchToEdit != null)
-                    {
-                        //Home Team
-                        HomeTeamDropDownList.SelectedValue = Convert.ToString(matchToEdit.HomeTeamID);
-                        HomeTeamScoreTextBox.Text = Convert.ToString(matchToEdit.HomeTeamScore);
-                        //Away Team
-                        AwayTeamDropDownList.SelectedValue = Convert.ToString(matchToEdit.AwayTeamID);
-                        AwayTeamScoreTextBox.Text = Convert.ToString(matchToEdit.AwayTeamScore);
-                        //Match
-                        MatchTypeDropDownList.SelectedValue = Convert.ToString(matchToEdit.SportID);
-                        MatchNameTextBox.Text = matchToEdit.MatchName;
-                        MatchDateTextBox.Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("yyyy-MM-dd");
-                        MatchTimeTextBox.Text = Convert.ToDateTime(matchToEdit.DateTime).ToString("HH:mm");
-                        MatchWinnerDropDownList.SelectedValue = Convert.ToString(matchToEdit.Winner);
-                        MatchSpecCountTextBox.Text = Convert.ToString(matchToEdit.SpecCount);
-                    }                    
-                    this.ToggleEditMode("Edit", itemID); //Exit Edit Mode
-                }
-            }
-            catch (Exception e)
-            {
-                //test.InnerText = e.StackTrace;
-            }
-
-        }
-
-        /**
-         * <summary>
          * This is a Helper Method for GetMatch() by toggling the Edit Mode On or Off.
          * </summary>
          * @method ToggleEditMode
@@ -223,7 +98,7 @@ namespace MasciApps_Proj1
             if (mode == "Edit")
             {
                 //Reveal the edit form for the specified Match(ListViewItem)
-                ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate")).Attributes.Add("class", "game-edit active");
+                ((PlaceHolder)GamesListView.Items[itemID].FindControl("EditTemplate")).Visible = true;
                 //Hide edit button and show delete button
                 ((LinkButton)GamesListView.Items[itemID].FindControl("EditMatchLink")).Visible = false;
                 ((LinkButton)GamesListView.Items[itemID].FindControl("DeleteMatchLink")).Visible = true;
@@ -231,12 +106,41 @@ namespace MasciApps_Proj1
             else
             {
                 //Hide the edit form
-                ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate")).Attributes.Add("class", "game-edit");
+                ((PlaceHolder)GamesListView.Items[itemID].FindControl("EditTemplate")).Visible = false;
                 //Hide delete button and show edit button
                 ((LinkButton)GamesListView.Items[itemID].FindControl("DeleteMatchLink")).Visible = false;
                 ((LinkButton)GamesListView.Items[itemID].FindControl("EditMatchLink")).Visible = true;
             }
         }
+        /**
+         * <summary>
+         * This method populates the MatchType DropDown.
+         * </summary>
+         * 
+         */
+        protected void PopulateMatchType(DropDownList MatchType, int matchID)
+        {
+            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            {
+                //Populate Dropdown with available values
+                var sports = (from sport in db.Sports
+                              select sport);
+                if (sports != null)
+                {
+                    MatchType.DataSource = sports.ToList();
+                    MatchType.DataBind();
+                }
+                //Select the correct sport of current ListViewItem
+                var currentMatch = (from match in db.Matches
+                                   where match.MatchID == matchID
+                                   select match).FirstOrDefault();
+                if (currentMatch != null)
+                {
+                    MatchType.SelectedValue = Convert.ToString(currentMatch.SportID);
+                    PopulateTeams(null, null);
+                }
+            }
+        } 
 
         /**
          * <summary>
@@ -249,7 +153,9 @@ namespace MasciApps_Proj1
          */
         protected void PopulateTeams(object sender, EventArgs e)
         {
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]);
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+            int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
+
             //Control References 
             DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
             DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
@@ -257,17 +163,30 @@ namespace MasciApps_Proj1
 
             using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
-                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
+                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value); //ID of the Current Sport
 
                 //Query all teams of specified Sport Type.
                 var allTeams = (from team in db.Teams
                                 where team.SportID == sportID
                                 select team);
-                //Assign Sport Teams to HomeTeam and AwayTeam DropDowns
+                //Populate HomeTeam and AwayTeam DropDowns with Teams
                 HomeTeamDropDownList.DataSource = allTeams.ToList();
                 HomeTeamDropDownList.DataBind();
                 AwayTeamDropDownList.DataSource = allTeams.ToList();
                 AwayTeamDropDownList.DataBind();
+                //Set Default Team Selections
+                if (sender == null && e == null)
+                { //if method is being called from PopulateMatchType()
+                    var currentMatch = (from match in db.Matches
+                                         where match.MatchID == matchID
+                                         select match).FirstOrDefault();
+                    if (currentMatch != null)
+                    {
+                        HomeTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.HomeTeamID);
+                        AwayTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.AwayTeamID);
+                    }
+                }
+                PopulateMatchWinner(null, null);
             }
         }
 
@@ -282,7 +201,8 @@ namespace MasciApps_Proj1
          */
         protected void PopulateMatchWinner(object sender, EventArgs e)
         {
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]);
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+            int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
             //Control References 
             DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
             DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
@@ -297,8 +217,13 @@ namespace MasciApps_Proj1
                     //Assign Current Teams to MatchWinner DropDown
                     MatchWinnerDropDownList.DataSource = currentTeams.ToList();
                     MatchWinnerDropDownList.DataBind();
-                    //Start with no selection
-                    MatchWinnerDropDownList.ClearSelection();
+                }
+                if (sender == null && e == null)
+                { //If being called from PopulateTeams()
+                    var currentMatch = (from match in db.Matches
+                                  where match.MatchID == matchID
+                                  select match).FirstOrDefault();
+                    MatchWinnerDropDownList.SelectedValue = Convert.ToString(currentMatch.Winner);
                 }
             }
             this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
@@ -313,7 +238,7 @@ namespace MasciApps_Proj1
          */
         private void PopulateMatchName()
         {
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]);
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
             //Control References 
             DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
             DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
@@ -328,6 +253,138 @@ namespace MasciApps_Proj1
         #endregion
 
         #region Event Handlers
+        /**
+         * <summary>
+         * This method redirects the user to Add a New Match.
+         * </summary>
+         * @method AddMatchButton_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
+        protected void AddMatchButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/GamesAdd.aspx");
+        }
+
+        /**
+         * <summary>
+         * This method shows the EditTemplate and prepares for editing.
+         * </summary>
+         * @method EditMatchLink_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void}
+         */
+        protected void EditMatchLink_Click(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
+                int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+                this.PopulateMatchType(((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList")), matchID);
+                this.ToggleEditMode("Edit", itemID);
+            }            
+        }
+
+        /**
+         * <summary>
+         * This method deletes the chosen Match.
+         * </summary>
+         * @method DeleteMatchLink_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
+        protected void DeleteMatchLink_Click(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
+                    Match matchToDelete = (from match in db.Matches
+                                           where match.MatchID == matchID
+                                           select match).FirstOrDefault();
+                    if (matchToDelete != null)
+                    {
+                        db.Matches.Remove(matchToDelete); //remove Match
+                        db.SaveChanges(); //save db
+                    }                    
+                    this.GetMatches(); //Refresh ListView
+                }
+            }         
+        }
+
+        /**
+         * <summary>
+         * This method cancels the process of Editing an Existing Match.
+         * </summary>
+         * @method EditMatchCancel_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void} 
+         */
+        protected void EditMatchCancel_Click(object sender, EventArgs e)
+        {            
+            this.ToggleEditMode("View", Convert.ToInt32(Request.QueryString["itemID"]));
+        }
+
+        /**
+         * <summary>
+         * This method takes the user input and updates an existing Match record.
+         * </summary>
+         * @method EditMatchUpdate_Click
+         * @param {object} sender
+         * @param {EventArgs} e
+         * @returns {void}
+         */
+        protected void EditMatchUpdate_Click(object sender, EventArgs e)
+        {
+            int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
+            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
+
+            //Control References
+            DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
+            DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
+            DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
+            DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
+            TextBox MatchNameTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox"));
+            TextBox MatchDateTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox"));
+            TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
+            TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
+            TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
+            TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));
+            PlaceHolder EditTemplate = ((PlaceHolder)GamesListView.Items[itemID].FindControl("EditTemplate"));
+
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    //Query db for specific Match and Teams
+                    Match matchToEdit = (from match in db.Matches
+                                         where match.MatchID == matchID
+                                         select match).FirstOrDefault();
+                    //Make appropriate changes to Match record
+                    if (matchToEdit != null)
+                    {
+                        matchToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue); //Needs troubleshooting
+                        matchToEdit.HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
+                        matchToEdit.AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
+                        matchToEdit.Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue);
+                        matchToEdit.Name = MatchNameTextBox.Text;
+                        matchToEdit.DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text);
+                        matchToEdit.SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text);
+                        matchToEdit.HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text);
+                        matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
+                        db.SaveChanges();// save db - update match
+                    }
+                    this.ToggleEditMode("Edit", itemID); //Exit Edit Mode
+                    this.GetMatches(); //Refresh ListView
+                }            
+            }
+        }
+
         /**
          * <summary>
          * This method refreshes the ListView pulling the previous week's Matches.
@@ -371,117 +428,6 @@ namespace MasciApps_Proj1
         protected void GameCalendar_SelectionChanged(object sender, EventArgs e)
         {
             this.GetMatches(); //Refresh ListView
-        }
-
-        /**
-         * <summary>
-         * This method redirects the user to Add a New Match.
-         * </summary>
-         * @method AddMatchButton_Click
-         * @param {object} sender
-         * @param {EventArgs} e
-         * @returns {void} 
-         */
-        protected void AddMatchButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/GamesAdd.aspx");
-        }
-
-        /**
-         * <summary>
-         * This method deletes the chosen Match.
-         * </summary>
-         * @method DeleteMatchLink_Click
-         * @param {object} sender
-         * @param {EventArgs} e
-         * @returns {void} 
-         */
-        protected void DeleteMatchLink_Click(object sender, EventArgs e)
-        {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                using (DefaultConnectionEF db = new DefaultConnectionEF())
-                {
-                    int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
-                    Match matchToDelete = (from match in db.Matches
-                                           where match.MatchID == matchID
-                                           select match).FirstOrDefault();
-                    if (matchToDelete != null)
-                    {
-                        db.Matches.Remove(matchToDelete); //remove Match
-                        db.SaveChanges(); //save db
-                    }                    
-                    this.GetMatches(); //Refresh ListView
-                }
-            }         
-        }
-
-        /**
-         * <summary>
-         * This method cancels the process of Editing an Existing Match.
-         * </summary>
-         * @method EditMatchCancel_Click
-         * @param {object} sender
-         * @param {EventArgs} e
-         * @returns {void} 
-         */
-        protected void EditMatchCancel_Click(object sender, EventArgs e)
-        {
-            this.ToggleEditMode("View", Convert.ToInt32(Request.QueryString["itemID"]));
-        }
-
-        /**
-         * <summary>
-         * This method takes the user input and updates an existing Match record.
-         * </summary>
-         * @method EditMatchUpdate_Click
-         * @param {object} sender
-         * @param {EventArgs} e
-         * @returns {void}
-         */
-        protected void EditMatchUpdate_Click(object sender, EventArgs e)
-        {
-            int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
-            int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
-
-            //Control References
-            DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
-            DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
-            DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
-            DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
-            TextBox MatchNameTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchNameTextBox"));
-            TextBox MatchDateTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchDateTextBox"));
-            TextBox MatchTimeTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchTimeTextBox"));
-            TextBox MatchSpecCountTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("MatchSpecCountTextBox"));
-            TextBox HomeTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("HomeTeamScoreTextBox"));
-            TextBox AwayTeamScoreTextBox = ((TextBox)GamesListView.Items[itemID].FindControl("AwayTeamScoreTextBox"));
-            HtmlControl EditTemplate = ((HtmlControl)GamesListView.Items[itemID].FindControl("EditTemplate"));
-
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                using (DefaultConnectionEF db = new DefaultConnectionEF())
-                {
-                    //Query db for specific Match and Teams
-                    Match matchToEdit = (from match in db.Matches
-                                         where match.MatchID == matchID
-                                         select match).FirstOrDefault();
-                    //Make appropriate changes to Match record
-                    if (matchToEdit != null)
-                    {
-                        matchToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue); //Needs troubleshooting
-                        matchToEdit.HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
-                        matchToEdit.AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
-                        matchToEdit.Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue);
-                        matchToEdit.Name = MatchNameTextBox.Text;
-                        matchToEdit.DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text);
-                        matchToEdit.SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text);
-                        matchToEdit.HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text);
-                        matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
-                        db.SaveChanges();// save db - update match
-                    }
-                    this.ToggleEditMode("Edit", itemID); //Exit Edit Mode
-                }            
-            }
         }
 
         #endregion

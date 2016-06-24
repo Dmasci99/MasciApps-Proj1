@@ -20,13 +20,13 @@ namespace MasciApps_Proj1.Models
         public int AwayTeamID { get; set; }
         public Nullable<int> Winner { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
+        public System.DateTime DateTime { get; set; }
         public Nullable<int> SpecCount { get; set; }
         public Nullable<int> HomeTeamScore { get; set; }
         public Nullable<int> AwayTeamScore { get; set; }
     
         public virtual Sport Sport { get; set; }
-        public virtual Team Team_Away { get; set; }
-        public virtual Team Team_Home { get; set; }
+        public virtual Team AwayTeam { get; set; }
+        public virtual Team HomeTeam { get; set; }
     }
 }

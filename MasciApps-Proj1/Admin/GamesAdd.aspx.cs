@@ -35,7 +35,8 @@ namespace MasciApps_Proj1.Admin
                 MatchTypeDropDownList.DataBind();
                 //Start with no selection
                 MatchTypeDropDownList.ClearSelection();
-            }                
+            }
+            this.PopulateTeams(null, null);
         }
 
         /**
@@ -62,8 +63,9 @@ namespace MasciApps_Proj1.Admin
                 HomeTeamDropDownList.DataBind();
                 AwayTeamDropDownList.DataSource = allTeams.ToList();
                 AwayTeamDropDownList.DataBind();
-                //Start with no selection
-                //MatchTypeDropDownList.ClearSelection();
+
+                if (sender == null && e == null)
+                    this.PopulateMatchWinner(null, null);
             }
         }
 
@@ -95,7 +97,7 @@ namespace MasciApps_Proj1.Admin
                     MatchWinnerDropDownList.ClearSelection();
                 }                
             }
-            PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
+            this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
         }
 
         /**

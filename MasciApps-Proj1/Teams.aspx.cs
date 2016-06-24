@@ -40,7 +40,6 @@ namespace MasciApps_Proj1
                                    team.SportID,
                                    TeamName = team.Name,
                                    SportName = sport.Name,
-                                   team.Logo,
                                    team.Country,
                                    team.City
                                });
@@ -117,7 +116,7 @@ namespace MasciApps_Proj1
 
         /**
          * <summary>
-         * This method shows the edit Template (using ToggleEditMode()).
+         * This method shows the EditTemplate and prepares for editing.
          * </summary>
          * @method EditTeamLink_Click
          * @param {object} sender
@@ -196,24 +195,27 @@ namespace MasciApps_Proj1
             TextBox CountryTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CountryTextBox"));
             TextBox CityTextBox = ((TextBox)TeamsListView.Items[itemID].FindControl("CityTextBox"));
 
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                //Query db for specific Team
-                Team teamToEdit = (from team in db.Teams
-                                    where team.TeamID == teamID
-                                    select team).FirstOrDefault();
-                //Make appropriate changes to Team record
-                if (teamToEdit != null)
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    teamToEdit.SportID = Convert.ToInt32(TeamTypeDropDownList.SelectedItem.Value); //Needs troubleshooting
-                    teamToEdit.Name = TeamNameTextBox.Text;
-                    teamToEdit.Country = CountryTextBox.Text;
-                    teamToEdit.City = CityTextBox.Text;
-                    db.SaveChanges();
-                }                                
-                this.ToggleEditMode("View", itemID);//Exit Edit Mode                
-                this.GetTeams();//Refresh ListView
-            }
+                    //Query db for specific Team
+                    Team teamToEdit = (from team in db.Teams
+                                       where team.TeamID == teamID
+                                       select team).FirstOrDefault();
+                    //Make appropriate changes to Team record
+                    if (teamToEdit != null)
+                    {
+                        teamToEdit.SportID = Convert.ToInt32(TeamTypeDropDownList.SelectedItem.Value); //Needs troubleshooting
+                        teamToEdit.Name = TeamNameTextBox.Text;
+                        teamToEdit.Country = CountryTextBox.Text;
+                        teamToEdit.City = CityTextBox.Text;
+                        db.SaveChanges();
+                    }
+                    this.ToggleEditMode("View", itemID);//Exit Edit Mode                
+                    this.GetTeams();//Refresh ListView
+                }
+            }            
         }
     }
 }

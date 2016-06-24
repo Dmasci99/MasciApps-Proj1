@@ -26,7 +26,6 @@ namespace MasciApps_Proj1.Models
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public byte[] Logo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Match> Match_Away { get; set; }

@@ -2296,23 +2296,9 @@ footer .copyright p {
   z-index: 1000;
 }
 .interior-page.gametracker-page .games-container .game-container .game-edit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  visibility: hidden;
-  padding: 20px;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  -ms-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
-}
-.interior-page.gametracker-page .games-container .game-container .game-edit.active {
   position: relative;
   top: 100%;
-  opacity: 1;
-  visibility: visible;
+  padding: 20px;
 }
 .interior-page.gametracker-page .games-container .game-container .game-edit .match {
   position: relative;
@@ -2424,11 +2410,11 @@ footer .copyright p {
 .teams-container .team-background.football {
   background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
 }
-.games-container .game-background.volleyball,
-.teams-container .game-background.volleyball,
-.games-container .team-background.volleyball,
-.teams-container .team-background.volleyball {
-  background: url("http://static.psbin.com/x/c/dflpuv48xneiy6/Recap_photo_Cross_Divisional_Schreiner-_Southwestern_10.23.jpg") center top;
+.games-container .game-background.hockey,
+.teams-container .game-background.hockey,
+.games-container .team-background.hockey,
+.teams-container .team-background.hockey {
+  background: url("http://badlandsaahockey.ca/wp-content/uploads/2012/11/Home-Page-Banner1.jpg") center top;
 }
 .games-container .game-background::after,
 .teams-container .game-background::after,
