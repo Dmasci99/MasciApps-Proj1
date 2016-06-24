@@ -28,9 +28,9 @@ jQuery(document).ready(function ($) {
     });
 
     //If user isn't logged in - hide edit buttons on Games.aspx
-    if ($('#games-page').length > 0)
+    if ($('.gametracker-page').length > 0)
         if ($('.menu.loggedin').length == 0) 
-            $('.editMatch').css('display', 'none');
+            $('.Edit').css('display', 'none');
     
     //Give user prompt when trying to delete a Team/Game
     $('.gametracker-page .Delete').click(function () {

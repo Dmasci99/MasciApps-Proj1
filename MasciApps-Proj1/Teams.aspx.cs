@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Linq.Dynamic;
 
 namespace MasciApps_Proj1
 {
@@ -46,7 +47,7 @@ namespace MasciApps_Proj1
                 if (teams != null)
                 {
                     //bind the result to the TeamsListView
-                    TeamsListView.DataSource = teams.ToList();
+                    TeamsListView.DataSource = teams.AsQueryable().OrderBy("SportID ASC").ToList();
                     TeamsListView.DataBind();
                 }                
             }

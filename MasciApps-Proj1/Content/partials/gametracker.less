@@ -312,7 +312,7 @@
             text-align: center;
             border: 2px solid @lightBlue;
             .round(4px);
-            padding: 20px;
+            padding: 30px;
             .team-content {
                 color: @silver;
                 position: relative;
@@ -348,6 +348,17 @@
             }
         }
     }//.linkButton
+    .game-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 28px;
+        padding: 4px;
+        background: @lightBlue;
+        border-bottom: 2px solid @lightBlue;
+        border-right: 2px solid @lightBlue;
+        z-index: 1000;
+     }//.game-icon
     .game-background,
     .team-background {
         position: absolute;
@@ -359,16 +370,16 @@
         .round(4px);          
         z-index: 0;
         &.basketball {
-            background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+            background: url("/Assets/basketball.jpg") center center;
         }
         &.soccer {
-            background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+            background: url("/Assets/soccer.jpg") center center;
         }
         &.football {
-            background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+            background: url("/Assets/football.jpg") center center;
         }
         &.hockey {
-            background: url("http://badlandsaahockey.ca/wp-content/uploads/2012/11/Home-Page-Banner1.jpg") center top;
+            background: url("/Assets/hockey.jpg") center center;
         }
         &::after {
             content: "";
@@ -397,14 +408,36 @@
         .input-container {   
             position: relative;         
             margin: 4px 10px;
+            .label {
+                text-align: right;
+                font-size: 12px;
+                line-height: 0.9em;
+                color: fade(@black, 90%);
+                position: absolute;
+                top: 47%;
+                right: 8px;
+                .translateY;
+                width: 40px;
+                display: block;
+            }
+            &.dropdown {
+                .label {
+                    right: 16px;
+                }
+                input,
+                select {
+                    padding: 4px 55px 4px 8px;
+                }
+            }
             input,
             select {
                 color: @darkBlue;
                 font-size: 14px;
-                padding: 4px 30px 4px 8px;
+                padding: 4px 40px 4px 8px;
                 width: 100%;
                 .round(4px);
                 border: 1px solid @darkBlue;
+                box-sizing: border-box!important;
             }
             .Delete {
                 position: absolute;
@@ -434,6 +467,39 @@
                     background: darken(@lightBlue, 10%);
                 }
             }//.input-container.buttons
+            span { //Validator Error Messages
+                color: @red;
+                font-size: 12px;
+                text-align: center;
+                .round(4px);
+                position: absolute;
+                top: 50%;
+                .translateY;
+                width: 120px;
+                padding: 6px;
+                left: calc(~"100% - 40px");
+                border: 1px solid @red;
+                background: @silver;
+                .box-shadow;
+                z-index: 10;
+                cursor: pointer;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    .translateY;
+                    left: -13px;
+                    border: 6px solid transparent;
+                    border-right-color: @red;
+                }
+                &:hover::after {
+                    content: "x";
+                    font-size: 16px;
+                    position: absolute;
+                    top: 0;
+                    right: 5px;
+                }
+            }//Validator Error Messages
         }//.input-container
     }//form
 }//.gametracker-page

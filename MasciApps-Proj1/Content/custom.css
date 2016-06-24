@@ -1592,46 +1592,6 @@ header #moby-button:hover .fa {
   resize: none;
   height: 200px;
 }
-.forms-page form .input-container span {
-  color: #5a271a;
-  font-size: 12px;
-  text-align: center;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 120px;
-  padding: 6px;
-  left: calc(100% - 40px);
-  border: 1px solid #5a271a;
-  background: #d4cde5;
-  -webkit-box-shadow: 0 0 5px #000000;
-  -moz-box-shadow: 0 0 5px #000000;
-  -ms-box-shadow: 0 0 5px #000000;
-  -o-box-shadow: 0 0 5px #000000;
-  box-shadow: 0 0 5px #000000;
-}
-.forms-page form .input-container span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  left: -13px;
-  border: 6px solid transparent;
-  border-right-color: #5a271a;
-}
 .forms-page form .submit {
   text-align: center;
   margin: 15px 0;
@@ -2330,7 +2290,7 @@ footer .copyright p {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 20px;
+  padding: 30px;
 }
 .interior-page.gametracker-page .teams-container .team-container .team-content {
   color: #d4cde5;
@@ -2371,6 +2331,18 @@ footer .copyright p {
 .teams-container .linkButton.Delete:hover {
   color: red;
 }
+.games-container .game-icon,
+.teams-container .game-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  padding: 4px;
+  background: #5271cc;
+  border-bottom: 2px solid #5271cc;
+  border-right: 2px solid #5271cc;
+  z-index: 1000;
+}
 .games-container .game-background,
 .teams-container .game-background,
 .games-container .team-background,
@@ -2396,25 +2368,25 @@ footer .copyright p {
 .teams-container .game-background.basketball,
 .games-container .team-background.basketball,
 .teams-container .team-background.basketball {
-  background: url("http://www.twitrcovers.com/wp-content/uploads/2015/02/Basketball-l.jpg") center center;
+  background: url("/Assets/basketball.jpg") center center;
 }
 .games-container .game-background.soccer,
 .teams-container .game-background.soccer,
 .games-container .team-background.soccer,
 .teams-container .team-background.soccer {
-  background: url("http://www.twitrcovers.com/wp-content/uploads/2012/10/Real-Madrid-l.jpg") center center;
+  background: url("/Assets/soccer.jpg") center center;
 }
 .games-container .game-background.football,
 .teams-container .game-background.football,
 .games-container .team-background.football,
 .teams-container .team-background.football {
-  background: url("http://www.twitrcover.com/wp-content/uploads/2013/11/american-football-stars-Twitter-Header-3786.jpg") center top;
+  background: url("/Assets/football.jpg") center center;
 }
 .games-container .game-background.hockey,
 .teams-container .game-background.hockey,
 .games-container .team-background.hockey,
 .teams-container .team-background.hockey {
-  background: url("http://badlandsaahockey.ca/wp-content/uploads/2012/11/Home-Page-Banner1.jpg") center top;
+  background: url("/Assets/hockey.jpg") center center;
 }
 .games-container .game-background::after,
 .teams-container .game-background::after,
@@ -2449,11 +2421,34 @@ footer .copyright p {
   position: relative;
   margin: 4px 10px;
 }
+.gametracker-page form .input-container .label {
+  text-align: right;
+  font-size: 12px;
+  line-height: 0.9em;
+  color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 47%;
+  right: 8px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 40px;
+  display: block;
+}
+.gametracker-page form .input-container.dropdown .label {
+  right: 16px;
+}
+.gametracker-page form .input-container.dropdown input,
+.gametracker-page form .input-container.dropdown select {
+  padding: 4px 55px 4px 8px;
+}
 .gametracker-page form .input-container input,
 .gametracker-page form .input-container select {
   color: #3f507f;
   font-size: 14px;
-  padding: 4px 30px 4px 8px;
+  padding: 4px 40px 4px 8px;
   width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2461,6 +2456,7 @@ footer .copyright p {
   -o-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #3f507f;
+  box-sizing: border-box !important;
 }
 .gametracker-page form .input-container .Delete {
   position: absolute;
@@ -2501,6 +2497,55 @@ footer .copyright p {
 .gametracker-page form .input-container.buttons > input:hover {
   color: #ffffff;
   background: #3656b5;
+}
+.gametracker-page form .input-container span {
+  color: #5a271a;
+  font-size: 12px;
+  text-align: center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 120px;
+  padding: 6px;
+  left: calc(100% - 40px);
+  border: 1px solid #5a271a;
+  background: #d4cde5;
+  -webkit-box-shadow: 0 0 5px #000000;
+  -moz-box-shadow: 0 0 5px #000000;
+  -ms-box-shadow: 0 0 5px #000000;
+  -o-box-shadow: 0 0 5px #000000;
+  box-shadow: 0 0 5px #000000;
+  z-index: 10;
+  cursor: pointer;
+}
+.gametracker-page form .input-container span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -13px;
+  border: 6px solid transparent;
+  border-right-color: #5a271a;
+}
+.gametracker-page form .input-container span:hover::after {
+  content: "x";
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  right: 5px;
 }
 /* Remove the "X" and the up-down arrow controls on the <asp:TextBox TextMode="Date">*/
 input[type=date]::-webkit-inner-spin-button {

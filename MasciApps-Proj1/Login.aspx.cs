@@ -17,7 +17,7 @@ namespace MasciApps_Proj1
             if (!IsPostBack)
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
-                    Response.Redirect("~/Admin/Profile");
+                    Response.Redirect("~/Admin/Profile.aspx");
             }
         }
 

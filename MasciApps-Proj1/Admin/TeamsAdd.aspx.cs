@@ -97,6 +97,7 @@ namespace MasciApps_Proj1.Admin
                 };
                 db.Teams.Add(newTeam);//insert into db
                 db.SaveChanges();//save db
+                Response.Redirect("~/Admin/TeamsAdd.aspx"); //Refresh Page
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Linq.Dynamic;
 
 namespace MasciApps_Proj1
 {
@@ -21,7 +22,8 @@ namespace MasciApps_Proj1
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                     PrivatePlaceHolder.Visible = true;
                 GameCalendar.SelectedDate = DateTime.Today; //Set Calendar to Today
-                this.GetMatches(); //Refresh ListView                            
+                this.GetMatches(); //Refresh ListView        
+                Page.MaintainScrollPositionOnPostBack = false;
             }
         }
 
@@ -185,8 +187,8 @@ namespace MasciApps_Proj1
                         HomeTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.HomeTeamID);
                         AwayTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.AwayTeamID);
                     }
+                    PopulateMatchWinner(null, null);
                 }
-                PopulateMatchWinner(null, null);
             }
         }
 
@@ -204,26 +206,28 @@ namespace MasciApps_Proj1
             int itemID = Convert.ToInt32(Request.QueryString["itemID"]); //ID of the specific Match(ListViewItem) we are editing
             int matchID = Convert.ToInt32(Request.QueryString["matchID"]); //ID of the Match as stored in database
             //Control References 
-            DropDownList MatchTypeDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchTypeDropDownList"));
+            DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
+            DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
             DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
             using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
-                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
+                int homeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
+                int awayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
                 var currentTeams = (from team in db.Teams
-                                    where team.TeamID == sportID | team.TeamID == sportID
+                                    where team.TeamID == homeTeamID | team.TeamID == awayTeamID
                                     select team);
                 if (currentTeams != null)
                 {
                     //Assign Current Teams to MatchWinner DropDown
                     MatchWinnerDropDownList.DataSource = currentTeams.ToList();
                     MatchWinnerDropDownList.DataBind();
-                }
-                if (sender == null && e == null)
-                { //If being called from PopulateTeams()
-                    var currentMatch = (from match in db.Matches
-                                  where match.MatchID == matchID
-                                  select match).FirstOrDefault();
-                    MatchWinnerDropDownList.SelectedValue = Convert.ToString(currentMatch.Winner);
+                    if (sender == null && e == null)
+                    { //If being called from PopulateTeams()
+                        var currentMatch = (from match in db.Matches
+                                            where match.MatchID == matchID
+                                            select match).FirstOrDefault();
+                        MatchWinnerDropDownList.SelectedValue = Convert.ToString(currentMatch.Winner);
+                    } 
                 }
             }
             this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen

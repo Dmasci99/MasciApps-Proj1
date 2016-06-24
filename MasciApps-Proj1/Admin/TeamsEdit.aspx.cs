@@ -18,13 +18,12 @@ namespace MasciApps_Proj1.Admin
             if (!IsPostBack)
             {
                 this.PopulateTeams();
-                this.PopulateTeamType();
             }
         }
 
         /**
          * <summary>
-         * This method populates the Team DropDown for Step 1.
+         * This method populates the Team DropDown for Step 2.
          * </summary>
          * @method PopulateTeams
          * @returns {void}
@@ -38,16 +37,14 @@ namespace MasciApps_Proj1.Admin
                                 select team);
                 //Assign Teams to DropDown
                 TeamDropDownList.DataSource = allTeams.ToList();
-                TeamDropDownList.DataBind();                
-
-                //Start with no selection
-                TeamDropDownList.ClearSelection();
+                TeamDropDownList.DataBind();                                
             }
+            this.PopulateTeamType();
         }
 
         /**
          * <summary>
-         * This method populates the TeamType DropDown for Step 2.
+         * This method populates the TeamType DropDown for Step 3.
          * </summary>
          * @method PopulateTeamType
          * @returns {void}
@@ -60,9 +57,8 @@ namespace MasciApps_Proj1.Admin
                               select sport);
                 TeamTypeDropDownList.DataSource = sports.ToList();
                 TeamTypeDropDownList.DataBind();
-                //Start with no selection
-                TeamTypeDropDownList.ClearSelection();
             }
+            this.PopulateDetails(null, null); //Fill details on page load
         }
 
         /**
@@ -144,8 +140,8 @@ namespace MasciApps_Proj1.Admin
                     teamToEdit.Country = CountryTextBox.Text;
                     teamToEdit.City = CityTextBox.Text;
                     db.SaveChanges(); // save db - update Team
-                }                
-                this.PopulateTeams(); //Refresh TeamDropDownList
+                }
+                this.PopulateTeams();
             }
         }
 

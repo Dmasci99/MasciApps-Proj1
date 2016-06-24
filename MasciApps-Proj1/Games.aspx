@@ -59,6 +59,7 @@
                                 Text="<i class='fa fa-trash-o'></i>" PostBackUrl='<%# "~/Games.aspx?matchID=" + Eval("MatchID") %>'/>
                             <div class="game-content">
                                 <div class="game-background <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") %>"></div>
+                                <img class="game-icon" src="<%# "/Assets/Logos/" + Convert.ToString(DataBinder.Eval(Container.DataItem, "SportName")).Trim().ToLower().Replace(" ", "-") + ".png" %>" />
                                 <div class="title">
                                     <div class="name"><%# DataBinder.Eval(Container.DataItem, "MatchName") %></div>
                                     <div class="date"><%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("dddd, MMM d @ hh:mmtt") %></div>
@@ -91,46 +92,60 @@
                             <asp:PlaceHolder runat="server" ID="EditTemplate" Visible="false">
                                 <div class="game-edit">
                                     <div class="match">
-                                        <div class="input-container matchType">
+                                        <div class="input-container dropdown">
+                                            <div class="label">Sport</div>
                                             <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name"
                                                 OnSelectedIndexChanged="PopulateTeams" AutoPostBack="true" Required="true"></asp:DropDownList>
                                         </div>
                                         <div class="home-team">
-                                            <div class="input-container team">
+                                            <div class="input-container dropdown">
+                                                <div class="label">Home Team</div>
                                                 <asp:DropDownList runat="server" ID="HomeTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
-                                                    OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" Required="true"></asp:DropDownList>
+                                                    OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" Required="true" CausesValidation="true"></asp:DropDownList>
+                                                <asp:CompareValidator runat="server" ID="HomeTeamCompareValidator" Operator="NotEqual" EnableClientScript="true" ErrorMessage="Must choose 2 different teams"
+                                                    ControlToValidate="HomeTeamDropDownList" ControlToCompare="AwayTeamDropDownList"></asp:CompareValidator>
                                             </div>
-                                            <div class="input-container teamScore">
+                                            <div class="input-container">
+                                                <div class="label">Score</div>
                                                 <asp:TextBox runat="server" ID="HomeTeamScoreTextBox" TextMode="Number" Placeholder="Home Team Score"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "HomeTeamScore") %>'></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="away-team">                                    
-                                            <div class="input-container team">
+                                            <div class="input-container dropdown">
+                                                <div class="label">Away Team</div>
                                                 <asp:DropDownList runat="server" ID="AwayTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
-                                                    OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" Required="true"></asp:DropDownList>
+                                                    OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" Required="true" CausesValidation="true"></asp:DropDownList>
+                                                <asp:CompareValidator runat="server" ID="AwayTeamCompareValidator" Operator="NotEqual" EnableClientScript="true" ErrorMessage="Must choose 2 different teams"
+                                                    ControlToValidate="AwayTeamDropDownList" ControlToCompare="HomeTeamDropDownList"></asp:CompareValidator>
                                             </div>
-                                            <div class="input-container teamScore">
+                                            <div class="input-container">
+                                                <div class="label">Score</div>
                                                 <asp:TextBox runat="server" ID="AwayTeamScoreTextBox" TextMode="Number" Placeholder="Away Team Score"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "AwayTeamScore") %>'></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="input-container matchName">
+                                        <div class="input-container">
+                                            <div class="label">Match Name</div>
                                             <asp:TextBox runat="server" ID="MatchNameTextBox" MaxLength="100" Placeholder="Name" Enabled="false"
                                                 Text='<%# DataBinder.Eval(Container.DataItem, "MatchName") %>' Required="true"></asp:TextBox>
                                         </div>
-                                        <div class="input-container matchWinner">
+                                        <div class="input-container dropdown">
+                                            <div class="label">Winner</div>
                                             <asp:DropDownList runat="server" ID="MatchWinnerDropDownList" DataValueField="TeamID" DataTextField="Name"></asp:DropDownList>
                                         </div>
-                                        <div class="input-container matchDate">
+                                        <div class="input-container datetime">
+                                            <div class="label">Match Date</div>
                                             <asp:TextBox runat="server" ID="MatchDateTextBox" TextMode="Date" Required="true"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("yyyy-MM-dd") %>'></asp:TextBox>
                                         </div>
-                                        <div class="input-container matchTime">                                        
+                                        <div class="input-container datetime">                                        
+                                            <div class="label">Match Time</div>
                                             <asp:TextBox runat="server" ID="MatchTimeTextBox" TextMode="Time" Required="true"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("yyyy-MM-dd") %>'></asp:TextBox>
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DateTime")).ToString("HH:mm") %>'></asp:TextBox>
                                         </div>
-                                        <div class="input-container matchSpecCount">
+                                        <div class="input-container">
+                                            <div class="label">Spec Count</div>
                                             <asp:TextBox runat="server" ID="MatchSpecCountTextBox" TextMode="Number" Placeholder="Spec Count"
                                                 Text='<%# DataBinder.Eval(Container.DataItem, "SpecCount") %>'></asp:TextBox>
                                         </div>
