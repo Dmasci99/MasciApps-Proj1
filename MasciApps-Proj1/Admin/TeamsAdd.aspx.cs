@@ -30,17 +30,25 @@ namespace MasciApps_Proj1.Admin
          */
         protected void PopulateMatchType()
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            try
             {
-                var sports = (from sport in db.Sports
-                              select sport);
-                if (sports != null)
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    MatchTypeDropDownList.DataSource = sports.ToList();
-                    MatchTypeDropDownList.DataBind();
-                    //Start with no selection
-                    MatchTypeDropDownList.ClearSelection();
-                }                
+                    var sports = (from sport in db.Sports
+                                  select sport);
+                    if (sports != null)
+                    {
+                        MatchTypeDropDownList.DataSource = sports.ToList();
+                        MatchTypeDropDownList.DataBind();
+                        //Start with no selection
+                        MatchTypeDropDownList.ClearSelection();
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         }
 
@@ -86,18 +94,25 @@ namespace MasciApps_Proj1.Admin
          */
         protected void AddTeamSave_Click(object sender, EventArgs e)
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                Team newTeam = new Team()
+            try { 
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue),
-                    Name = TeamNameTextBox.Text,
-                    Country = CountryTextBox.Text,
-                    City = CityTextBox.Text
-                };
-                db.Teams.Add(newTeam);//insert into db
-                db.SaveChanges();//save db
-                Response.Redirect("~/Admin/TeamsAdd.aspx"); //Refresh Page
+                    Team newTeam = new Team()
+                    {
+                        SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue),
+                        Name = TeamNameTextBox.Text,
+                        Country = CountryTextBox.Text,
+                        City = CityTextBox.Text
+                    };
+                    db.Teams.Add(newTeam);//insert into db
+                    db.SaveChanges();//save db
+                    Response.Redirect("~/Admin/TeamsAdd.aspx"); //Refresh Page
+                }
+            }
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         }
     }

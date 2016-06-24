@@ -39,51 +39,50 @@ namespace MasciApps_Proj1
          */
         private void GetMatches()
         {
-            try
-            {
-                DateTime initialDate = GameCalendar.SelectedDate; //Grab Date from Calendar
-                DateTime startDate = initialDate.AddDays(Convert.ToInt32(initialDate.DayOfWeek) * -1); //Set to the first day of the desired week
-                DateTime endDate = startDate.AddDays(7); //Set to the last day of the current week
+            DateTime initialDate = GameCalendar.SelectedDate; //Grab Date from Calendar
+            DateTime startDate = initialDate.AddDays(Convert.ToInt32(initialDate.DayOfWeek) * -1); //Set to the first day of the desired week
+            DateTime endDate = startDate.AddDays(7); //Set to the last day of the current week
 
-                CalendarValue.InnerText = "Week of: " + GameCalendar.SelectedDate.ToString("MM/dd/yyyy");
+            CalendarValue.InnerText = "Week of: " + GameCalendar.SelectedDate.ToString("MM/dd/yyyy");
 
+            try { 
                 using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     //query the Matches table using EF and Linq
                     var matches = (from allMatches in db.Matches
-                                   join homeTeam in db.Teams on allMatches.HomeTeamID equals homeTeam.TeamID
-                                   join awayTeam in db.Teams on allMatches.AwayTeamID equals awayTeam.TeamID
-                                   join sport in db.Sports on homeTeam.SportID equals sport.SportID
-                                   where allMatches.DateTime >= startDate && allMatches.DateTime <= endDate
-                                   select new
-                                   {
-                                       allMatches.MatchID,
-                                       allMatches.SportID,
-                                       allMatches.HomeTeamID,
-                                       allMatches.AwayTeamID,
-                                       allMatches.Winner,
-                                       MatchName = allMatches.Name,
-                                       SportName = sport.Name,
-                                       allMatches.DateTime,
-                                       allMatches.SpecCount,
-                                       allMatches.HomeTeamScore,
-                                       HomeTeamName = homeTeam.Name,
-                                       allMatches.AwayTeamScore,
-                                       AwayTeamName = awayTeam.Name
-                                   });
+                                    join homeTeam in db.Teams on allMatches.HomeTeamID equals homeTeam.TeamID
+                                    join awayTeam in db.Teams on allMatches.AwayTeamID equals awayTeam.TeamID
+                                    join sport in db.Sports on homeTeam.SportID equals sport.SportID
+                                    where allMatches.DateTime >= startDate && allMatches.DateTime <= endDate
+                                    select new
+                                    {
+                                        allMatches.MatchID,
+                                        allMatches.SportID,
+                                        allMatches.HomeTeamID,
+                                        allMatches.AwayTeamID,
+                                        allMatches.Winner,
+                                        MatchName = allMatches.Name,
+                                        SportName = sport.Name,
+                                        allMatches.DateTime,
+                                        allMatches.SpecCount,
+                                        allMatches.HomeTeamScore,
+                                        HomeTeamName = homeTeam.Name,
+                                        allMatches.AwayTeamScore,
+                                        AwayTeamName = awayTeam.Name
+                                    });
                     if (matches != null)
                     {
                         //bind the result to the GamesListView
                         GamesListView.DataSource = matches.ToList();
                         GamesListView.DataBind();
-                    }                    
+                    }
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                //Invalid Date Selection
-                //Or Temporary Failure with Connection (no idea why it sometimes does this. Only has happened twice.)
-            }        
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**
@@ -122,25 +121,32 @@ namespace MasciApps_Proj1
          */
         protected void PopulateMatchType(DropDownList MatchType, int matchID)
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            try { 
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    //Populate Dropdown with available values
+                    var sports = (from sport in db.Sports
+                                  select sport);
+                    if (sports != null)
+                    {
+                        MatchType.DataSource = sports.ToList();
+                        MatchType.DataBind();
+                    }
+                    //Select the correct sport of current ListViewItem
+                    var currentMatch = (from match in db.Matches
+                                       where match.MatchID == matchID
+                                       select match).FirstOrDefault();
+                    if (currentMatch != null)
+                    {
+                        MatchType.SelectedValue = Convert.ToString(currentMatch.SportID);
+                        PopulateTeams(null, null);
+                    }
+                }
+            }
+            catch (Exception err)
             {
-                //Populate Dropdown with available values
-                var sports = (from sport in db.Sports
-                              select sport);
-                if (sports != null)
-                {
-                    MatchType.DataSource = sports.ToList();
-                    MatchType.DataBind();
-                }
-                //Select the correct sport of current ListViewItem
-                var currentMatch = (from match in db.Matches
-                                   where match.MatchID == matchID
-                                   select match).FirstOrDefault();
-                if (currentMatch != null)
-                {
-                    MatchType.SelectedValue = Convert.ToString(currentMatch.SportID);
-                    PopulateTeams(null, null);
-                }
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         } 
 
@@ -163,32 +169,39 @@ namespace MasciApps_Proj1
             DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
             DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
 
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value); //ID of the Current Sport
+            try { 
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value); //ID of the Current Sport
 
-                //Query all teams of specified Sport Type.
-                var allTeams = (from team in db.Teams
-                                where team.SportID == sportID
-                                select team);
-                //Populate HomeTeam and AwayTeam DropDowns with Teams
-                HomeTeamDropDownList.DataSource = allTeams.ToList();
-                HomeTeamDropDownList.DataBind();
-                AwayTeamDropDownList.DataSource = allTeams.ToList();
-                AwayTeamDropDownList.DataBind();
-                //Set Default Team Selections
-                if (sender == null && e == null)
-                { //if method is being called from PopulateMatchType()
-                    var currentMatch = (from match in db.Matches
-                                         where match.MatchID == matchID
-                                         select match).FirstOrDefault();
-                    if (currentMatch != null)
-                    {
-                        HomeTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.HomeTeamID);
-                        AwayTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.AwayTeamID);
+                    //Query all teams of specified Sport Type.
+                    var allTeams = (from team in db.Teams
+                                    where team.SportID == sportID
+                                    select team);
+                    //Populate HomeTeam and AwayTeam DropDowns with Teams
+                    HomeTeamDropDownList.DataSource = allTeams.ToList();
+                    HomeTeamDropDownList.DataBind();
+                    AwayTeamDropDownList.DataSource = allTeams.ToList();
+                    AwayTeamDropDownList.DataBind();
+                    //Set Default Team Selections
+                    if (sender == null && e == null)
+                    { //if method is being called from PopulateMatchType()
+                        var currentMatch = (from match in db.Matches
+                                             where match.MatchID == matchID
+                                             select match).FirstOrDefault();
+                        if (currentMatch != null)
+                        {
+                            HomeTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.HomeTeamID);
+                            AwayTeamDropDownList.SelectedValue = Convert.ToString(currentMatch.AwayTeamID);
+                        }
+                        PopulateMatchWinner(null, null);
                     }
-                    PopulateMatchWinner(null, null);
                 }
+            }
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         }
 
@@ -209,28 +222,36 @@ namespace MasciApps_Proj1
             DropDownList HomeTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("HomeTeamDropDownList"));
             DropDownList AwayTeamDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("AwayTeamDropDownList"));
             DropDownList MatchWinnerDropDownList = ((DropDownList)GamesListView.Items[itemID].FindControl("MatchWinnerDropDownList"));
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            try
             {
-                int homeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
-                int awayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
-                var currentTeams = (from team in db.Teams
-                                    where team.TeamID == homeTeamID | team.TeamID == awayTeamID
-                                    select team);
-                if (currentTeams != null)
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    //Assign Current Teams to MatchWinner DropDown
-                    MatchWinnerDropDownList.DataSource = currentTeams.ToList();
-                    MatchWinnerDropDownList.DataBind();
-                    if (sender == null && e == null)
-                    { //If being called from PopulateTeams()
-                        var currentMatch = (from match in db.Matches
-                                            where match.MatchID == matchID
-                                            select match).FirstOrDefault();
-                        MatchWinnerDropDownList.SelectedValue = Convert.ToString(currentMatch.Winner);
-                    } 
+                    int homeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
+                    int awayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
+                    var currentTeams = (from team in db.Teams
+                                        where team.TeamID == homeTeamID | team.TeamID == awayTeamID
+                                        select team);
+                    if (currentTeams != null)
+                    {
+                        //Assign Current Teams to MatchWinner DropDown
+                        MatchWinnerDropDownList.DataSource = currentTeams.ToList();
+                        MatchWinnerDropDownList.DataBind();
+                        if (sender == null && e == null)
+                        { //If being called from PopulateTeams()
+                            var currentMatch = (from match in db.Matches
+                                                where match.MatchID == matchID
+                                                select match).FirstOrDefault();
+                            MatchWinnerDropDownList.SelectedValue = Convert.ToString(currentMatch.Winner);
+                        } 
+                    }
                 }
+                this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
             }
-            this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**
@@ -304,18 +325,25 @@ namespace MasciApps_Proj1
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                using (DefaultConnectionEF db = new DefaultConnectionEF())
-                {
-                    int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
-                    Match matchToDelete = (from match in db.Matches
-                                           where match.MatchID == matchID
-                                           select match).FirstOrDefault();
-                    if (matchToDelete != null)
+                try { 
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
-                        db.Matches.Remove(matchToDelete); //remove Match
-                        db.SaveChanges(); //save db
-                    }                    
-                    this.GetMatches(); //Refresh ListView
+                        int matchID = Convert.ToInt32(Request.QueryString["matchID"]);
+                        Match matchToDelete = (from match in db.Matches
+                                               where match.MatchID == matchID
+                                               select match).FirstOrDefault();
+                        if (matchToDelete != null)
+                        {
+                            db.Matches.Remove(matchToDelete); //remove Match
+                            db.SaveChanges(); //save db
+                        }                    
+                        this.GetMatches(); //Refresh ListView
+                    }
+                }
+                catch (Exception err)
+                {
+                    ErrorLabel.Text = "Failed to connect to db";
+                    ErrorContainer.Visible = true;
                 }
             }         
         }
@@ -363,29 +391,36 @@ namespace MasciApps_Proj1
 
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                using (DefaultConnectionEF db = new DefaultConnectionEF())
-                {
-                    //Query db for specific Match and Teams
-                    Match matchToEdit = (from match in db.Matches
-                                         where match.MatchID == matchID
-                                         select match).FirstOrDefault();
-                    //Make appropriate changes to Match record
-                    if (matchToEdit != null)
+                try { 
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
-                        matchToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue); //Needs troubleshooting
-                        matchToEdit.HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
-                        matchToEdit.AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
-                        matchToEdit.Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue);
-                        matchToEdit.Name = MatchNameTextBox.Text;
-                        matchToEdit.DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text);
-                        matchToEdit.SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text);
-                        matchToEdit.HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text);
-                        matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
-                        db.SaveChanges();// save db - update match
+                        //Query db for specific Match and Teams
+                        Match matchToEdit = (from match in db.Matches
+                                             where match.MatchID == matchID
+                                             select match).FirstOrDefault();
+                        //Make appropriate changes to Match record
+                        if (matchToEdit != null)
+                        {
+                            matchToEdit.SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue); //Needs troubleshooting
+                            matchToEdit.HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue);
+                            matchToEdit.AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue);
+                            matchToEdit.Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue);
+                            matchToEdit.Name = MatchNameTextBox.Text;
+                            matchToEdit.DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text);
+                            matchToEdit.SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text);
+                            matchToEdit.HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text);
+                            matchToEdit.AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text);
+                            db.SaveChanges();// save db - update match
+                        }
+                        this.ToggleEditMode("Edit", itemID); //Exit Edit Mode
+                        this.GetMatches(); //Refresh ListView
                     }
-                    this.ToggleEditMode("Edit", itemID); //Exit Edit Mode
-                    this.GetMatches(); //Refresh ListView
-                }            
+                }
+                catch (Exception err)
+                {
+                    ErrorLabel.Text = "Failed to connect to db";
+                    ErrorContainer.Visible = true;
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Add Game" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="GamesAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.GamesAdd" %>
+﻿6<%@ Page Title="Add Game" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="GamesAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.GamesAdd" %>
 
 <asp:Content ID="AddGamePageContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,6 +6,9 @@
         <div class="container">
 
             <form runat="server" class="wide">
+                <div runat="server" id="ErrorContainer" class="error-container" visible="false">
+                    <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
+                </div>
                 <!-- STEP 1: Choose Match Type (Sport) -->
                 <h3 class="step" id="step1">Step 1 - Match</h3>
                 <div class="input-container matchType">

@@ -6,6 +6,9 @@
         <div class="container">
 
             <form runat="server" class="wide">                
+                <div runat="server" id="ErrorContainer" class="error-container" visible="false">
+                    <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
+                </div>
                 <h3 class="step" id="step1">Step 1 - Choose</h3>
                 <div class="input-container skinny">
                     <asp:DropDownList runat="server" ID="FunctionDropDownList" OnSelectedIndexChanged="SwapFunction" AutoPostBack="true">

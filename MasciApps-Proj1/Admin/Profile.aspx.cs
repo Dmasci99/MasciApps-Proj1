@@ -31,25 +31,31 @@ namespace MasciApps_Proj1.Admin
         protected void GetProfile()
         {
             string userID = HttpContext.Current.User.Identity.GetUserId();
-
-            using (UserConnection db = new UserConnection())
+            try
             {
-                AspNetUser currentUser = (from user in db.AspNetUsers
-                                   where user.Id == userID
-                                   select user).FirstOrDefault();
-                if (currentUser != null)
+                using (UserConnection db = new UserConnection())
                 {
-                    UsernameTextBox.Text = currentUser.UserName;
-                    EmailTextBox.Text = currentUser.Email;
-                    PhoneTextBox.Text = currentUser.PhoneNumber;
-                }
-                else
-                {
-                    ErrorLabel.Text = "Failed to retreive Profile information";
-                    ErrorContainer.Visible = true;
+                    AspNetUser currentUser = (from user in db.AspNetUsers
+                                              where user.Id == userID
+                                              select user).FirstOrDefault();
+                    if (currentUser != null)
+                    {
+                        UsernameTextBox.Text = currentUser.UserName;
+                        EmailTextBox.Text = currentUser.Email;
+                        PhoneTextBox.Text = currentUser.PhoneNumber;
+                    }
+                    else
+                    {
+                        ErrorLabel.Text = "Failed to retreive Profile information";
+                        ErrorContainer.Visible = true;
+                    }
                 }
             }
-
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**
@@ -64,24 +70,32 @@ namespace MasciApps_Proj1.Admin
         protected void ProfileSubmitButton_Click(object sender, EventArgs e)
         {
             string userID = HttpContext.Current.User.Identity.GetUserId();
-            using (UserConnection db = new UserConnection())
+            try
             {
-                AspNetUser currentUser = (from user in db.AspNetUsers
-                                   where user.Id == userID
-                                   select user).FirstOrDefault();
-                if (currentUser != null)
+                using (UserConnection db = new UserConnection())
                 {
-                    currentUser.Email = EmailTextBox.Text;
-                    currentUser.PhoneNumber = PhoneTextBox.Text;
+                    AspNetUser currentUser = (from user in db.AspNetUsers
+                                       where user.Id == userID
+                                       select user).FirstOrDefault();
+                    if (currentUser != null)
+                    {
+                        currentUser.Email = EmailTextBox.Text;
+                        currentUser.PhoneNumber = PhoneTextBox.Text;
+                    }
+                    else
+                    {
+                        ErrorLabel.Text = "Failed to retreive Profile information";
+                        ErrorContainer.Visible = true;
+                    }
+                    db.SaveChanges(); //save db - update user info                
+                    Response.Redirect("~/Games.aspx"); //redirect to the Games page
                 }
-                else
-                {
-                    ErrorLabel.Text = "Failed to retreive Profile information";
-                    ErrorContainer.Visible = true;
-                }
-                db.SaveChanges(); //save db - update user info                
-                Response.Redirect("~/Games.aspx"); //redirect to the Games page
-            }            
+            }
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**

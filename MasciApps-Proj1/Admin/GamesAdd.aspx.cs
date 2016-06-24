@@ -27,16 +27,23 @@ namespace MasciApps_Proj1.Admin
          */ 
         protected void PopulateMatchType()
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                var sports = (from sport in db.Sports
-                              select sport);
-                MatchTypeDropDownList.DataSource = sports.ToList();
-                MatchTypeDropDownList.DataBind();
-                //Start with no selection
-                MatchTypeDropDownList.ClearSelection();
+            try {
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    var sports = (from sport in db.Sports
+                                  select sport);
+                    MatchTypeDropDownList.DataSource = sports.ToList();
+                    MatchTypeDropDownList.DataBind();
+                    //Start with no selection
+                    MatchTypeDropDownList.ClearSelection();
+                }
+                this.PopulateTeams(null, null);
             }
-            this.PopulateTeams(null, null);
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**
@@ -50,22 +57,29 @@ namespace MasciApps_Proj1.Admin
          */
         protected void PopulateTeams(object sender, EventArgs e)
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
+            try { 
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
+
+                    //Query all teams of specified Sport Type.
+                    var allTeams = (from team in db.Teams
+                                    where team.SportID == sportID
+                                    select team);
+                    //Assign Sport Teams to HomeTeam and AwayTeam DropDowns
+                    HomeTeamDropDownList.DataSource = allTeams.ToList();
+                    HomeTeamDropDownList.DataBind();
+                    AwayTeamDropDownList.DataSource = allTeams.ToList();
+                    AwayTeamDropDownList.DataBind();
+
+                    if (sender == null && e == null)
+                        this.PopulateMatchWinner(null, null);
+                }
+            }
+            catch (Exception err)
             {
-                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
-
-                //Query all teams of specified Sport Type.
-                var allTeams = (from team in db.Teams
-                                where team.SportID == sportID
-                                select team);
-                //Assign Sport Teams to HomeTeam and AwayTeam DropDowns
-                HomeTeamDropDownList.DataSource = allTeams.ToList();
-                HomeTeamDropDownList.DataBind();
-                AwayTeamDropDownList.DataSource = allTeams.ToList();
-                AwayTeamDropDownList.DataBind();
-
-                if (sender == null && e == null)
-                    this.PopulateMatchWinner(null, null);
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         }
 
@@ -80,24 +94,31 @@ namespace MasciApps_Proj1.Admin
          */
         protected void PopulateMatchWinner(object sender, EventArgs e)
         {
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
-
-                //Query 2 teams specified in Step 2.
-                var currentTeams = (from team in db.Teams
-                                    where team.TeamID == sportID | team.TeamID == sportID
-                                    select team);
-                if (currentTeams != null)
+            try { 
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    //Assign Current Teams to MatchWinner DropDown
-                    MatchWinnerDropDownList.DataSource = currentTeams.ToList();
-                    MatchWinnerDropDownList.DataBind();
-                    //Start with no selection
-                    MatchWinnerDropDownList.ClearSelection();
-                }                
+                    int sportID = Convert.ToInt32(MatchTypeDropDownList.SelectedItem.Value);
+
+                    //Query 2 teams specified in Step 2.
+                    var currentTeams = (from team in db.Teams
+                                        where team.TeamID == sportID | team.TeamID == sportID
+                                        select team);
+                    if (currentTeams != null)
+                    {
+                        //Assign Current Teams to MatchWinner DropDown
+                        MatchWinnerDropDownList.DataSource = currentTeams.ToList();
+                        MatchWinnerDropDownList.DataBind();
+                        //Start with no selection
+                        MatchWinnerDropDownList.ClearSelection();
+                    }                
+                }
+                this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
             }
-            this.PopulateMatchName(); //Dynamically create Name of Match based on Teams chosen
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
+            }
         }
 
         /**
@@ -127,28 +148,35 @@ namespace MasciApps_Proj1.Admin
          */ 
         protected void AddMatchSubmit_Click(object sender, EventArgs e)
         {
-            //use EF to connect to the Server
-            using (DefaultConnectionEF db = new DefaultConnectionEF())
-            {
-                //use the student model to save a new record
-                Match newMatch = new Match()
+            try { 
+                //use EF to connect to the Server
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue),
-                    HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue),
-                    AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue),
-                    Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue),
-                    Name = MatchNameTextBox.Text,
-                    DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text),
-                    SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text),
-                    HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text),
-                    AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text)
-                };
+                    //use the student model to save a new record
+                    Match newMatch = new Match()
+                    {
+                        SportID = Convert.ToInt32(MatchTypeDropDownList.SelectedValue),
+                        HomeTeamID = Convert.ToInt32(HomeTeamDropDownList.SelectedValue),
+                        AwayTeamID = Convert.ToInt32(AwayTeamDropDownList.SelectedValue),
+                        Winner = Convert.ToInt32(MatchWinnerDropDownList.SelectedValue),
+                        Name = MatchNameTextBox.Text,
+                        DateTime = Convert.ToDateTime(MatchDateTextBox.Text + " " + MatchTimeTextBox.Text),
+                        SpecCount = Convert.ToInt32(MatchSpecCountTextBox.Text),
+                        HomeTeamScore = Convert.ToInt32(HomeTeamScoreTextBox.Text),
+                        AwayTeamScore = Convert.ToInt32(AwayTeamScoreTextBox.Text)
+                    };
 
-                //adding the new student to the collection
-                db.Matches.Add(newMatch);
-                db.SaveChanges();
+                    //adding the new student to the collection
+                    db.Matches.Add(newMatch);
+                    db.SaveChanges();
 
-                Response.Redirect("~/Games.aspx");
+                    Response.Redirect("~/Games.aspx");
+                }
+            }
+            catch (Exception err)
+            {
+                ErrorLabel.Text = "Failed to connect to db";
+                ErrorContainer.Visible = true;
             }
         }
 

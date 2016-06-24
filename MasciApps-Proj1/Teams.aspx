@@ -18,7 +18,9 @@
 
     <div class="interior-page gametracker-page" id="teams-page">
         <div class="container">
-            <h5 runat="server" id="test"></h5>
+            <div runat="server" id="ErrorContainer" class="error-container" visible="false">
+                <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
+            </div>
             
             <form runat="server">
                 <div class="navigation">
