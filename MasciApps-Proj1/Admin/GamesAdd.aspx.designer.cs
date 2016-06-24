@@ -49,6 +49,15 @@ namespace MasciApps_Proj1.Admin {
         protected global::System.Web.UI.WebControls.DropDownList HomeTeamDropDownList;
         
         /// <summary>
+        /// HomeTeamCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator HomeTeamCompareValidator;
+        
+        /// <summary>
         /// HomeTeamScoreTextBox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace MasciApps_Proj1.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList AwayTeamDropDownList;
+        
+        /// <summary>
+        /// AwayTeamCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator AwayTeamCompareValidator;
         
         /// <summary>
         /// AwayTeamScoreTextBox control.

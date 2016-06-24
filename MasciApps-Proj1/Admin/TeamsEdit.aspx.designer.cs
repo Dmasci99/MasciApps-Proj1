@@ -31,15 +31,6 @@ namespace MasciApps_Proj1.Admin {
         protected global::System.Web.UI.WebControls.Label ErrorLabel;
         
         /// <summary>
-        /// FunctionDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FunctionDropDownList;
-        
-        /// <summary>
         /// TeamDropDownList control.
         /// </summary>
         /// <remarks>

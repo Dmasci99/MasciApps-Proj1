@@ -54,23 +54,6 @@ namespace MasciApps_Proj1.Admin
 
         /**
          * <summary>
-         * This method will swap the form to: edit an existing Team.
-         * </summary>
-         * @method SwapFunction
-         * @param {object} sender
-         * @param {EventArgs} e
-         * @returns {void}
-         */
-        protected void SwapFunction(object sender, EventArgs e)
-        {
-            if (FunctionDropDownList.SelectedItem.Text == "Add New Team")
-                Response.Redirect("~/Admin/TeamsAdd.aspx");
-            else
-                Response.Redirect("~/Admin/TeamsEdit.aspx");
-        }
-
-        /**
-         * <summary>
          * This method cancels the process of adding a New Team by refreshing the page.
          * </summary>
          * @method AddTeamCancel_Click

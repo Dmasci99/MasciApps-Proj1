@@ -6,18 +6,16 @@
         <div class="container">
 
             <form runat="server" class="wide">
+                <div class="navigation special">
+                    <a href="/Admin/TeamsAdd.aspx" class="option">New</a>
+                    <a href="/Admin/TeamsEdit.aspx" class="option active">Edit</a>
+                    <div class="clear-float"></div>
+                </div>             
                 <div runat="server" id="ErrorContainer" class="error-container" visible="false">
                     <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
                 </div>
-                <h3 class="step" id="step1">Step 1 - Choose</h3>
-                <div class="input-container skinny">
-                    <asp:DropDownList runat="server" ID="FunctionDropDownList" OnSelectedIndexChanged="SwapFunction" AutoPostBack="true">
-                        <asp:ListItem Text="Add New Team" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="Edit Existing Team" Value="1" Selected="true"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>                
 
-                <h3 class="step" id="step2">Step 2 - Team</h3>
+                <h3 class="step" id="step1">Step 1 - Team</h3>
                 <div class="input-container team">
                     <asp:DropDownList runat="server" ID="TeamDropDownList" DataValueField="TeamID" DataTextField="Name"
                         OnSelectedIndexChanged="PopulateDetails" AutoPostBack="true" TabIndex="1"></asp:DropDownList>                    
@@ -25,7 +23,7 @@
                         Text="<i class='fa fa-trash-o'></i>" OnClick="EditTeamDelete_Click"/>
                 </div>
                 
-                <h3 class="step" id="step3">Step 3 - Details</h3>
+                <h3 class="step" id="step2">Step 2 - Details</h3>
                 <div class="input-container teamType">
                     <asp:DropDownList runat="server" ID="TeamTypeDropDownList" DataValueField="SportID" DataTextField="Name" TabIndex="2"></asp:DropDownList>
                 </div>

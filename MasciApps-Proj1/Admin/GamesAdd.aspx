@@ -1,4 +1,4 @@
-﻿6<%@ Page Title="Add Game" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="GamesAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.GamesAdd" %>
+﻿<%@ Page Title="Add Game" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="GamesAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.GamesAdd" %>
 
 <asp:Content ID="AddGamePageContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -10,7 +10,7 @@
                     <asp:Label runat="server" ID="ErrorLabel"></asp:Label>
                 </div>
                 <!-- STEP 1: Choose Match Type (Sport) -->
-                <h3 class="step" id="step1">Step 1 - Match</h3>
+                <h3 class="step" id="step1">Step 1 - Sport</h3>
                 <div class="input-container matchType">
                     <asp:DropDownList runat="server" ID="MatchTypeDropDownList" DataValueField="SportID" DataTextField="Name"
                         OnSelectedIndexChanged="PopulateTeams" AutoPostBack="true"></asp:DropDownList>
@@ -20,14 +20,20 @@
                 <h3 class="step" id="step2">Step 2 - Teams</h3>
                 <div class="input-container team">
                     <asp:DropDownList runat="server" ID="HomeTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
-                        OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true"></asp:DropDownList>
+                        OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" CausesValidation="true"></asp:DropDownList>
+                    <asp:CompareValidator runat="server" ID="HomeTeamCompareValidator" Operator="NotEqual" EnableClientScript="true" 
+                        ErrorMessage="Must choose 2 different teams"
+                        ControlToValidate="HomeTeamDropDownList" ControlToCompare="AwayTeamDropDownList"></asp:CompareValidator>
                 </div>
                 <div class="input-container teamScore">
                     <asp:TextBox runat="server" ID="HomeTeamScoreTextBox" TextMode="Number" Placeholder="Home Team Score"></asp:TextBox>
                 </div>
                 <div class="input-container team">
                     <asp:DropDownList runat="server" ID="AwayTeamDropDownList" DataValueField="TeamID" DataTextField="Name"
-                        OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true"></asp:DropDownList>
+                        OnSelectedIndexChanged="PopulateMatchWinner" AutoPostBack="true" CausesValidation="true"></asp:DropDownList>
+                    <asp:CompareValidator runat="server" ID="AwayTeamCompareValidator" Operator="NotEqual" EnableClientScript="true" 
+                        ErrorMessage="Must choose 2 different teams"
+                        ControlToValidate="AwayTeamDropDownList" ControlToCompare="HomeTeamDropDownList"></asp:CompareValidator>
                 </div>
                 <div class="input-container teamScore">
                     <asp:TextBox runat="server" ID="AwayTeamScoreTextBox" TextMode="Number" Placeholder="Away Team Score"></asp:TextBox>
