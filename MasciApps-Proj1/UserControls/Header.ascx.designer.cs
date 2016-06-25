@@ -31,13 +31,13 @@ namespace MasciApps_Proj1.UserControls {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor projects;
         
         /// <summary>
-        /// services control.
+        /// teams control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor services;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor teams;
         
         /// <summary>
         /// games control.

@@ -9,6 +9,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using MasciApps_Proj1.Models;
 
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/TeamsEdit.aspx
+
+* The Following page is the Codebehind for the "TeamsAdd" page.
+* Allows the user to add a new Team.
+*/
+
 namespace MasciApps_Proj1.Admin
 {
     public partial class TeamsAdd : System.Web.UI.Page

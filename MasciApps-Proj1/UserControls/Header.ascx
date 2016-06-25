@@ -37,7 +37,7 @@
 				        <li><a href="http://dogdayscamp.com/">DogDaysCamp</a></li>
 			        </ul>
 		        </li>						
-		        <li><a runat="server" id="services" href="~/Services.aspx">Services</a></li>	
+		        <li><a runat="server" id="teams" href="~/Teams.aspx">Teams</a></li>	
                 <li><a runat="server" id="games" href="~/Games.aspx">Games</a></li>	
 		        <li><a runat="server" id="contact" href="~/Contact.aspx">Contact</a></li>	
 		        <div class="clear-float"></div><!--clear-float-->				

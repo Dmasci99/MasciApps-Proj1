@@ -7,7 +7,19 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Login.aspx
+* 
+* The Following page is Codebehind for the Login Page. 
+* Users login to access Game Tracker Administrative rights.
+* Logged-in users are redirected to their Profile.
+* 
+*/
 namespace MasciApps_Proj1
 {
     public partial class Login : System.Web.UI.Page

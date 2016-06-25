@@ -5,7 +5,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+* 
+* The Following control is the Codebehind for my Inteiror-Page Header.
+* It is only called into my Interior.Master.
+*/
 namespace MasciApps_Proj1.UserControls
 {
     public partial class InteriorHeader : System.Web.UI.UserControl

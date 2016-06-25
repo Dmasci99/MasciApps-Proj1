@@ -6,7 +6,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq.Dynamic;
-
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Teams.aspx
+* 
+* The Following page is the Codebehind for the "Teams" page.
+* Allows the user to view, add and edit Teams (depending on authentication).
+*
+*/
 namespace MasciApps_Proj1
 {
     public partial class Teams : System.Web.UI.Page

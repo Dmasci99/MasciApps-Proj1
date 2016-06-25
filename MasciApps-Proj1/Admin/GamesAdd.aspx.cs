@@ -5,6 +5,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/GamesAdd.aspx
+
+* The Following page is the Codebehind for the "GamesAdd" page.
+* Allows the user to add a new Game.
+*/
 
 namespace MasciApps_Proj1.Admin
 {

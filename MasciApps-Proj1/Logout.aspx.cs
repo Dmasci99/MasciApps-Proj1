@@ -7,7 +7,16 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Logout.aspx
+* 
+* The Following page is the Logout Page. Logs the user out and redirects to Games.aspx.
+*/
 namespace MasciApps_Proj1
 {
     public partial class Logout : System.Web.UI.Page

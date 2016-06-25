@@ -1,5 +1,17 @@
 ﻿<%@ Page Title="Profile" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="MasciApps_Proj1.Admin.Profile" %>
+<%--
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/Profile.aspx
 
+* The Following page is the Form for the "Profile" page.
+* Allows a registered user to edit their existing profile.
+*/ 
+--%>
 
 <asp:Content ID="ProfilePageContent" ContentPlaceHolderID="MainContent" runat="server">
 

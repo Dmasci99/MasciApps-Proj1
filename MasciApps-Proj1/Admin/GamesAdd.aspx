@@ -1,4 +1,17 @@
 ﻿<%@ Page Title="Add Game" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="GamesAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.GamesAdd" %>
+<%--
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/GamesAdd.aspx
+
+* The Following page is the Content for the "GamesAdd" page.
+* Allows the user to add a new Game.
+*/ 
+--%>
 
 <asp:Content ID="AddGamePageContent" ContentPlaceHolderID="MainContent" runat="server">
 

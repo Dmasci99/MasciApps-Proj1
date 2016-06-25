@@ -7,6 +7,20 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Linq.Dynamic;
+ 
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Games.aspx
+* 
+* The Following page is the Codebehind for the "Games" page.
+* Allows the user (depending on authentication) to add new games, 
+* edit existing games and filter by Calendar Week.
+* 
+*/ 
 
 namespace MasciApps_Proj1
 {

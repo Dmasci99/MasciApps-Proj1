@@ -1,4 +1,17 @@
 ﻿<%@ Page Title="Edit Team" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="TeamsEdit.aspx.cs" Inherits="MasciApps_Proj1.Admin.TeamsEdit" %>
+<%-- 
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/TeamsEdit.aspx
+
+* The Following page is the Content for the "TeamsEdit" page.
+* Allows the user to edit an existing Team.
+*/ 
+--%>
 
 <asp:Content ID="EditTeamPageContent" ContentPlaceHolderID="MainContent" runat="server">
 

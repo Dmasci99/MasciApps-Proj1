@@ -8,7 +8,17 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using MasciApps_Proj1.Models;
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/Profile.aspx
 
+* The Following page is the Codebehind for the "Profile" page.
+* Allows a registered user to edit their existing profile.
+*/
 namespace MasciApps_Proj1.Admin
 {
     public partial class Profile : System.Web.UI.Page

@@ -1,4 +1,17 @@
 ﻿<%@ Page Title="Add Team" Language="C#" MasterPageFile="~/Interior.Master" AutoEventWireup="true" CodeBehind="TeamsAdd.aspx.cs" Inherits="MasciApps_Proj1.Admin.TeamsAdd" %>
+<%--
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net/Admin/TeamsAdd.aspx
+
+* The Following page is the Content for the "TeamsAdd" page.
+* Allows the user to add a new Team.
+*/ 
+--%>
 
 <asp:Content ID="AddTeamPageContent" ContentPlaceHolderID="MainContent" runat="server">
 

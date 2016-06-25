@@ -4,7 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+/**
+* Author : Daniel Masci - 200299037
+* Class : Enterprise Computing
+* Semester : 4
+* Professor : Tom Tsiliopolous
+* Purpose : Project 1 - Game Tracker
+* Website Name : MasciApps-GameTracker.azurewebsites.net
+* 
+* The Following control is used as my Header that is called into the Site.Master
+* and Interior.Master. It is used as a consistent menu across the whole site.
+*/
 namespace MasciApps_Proj1.UserControls
 {
     public partial class Header : System.Web.UI.UserControl
@@ -31,7 +41,7 @@ namespace MasciApps_Proj1.UserControls
             {
                 case "About Me": about.Attributes.Add("class", "active"); break;
                 case "Projects": projects.Attributes.Add("class", "active"); break;
-                case "Services": services.Attributes.Add("class", "active"); break;
+                case "Teams": teams.Attributes.Add("class", "active"); break;
                 case "Games": games.Attributes.Add("class", "active"); break;
                 case "Contact Me": contact.Attributes.Add("class", "active"); break;
                 case "Login": login.Attributes.Add("class", "active login"); break;
